@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{69416A15-1627-4715-A2B3-AFB719F0C994}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Juntas_MC</RootNamespace>
+    <AssemblyName>Juntas_MC</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\MercadosBLL.cs" />
+    <Compile Include="BLL\MarcasBLL.cs" />
+    <Compile Include="BLL\MaterialesBLL.cs" />
+    <Compile Include="BLL\ModelosBLL.cs" />
+    <Compile Include="BLL\PiezasBLL.cs" />
+    <Compile Include="BLL\PiezasModelosBLL.cs" />
+    <Compile Include="BLL\PreciosMercados.cs" />
+    <Compile Include="BLL\TiposDePiezasBLL.cs" />
+    <Compile Include="DAL\MercadosDAL.cs" />
+    <Compile Include="DAL\ConexionDAL.cs" />
+    <Compile Include="DAL\MarcasDAL.cs" />
+    <Compile Include="DAL\MaterialesDAL.cs" />
+    <Compile Include="DAL\ModelosDAL.cs" />
+    <Compile Include="Bienvenida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bienvenida.Designer.cs">
+      <DependentUpon>Bienvenida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\PiezasDAL.cs" />
+    <Compile Include="DAL\PiezasModelosDAL.cs" />
+    <Compile Include="DAL\PreciosMercadosDAL.cs" />
+    <Compile Include="DAL\TiposDePiezasDAL.cs" />
+    <Compile Include="PL\Marcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\Marcas.Designer.cs">
+      <DependentUpon>Marcas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\Modelos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\Modelos.Designer.cs">
+      <DependentUpon>Modelos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\Materiales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\Materiales.Designer.cs">
+      <DependentUpon>Materiales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\Piezas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\Piezas.Designer.cs">
+      <DependentUpon>Piezas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\PiezasModelos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\PiezasModelos.Designer.cs">
+      <DependentUpon>PiezasModelos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\TiposDePiezas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\TiposDePiezas.Designer.cs">
+      <DependentUpon>TiposDePiezas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Bienvenida.resx">
+      <DependentUpon>Bienvenida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\Marcas.resx">
+      <DependentUpon>Marcas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\Materiales.resx">
+      <DependentUpon>Materiales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\Modelos.resx">
+      <DependentUpon>Modelos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\Piezas.resx">
+      <DependentUpon>Piezas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\PiezasModelos.resx">
+      <DependentUpon>PiezasModelos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\TiposDePiezas.resx">
+      <DependentUpon>TiposDePiezas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cross2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basurero.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash24px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_floppy_285657.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Modify_132500.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_bill_416404.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_6_3319634.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bill_128px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\find2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
