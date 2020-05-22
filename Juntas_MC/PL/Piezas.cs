@@ -1,8 +1,10 @@
-﻿using Juntas_MC.DAL;
+﻿using Juntas_MC.BLL;
+using Juntas_MC.DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -43,6 +45,7 @@ namespace Juntas_MC.PL
             this.dgvPiezas.Columns["PiMaterial"].Visible = false;
             this.dgvPiezas.Columns["PT.Id"].Visible = false;
             this.dgvPiezas.Columns["MA.Id"].Visible = false;
+            this.dgvPiezas.Columns["Imagen"].Visible = false;
             cmbCP2.Enabled = false;
             cmbCP3.Enabled = false;
             cmbCP4.Enabled = false;
@@ -145,14 +148,14 @@ namespace Juntas_MC.PL
             dgvPiezas.ClearSelection();
             if (indice >= 0)
             {
-                lblIdModelo.Text = dgvPiezas.Rows[indice].Cells[0].Value.ToString();
                 lblIdPieza.Text = dgvPiezas.Rows[indice].Cells[0].Value.ToString();
-                txtNombre.Text = dgvPiezas.Rows[indice].Cells[2].Value.ToString();
                 txtCodigo.Text = dgvPiezas.Rows[indice].Cells[1].Value.ToString();
-                txtPrecio.Text = dgvPiezas.Rows[indice].Cells[3].Value.ToString();
-                txtDetalles.Text = dgvPiezas.Rows[indice].Cells[6].Value.ToString();
-                cmbPiezaTipo.SelectedValue = dgvPiezas.Rows[indice].Cells[4].Value.ToString();
-                cmbMaterial.SelectedValue = dgvPiezas.Rows[indice].Cells[5].Value.ToString();
+                txtPrecio.Text = dgvPiezas.Rows[indice].Cells[2].Value.ToString();
+                txtDetalles.Text = dgvPiezas.Rows[indice].Cells[5].Value.ToString();
+                cmbPiezaTipo.SelectedValue = dgvPiezas.Rows[indice].Cells[3].Value.ToString();
+                cmbMaterial.SelectedValue = dgvPiezas.Rows[indice].Cells[4].Value.ToString();
+                txtRutaImagen.Text = dgvPiezas.Rows[indice].Cells[10].Value.ToString();
+                obtenerImagen();
                 llenadoComboBoxTdPiezas();
                 llenadoComboBoxMateriales();
                 llenarGridPiezasModelos();
@@ -170,10 +173,10 @@ namespace Juntas_MC.PL
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txtNombre.Clear();
             txtPrecio.Clear();
             txtDetalles.Clear();
             txtCodigo.Clear();
+            txtRutaImagen.Clear();
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnBorrar.Enabled = false;
@@ -240,6 +243,54 @@ namespace Juntas_MC.PL
         public void enviarPiezaId(int PiezaId)
         {
             PiezaId = Convert.ToInt32(lblIdPieza.Text);
+        }
+
+        private void btnExaminar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog getImage = new OpenFileDialog();
+            getImage.InitialDirectory = "C:\\";
+            getImage.Filter = "Todos (*.*)|*.*|JPG /JPEG (*.jpg)(*.jpeg)|*.jpg;*.jpeg|PNG (*.png)|*.png";
+
+            if(getImage.ShowDialog() == DialogResult.OK)
+            {
+                imgPieza.ImageLocation = getImage.FileName;
+                txtRutaImagen.Text = getImage.FileName;
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado imagen");
+            }
+        }
+
+        private void obtenerImagen()
+        {
+            if (txtRutaImagen.Text != null)
+            {
+                imgPieza.ImageLocation = Convert.ToString(txtRutaImagen.Text);
+            }
+            else
+            {
+                imgPieza.Image = null;
+            }
+        }
+
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
+            llenarGridPiezas();
+        }
+        private PiezasBLL recuperarInformacionAgregarPieza()
+        {
+            PiezasBLL oPieza = new PiezasBLL();
+            oPieza.Codigo = txtCodigo.Text;
+            oPieza.Precio = Convert.ToDecimal(txtPrecio.Text);
+            oPieza.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
+            oPieza.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
+            oPieza.Detalles = txtDetalles.Text;
+            oPieza.Imagen = txtRutaImagen.Text;
+
+            return oPieza;
         }
     }
 }

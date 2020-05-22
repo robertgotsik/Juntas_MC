@@ -8,7 +8,6 @@ namespace Juntas_MC.BLL
 {
     class MarcasBLL
     {
-
         public int Id { get; set; }
         public string Nombre { get; set; }
     }
