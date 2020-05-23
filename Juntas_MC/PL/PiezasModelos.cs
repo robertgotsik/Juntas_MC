@@ -14,13 +14,16 @@ namespace Juntas_MC.PL
 {
     public partial class PiezasModelos : Form
     {
-        PiezasModelos oPiezasModelosDAL;
+
         ModelosDAL oModelosDAL;
-        PiezasDAL oPiezasDAL;
+        PiezasModelosDAL oPiezasModelosDAL;
+
+        Piezas obj = (Piezas)Application.OpenForms["Piezas"];
+
         public PiezasModelos()
         {
-            //oPiezasModelosDAL = new PiezasModelos();
             oModelosDAL = new ModelosDAL();
+            oPiezasModelosDAL = new PiezasModelosDAL();
             InitializeComponent();
             iniciarLlenadoDropDown();
         }
@@ -32,18 +35,31 @@ namespace Juntas_MC.PL
 
 
         private void iniciarLlenadoDropDown()
-        { 
-            cmbPiezasModelos.ValueMember = "Id";
+        {
+            cmbPiezasModelos.ValueMember = "MO.Id";
             cmbPiezasModelos.DisplayMember = "NombreModeloMarca";
             cmbPiezasModelos.DataSource = oModelosDAL.mostrarModelosCmb().Tables[0];
         }
 
-        //private PiezasModelosBLL recuperarInformacionAgregarModelo()
-        //{
-        //    PiezasModelosBLL oPiezasModelosBLL = new PiezasModelosBLL();
-        //    oPiezasModelosBLL.Modelo = Convert.ToInt32(cmbPiezasModelos.SelectedValue);
+        private void PiezasModelos_Load(object sender, EventArgs e)
+        {
+            txtPiezaCodigo.Text = Piezas.PiezaCodigo;
+            lblPiezaId.Text = Piezas.PiezaId;
+        }
 
-        //    return oPiezasModelosBLL;
-        //}
+        private PiezasModelosBLL recuperarInformacionPiezaModelo()
+        {
+            PiezasModelosBLL piezasModelosBLL = new PiezasModelosBLL();
+            piezasModelosBLL.Pieza = Convert.ToInt32(lblPiezaId.Text);
+            piezasModelosBLL.Modelo = Convert.ToInt32(cmbPiezasModelos.SelectedValue);
+
+            return piezasModelosBLL;
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            oPiezasModelosDAL.agregar(recuperarInformacionPiezaModelo());
+            obj.llenarGridPiezasModelos();
+        }
     }
 }

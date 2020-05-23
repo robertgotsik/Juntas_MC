@@ -49,6 +49,7 @@ namespace Juntas_MC.PL
             cmbCP2.Enabled = false;
             cmbCP3.Enabled = false;
             cmbCP4.Enabled = false;
+            btnQuitarModelo.Enabled = false;
         }
 
         public void llenarGridMercados(int Pieza, int Mercado1, int Mercado2, int Mercado3, int Mercado4)
@@ -226,10 +227,15 @@ namespace Juntas_MC.PL
             }
         }
 
+        public static string PiezaId = "";
+        public static string PiezaCodigo = "";
         private void btnAgregarModelo_Click(object sender, EventArgs e)
         {
+            PiezaId = lblIdPieza.Text;
+            PiezaCodigo = txtCodigo.Text;
             PiezasModelos piezasModelos = new PiezasModelos();
-            piezasModelos.Show();
+            
+            piezasModelos.ShowDialog();
         }
 
         public void llenarGridPiezasModelos()
@@ -238,11 +244,6 @@ namespace Juntas_MC.PL
             dvgPiezasModelos.DataSource = oPiezasModelosDAL.mostrarPiezasModelos(Pieza).Tables[0];
             this.dvgPiezasModelos.Columns["MO.Id"].Visible = false;
             this.dvgPiezasModelos.Columns["MA.Id"].Visible = false;
-        }
-
-        public void enviarPiezaId(int PiezaId)
-        {
-            PiezaId = Convert.ToInt32(lblIdPieza.Text);
         }
 
         private void btnExaminar_Click(object sender, EventArgs e)
@@ -255,10 +256,6 @@ namespace Juntas_MC.PL
             {
                 imgPieza.ImageLocation = getImage.FileName;
                 txtRutaImagen.Text = getImage.FileName;
-            }
-            else
-            {
-                MessageBox.Show("No se ha seleccionado imagen");
             }
         }
 
@@ -291,6 +288,72 @@ namespace Juntas_MC.PL
             oPieza.Imagen = txtRutaImagen.Text;
 
             return oPieza;
+        }
+
+        private void btnQuitarModelo_Click(object sender, EventArgs e)
+        {
+            oPiezasModelosDAL.eliminar(recuperarInformacionPiezasModelos());
+            llenarGridPiezasModelos();
+        }
+
+        private PiezasBLL recuperarInformacionPieza()
+        {
+            PiezasBLL oPiezas = new PiezasBLL();
+            oPiezas.Id = Convert.ToInt32(lblIdPieza.Text);
+            oPiezas.Codigo = txtCodigo.Text;
+            oPiezas.Detalles = txtDetalles.Text;
+            oPiezas.Precio = Convert.ToDecimal(txtPrecio.Text);
+            oPiezas.Imagen = txtRutaImagen.Text;
+            oPiezas.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
+            oPiezas.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
+
+            return oPiezas;
+        }
+
+        private PiezasModelosBLL recuperarInformacionPiezasModelos()
+        {
+            PiezasModelosBLL oPiezasModelos = new PiezasModelosBLL();
+            oPiezasModelos.Modelo = Convert.ToInt32(lblIdModelo.Text);
+            oPiezasModelos.Pieza = Convert.ToInt32(lblIdPieza.Text);
+
+            return oPiezasModelos;
+        }
+
+        private void SeleccionarPiezaModelo(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int indice = e.RowIndex;
+
+            dvgPiezasModelos.ClearSelection();
+            if (indice >= 0)
+            {
+                lblIdModelo.Text = dvgPiezasModelos.Rows[indice].Cells[0].Value.ToString();
+                btnQuitarModelo.Enabled = true;
+            }
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            oPiezasDAL.eliminar(recuperarInformacionPieza());
+            txtCodigo.Clear();
+            llenarGridPiezas();
+            limpiarEntradas();
+            btnLimpiar.Hide();
+        }
+        public void limpiarEntradas()
+        {
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnBorrar.Enabled = false;
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            oPiezasDAL.modificar(recuperarInformacionPieza());
+            ModificacionDialog oModificacionDialog = new ModificacionDialog();
+            oModificacionDialog.ShowDialog();
+            llenarGridPiezas();
+            limpiarEntradas();
+            btnLimpiar.Hide();
         }
     }
 }

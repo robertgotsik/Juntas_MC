@@ -135,6 +135,8 @@ namespace Juntas_MC.PL
         private void btnModificar_Click(object sender, EventArgs e)
         {
             oModelosDAL.modificar(recuperarInformacionModelo());
+            ModificacionDialog oModificacionDialog = new ModificacionDialog();
+            oModificacionDialog.ShowDialog();
             borrarInput();
             llenarGrid();
             limpiarEntradas();

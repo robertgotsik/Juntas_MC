@@ -52,6 +52,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lblIdModelo = new System.Windows.Forms.Label();
             this.gbModelosCompatibles = new System.Windows.Forms.GroupBox();
+            this.btnQuitarModelo = new System.Windows.Forms.Button();
             this.dvgPiezasModelos = new System.Windows.Forms.DataGridView();
             this.btnAgregarModelo = new System.Windows.Forms.Button();
             this.helpProvider1 = new System.Windows.Forms.HelpProvider();
@@ -313,6 +314,7 @@
             // 
             // gbModelosCompatibles
             // 
+            this.gbModelosCompatibles.Controls.Add(this.btnQuitarModelo);
             this.gbModelosCompatibles.Controls.Add(this.dvgPiezasModelos);
             this.gbModelosCompatibles.Controls.Add(this.btnAgregarModelo);
             this.gbModelosCompatibles.Location = new System.Drawing.Point(197, 6);
@@ -321,6 +323,16 @@
             this.gbModelosCompatibles.TabIndex = 16;
             this.gbModelosCompatibles.TabStop = false;
             this.gbModelosCompatibles.Text = "Modelos compatibles";
+            // 
+            // btnQuitarModelo
+            // 
+            this.btnQuitarModelo.Location = new System.Drawing.Point(199, 21);
+            this.btnQuitarModelo.Name = "btnQuitarModelo";
+            this.btnQuitarModelo.Size = new System.Drawing.Size(75, 30);
+            this.btnQuitarModelo.TabIndex = 2;
+            this.btnQuitarModelo.Text = "-";
+            this.btnQuitarModelo.UseVisualStyleBackColor = true;
+            this.btnQuitarModelo.Click += new System.EventHandler(this.btnQuitarModelo_Click);
             // 
             // dvgPiezasModelos
             // 
@@ -335,10 +347,11 @@
             this.dvgPiezasModelos.RowTemplate.Height = 24;
             this.dvgPiezasModelos.Size = new System.Drawing.Size(348, 175);
             this.dvgPiezasModelos.TabIndex = 1;
+            this.dvgPiezasModelos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SeleccionarPiezaModelo);
             // 
             // btnAgregarModelo
             // 
-            this.btnAgregarModelo.Location = new System.Drawing.Point(141, 21);
+            this.btnAgregarModelo.Location = new System.Drawing.Point(92, 21);
             this.btnAgregarModelo.Name = "btnAgregarModelo";
             this.btnAgregarModelo.Size = new System.Drawing.Size(75, 30);
             this.btnAgregarModelo.TabIndex = 0;
@@ -405,6 +418,7 @@
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // btnModificar
             // 
@@ -416,6 +430,7 @@
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnAgregar
             // 
@@ -518,5 +533,6 @@
         public System.Windows.Forms.Label lblIdPieza;
         private System.Windows.Forms.Button btnExaminar;
         private System.Windows.Forms.TextBox txtRutaImagen;
+        private System.Windows.Forms.Button btnQuitarModelo;
     }
 }

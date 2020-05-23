@@ -106,6 +106,8 @@ namespace Juntas_MC.PL
         private void btnModificar_Click(object sender, EventArgs e)
         {
             oMaterialesDAL.modificar(recuperarInformacionMaterial());
+            ModificacionDialog oModificacionDialog = new ModificacionDialog();
+            oModificacionDialog.ShowDialog();
             borrarInput();
             llenarGrid();
             limpiarEntradas();

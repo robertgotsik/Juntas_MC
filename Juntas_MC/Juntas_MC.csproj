@@ -88,6 +88,12 @@
     <Compile Include="PL\Materiales.Designer.cs">
       <DependentUpon>Materiales.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\ModificacionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\ModificacionDialog.Designer.cs">
+      <DependentUpon>ModificacionDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\Piezas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Modelos.resx">
       <DependentUpon>Modelos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\ModificacionDialog.resx">
+      <DependentUpon>ModificacionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Piezas.resx">
       <DependentUpon>Piezas.cs</DependentUpon>
@@ -199,6 +208,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\imgZoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

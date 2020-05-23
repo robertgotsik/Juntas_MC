@@ -22,13 +22,19 @@ namespace Juntas_MC.DAL
             oleDbComando.Parameters.AddWithValue("@Pieza", SqlDbType.VarChar).Value = oPiezasModelosBLL.Pieza;
             oleDbComando.Parameters.AddWithValue("@Modelo", SqlDbType.VarChar).Value = oPiezasModelosBLL.Modelo;
             return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
-            //return conexion.ejecutarMetodoSinRetornoDatos("INSERT INTO [dbo].[Marcas]([Nombre])VALUES('" +oMarcasBLL.Nombre +"')");
         }
 
         public DataSet mostrarPiezasModelos(int PiezaId)
         {
-            OleDbCommand sentencia = new OleDbCommand("Select MO.Id, MA.Id, MO.Nombre & " + " ' ['" + " & MA.Nombre & " + "']' " + "as ModeloMarca from (((PiezasModelos PM inner join Piezas PI on PI.Id = PM.Pieza) inner join Modelos MO on MO.Id = PM.Modelo) inner join Marcas MA on MA.Id = MO.Marca) where Pieza = " +PiezaId);
+            OleDbCommand sentencia = new OleDbCommand("Select MO.Id, MA.Id, MO.Nombre & " + " ' ['" + " & MA.Nombre & " + "']' " + "as ModeloMarca from (((PiezasModelos PM inner join Piezas PI on PI.Id = PM.Pieza) inner join Modelos MO on MO.Id = PM.Modelo) inner join Marcas MA on MA.Id = MO.Marca) where Pieza = " +PiezaId +" order by PM.Id");
             return conexion.ejecutarSentencia(sentencia);
+        }
+
+        public int eliminar(PiezasModelosBLL oPiezasModelosBLL)
+        {
+            conexion.ejecutarMetodoSinRetornoDatos("DELETE FROM PiezasModelos where Pieza= " + oPiezasModelosBLL.Pieza +"and Modelo = " + oPiezasModelosBLL.Modelo);
+
+            return 1;
         }
 
     }

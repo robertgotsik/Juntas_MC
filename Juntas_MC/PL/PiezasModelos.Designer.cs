@@ -32,14 +32,16 @@
             this.lblModelo = new System.Windows.Forms.Label();
             this.cmbPiezasModelos = new System.Windows.Forms.ComboBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.lblIdPieza = new System.Windows.Forms.Label();
+            this.lblPiezaCodigo = new System.Windows.Forms.Label();
+            this.txtPiezaCodigo = new System.Windows.Forms.TextBox();
+            this.lblPiezaId = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblModelo
             // 
             this.lblModelo.AutoSize = true;
             this.lblModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModelo.Location = new System.Drawing.Point(12, 9);
+            this.lblModelo.Location = new System.Drawing.Point(132, 9);
             this.lblModelo.Name = "lblModelo";
             this.lblModelo.Size = new System.Drawing.Size(63, 20);
             this.lblModelo.TabIndex = 0;
@@ -52,9 +54,9 @@
             this.cmbPiezasModelos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPiezasModelos.FormattingEnabled = true;
             this.cmbPiezasModelos.IntegralHeight = false;
-            this.cmbPiezasModelos.Location = new System.Drawing.Point(15, 30);
+            this.cmbPiezasModelos.Location = new System.Drawing.Point(136, 30);
             this.cmbPiezasModelos.Name = "cmbPiezasModelos";
-            this.cmbPiezasModelos.Size = new System.Drawing.Size(395, 26);
+            this.cmbPiezasModelos.Size = new System.Drawing.Size(274, 26);
             this.cmbPiezasModelos.TabIndex = 1;
             this.cmbPiezasModelos.SelectedIndexChanged += new System.EventHandler(this.cmbPiezasModelos_SelectedIndexChanged);
             // 
@@ -68,29 +70,50 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // lblIdPieza
+            // lblPiezaCodigo
             // 
-            this.lblIdPieza.AutoSize = true;
-            this.lblIdPieza.Enabled = false;
-            this.lblIdPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdPieza.Location = new System.Drawing.Point(-1, 101);
-            this.lblIdPieza.Name = "lblIdPieza";
-            this.lblIdPieza.Size = new System.Drawing.Size(35, 13);
-            this.lblIdPieza.TabIndex = 6;
-            this.lblIdPieza.Text = "label1";
+            this.lblPiezaCodigo.AutoSize = true;
+            this.lblPiezaCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPiezaCodigo.Location = new System.Drawing.Point(12, 9);
+            this.lblPiezaCodigo.Name = "lblPiezaCodigo";
+            this.lblPiezaCodigo.Size = new System.Drawing.Size(90, 20);
+            this.lblPiezaCodigo.TabIndex = 6;
+            this.lblPiezaCodigo.Text = "Pieza Cod.";
+            // 
+            // txtPiezaCodigo
+            // 
+            this.txtPiezaCodigo.Enabled = false;
+            this.txtPiezaCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPiezaCodigo.Location = new System.Drawing.Point(16, 29);
+            this.txtPiezaCodigo.Name = "txtPiezaCodigo";
+            this.txtPiezaCodigo.Size = new System.Drawing.Size(100, 26);
+            this.txtPiezaCodigo.TabIndex = 7;
+            // 
+            // lblPiezaId
+            // 
+            this.lblPiezaId.AutoSize = true;
+            this.lblPiezaId.Location = new System.Drawing.Point(13, 88);
+            this.lblPiezaId.Name = "lblPiezaId";
+            this.lblPiezaId.Size = new System.Drawing.Size(54, 17);
+            this.lblPiezaId.TabIndex = 8;
+            this.lblPiezaId.Text = "IdPieza";
             // 
             // PiezasModelos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(422, 113);
-            this.Controls.Add(this.lblIdPieza);
+            this.Controls.Add(this.lblPiezaId);
+            this.Controls.Add(this.txtPiezaCodigo);
+            this.Controls.Add(this.lblPiezaCodigo);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.cmbPiezasModelos);
             this.Controls.Add(this.lblModelo);
             this.Name = "PiezasModelos";
             this.Text = "PiezasModelos";
+            this.Load += new System.EventHandler(this.PiezasModelos_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,6 +124,8 @@
         private System.Windows.Forms.Label lblModelo;
         private System.Windows.Forms.ComboBox cmbPiezasModelos;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Label lblIdPieza;
+        private System.Windows.Forms.Label lblPiezaCodigo;
+        private System.Windows.Forms.TextBox txtPiezaCodigo;
+        private System.Windows.Forms.Label lblPiezaId;
     }
 }

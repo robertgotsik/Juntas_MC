@@ -52,5 +52,25 @@ namespace Juntas_MC.DAL
                 return false;
             }
         }
+
+        public int eliminar(PiezasBLL oPiezasBLL)
+        {
+            conexion.ejecutarMetodoSinRetornoDatos("DELETE FROM Piezas where Id= " + oPiezasBLL.Id);
+
+            return 1;
+        }
+
+        public bool modificar(PiezasBLL oPiezasBLL)
+        {
+            if (oPiezasBLL.Codigo != "")
+            {
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Codigo = '" + oPiezasBLL.Codigo + "'" + ",Precio =" + oPiezasBLL.Precio + ",PiezaTipo =" + oPiezasBLL.PiezaTipo + ",Material =" + oPiezasBLL.Material + ",Detalles = '" + oPiezasBLL.Detalles + "',Imagen = '" + oPiezasBLL.Imagen + "' where Id=" + oPiezasBLL.Id);
+            }
+            else
+            {
+                MessageBox.Show("El campo nombre debe ser completado.");
+                return false;
+            }
+        }
     }
 }
