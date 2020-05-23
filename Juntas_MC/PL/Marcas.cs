@@ -56,6 +56,8 @@ namespace Juntas_MC.PL
             oMarcasDAL.agregar(recuperarInformacionAgregarMarca());
             borrarInput();
             llenarGrid();
+            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
+            oAgregadoDialog.ShowDialog();
         }
 
         private void Seleccionar(object sender, DataGridViewCellMouseEventArgs e)

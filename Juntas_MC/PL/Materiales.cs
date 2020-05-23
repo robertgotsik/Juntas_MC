@@ -54,6 +54,8 @@ namespace Juntas_MC.PL
             oMaterialesDAL.agregar(recuperarInformacionAgregarMaterial());
             borrarInput();
             llenarGrid();
+            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
+            oAgregadoDialog.ShowDialog();
         }
 
         public void llenarGrid()

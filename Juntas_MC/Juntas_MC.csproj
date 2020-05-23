@@ -70,6 +70,12 @@
     <Compile Include="DAL\PiezasModelosDAL.cs" />
     <Compile Include="DAL\PreciosMercadosDAL.cs" />
     <Compile Include="DAL\TiposDePiezasDAL.cs" />
+    <Compile Include="PL\AgregadoDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\AgregadoDialog.Designer.cs">
+      <DependentUpon>AgregadoDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\Marcas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Bienvenida.resx">
       <DependentUpon>Bienvenida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\AgregadoDialog.resx">
+      <DependentUpon>AgregadoDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Marcas.resx">
       <DependentUpon>Marcas.cs</DependentUpon>

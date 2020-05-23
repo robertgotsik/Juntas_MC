@@ -49,6 +49,8 @@ namespace Juntas_MC.PL
             oTiposDePiezasDAL.agregar(recuperarInformacionAgregarTiposDePiezas());
             borrarInput();
             llenarGrid();
+            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
+            oAgregadoDialog.ShowDialog();
         }
 
         public void llenarGrid()

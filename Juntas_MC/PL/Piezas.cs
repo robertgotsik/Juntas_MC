@@ -50,6 +50,7 @@ namespace Juntas_MC.PL
             cmbCP3.Enabled = false;
             cmbCP4.Enabled = false;
             btnQuitarModelo.Enabled = false;
+            btnLimpiar.Hide();
         }
 
         public void llenarGridMercados(int Pieza, int Mercado1, int Mercado2, int Mercado3, int Mercado4)
@@ -276,6 +277,8 @@ namespace Juntas_MC.PL
         {
             oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
             llenarGridPiezas();
+            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
+            oAgregadoDialog.ShowDialog();
         }
         private PiezasBLL recuperarInformacionAgregarPieza()
         {
