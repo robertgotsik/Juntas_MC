@@ -56,8 +56,6 @@ namespace Juntas_MC.PL
             oMarcasDAL.agregar(recuperarInformacionAgregarMarca());
             borrarInput();
             llenarGrid();
-            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
-            oAgregadoDialog.ShowDialog();
         }
 
         private void Seleccionar(object sender, DataGridViewCellMouseEventArgs e)
@@ -91,8 +89,6 @@ namespace Juntas_MC.PL
         private void btnModificar_Click(object sender, EventArgs e)
         {
             oMarcasDAL.modificar(recuperarInformacionMarca());
-            ModificacionDialog oModificacionDialog = new ModificacionDialog();
-            oModificacionDialog.ShowDialog();
             borrarInput();
             llenarGrid();
             limpiarEntradas();

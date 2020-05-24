@@ -54,8 +54,6 @@ namespace Juntas_MC.PL
             oMaterialesDAL.agregar(recuperarInformacionAgregarMaterial());
             borrarInput();
             llenarGrid();
-            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
-            oAgregadoDialog.ShowDialog();
         }
 
         public void llenarGrid()
@@ -108,8 +106,6 @@ namespace Juntas_MC.PL
         private void btnModificar_Click(object sender, EventArgs e)
         {
             oMaterialesDAL.modificar(recuperarInformacionMaterial());
-            ModificacionDialog oModificacionDialog = new ModificacionDialog();
-            oModificacionDialog.ShowDialog();
             borrarInput();
             llenarGrid();
             limpiarEntradas();

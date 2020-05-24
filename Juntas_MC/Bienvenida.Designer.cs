@@ -123,21 +123,21 @@
             // menuItemTipPiezas
             // 
             this.menuItemTipPiezas.Name = "menuItemTipPiezas";
-            this.menuItemTipPiezas.Size = new System.Drawing.Size(224, 26);
+            this.menuItemTipPiezas.Size = new System.Drawing.Size(204, 26);
             this.menuItemTipPiezas.Text = "Tipos de piezas...";
             this.menuItemTipPiezas.Click += new System.EventHandler(this.menuItemTipPiezas_Click);
             // 
             // menuItemPiezas
             // 
             this.menuItemPiezas.Name = "menuItemPiezas";
-            this.menuItemPiezas.Size = new System.Drawing.Size(224, 26);
+            this.menuItemPiezas.Size = new System.Drawing.Size(204, 26);
             this.menuItemPiezas.Text = "Piezas...";
             this.menuItemPiezas.Click += new System.EventHandler(this.menuItemPiezas_Click);
             // 
             // menuItemMateriales
             // 
             this.menuItemMateriales.Name = "menuItemMateriales";
-            this.menuItemMateriales.Size = new System.Drawing.Size(224, 26);
+            this.menuItemMateriales.Size = new System.Drawing.Size(204, 26);
             this.menuItemMateriales.Text = "Materiales...";
             this.menuItemMateriales.Click += new System.EventHandler(this.menuItemMateriales_Click);
             // 
@@ -164,10 +164,12 @@
             // 
             // lblFecha
             // 
+            this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFecha.AutoSize = true;
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.Location = new System.Drawing.Point(180, 135);
+            this.lblFecha.Location = new System.Drawing.Point(238, 135);
             this.lblFecha.Name = "lblFecha";
+            this.lblFecha.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lblFecha.Size = new System.Drawing.Size(233, 31);
             this.lblFecha.TabIndex = 11;
             this.lblFecha.Text = "Calculando Fecha";
@@ -176,11 +178,11 @@
             // 
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.Location = new System.Drawing.Point(388, 59);
+            this.lblHora.Location = new System.Drawing.Point(319, 48);
             this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(527, 76);
+            this.lblHora.Size = new System.Drawing.Size(200, 76);
             this.lblHora.TabIndex = 12;
-            this.lblHora.Text = "Calculando Hora";
+            this.lblHora.Text = "##:##";
             // 
             // Timer
             // 

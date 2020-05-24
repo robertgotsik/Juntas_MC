@@ -1,4 +1,5 @@
 ﻿using Juntas_MC.BLL;
+using Juntas_MC.PL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +16,7 @@ namespace Juntas_MC.DAL
     class PiezasDAL
     {
         ConexionDAL conexion;
+
         public PiezasDAL()
         {
             conexion = new ConexionDAL();
@@ -35,7 +37,7 @@ namespace Juntas_MC.DAL
 
         public bool agregar(PiezasBLL oPiezasBLL)
         {
-            if (oPiezasBLL.Codigo != "")
+            if ((oPiezasBLL.Codigo != "") & Convert.ToBoolean(Convert.ToString(oPiezasBLL.Precio != 0)))
             {
                 OleDbCommand oleDbComando = new OleDbCommand("Insert into Piezas (Codigo, Precio, PiezaTipo, Material, Detalles, Imagen) VALUES(@Codigo, @Precio, @PiezaTipo, @Material, @Detalles, @Imagen)");
                 oleDbComando.Parameters.AddWithValue("@Codigo", SqlDbType.VarChar).Value = oPiezasBLL.Codigo;
@@ -44,11 +46,16 @@ namespace Juntas_MC.DAL
                 oleDbComando.Parameters.AddWithValue("@Material", SqlDbType.Int).Value = oPiezasBLL.Material;
                 oleDbComando.Parameters.AddWithValue("@Detalles", SqlDbType.VarChar).Value = oPiezasBLL.Detalles;
                 oleDbComando.Parameters.AddWithValue("@Imagen", SqlDbType.VarChar).Value = oPiezasBLL.Imagen;
+
+                AgregadoDialogTrue oAgregadoDialog = new AgregadoDialogTrue();
+                oAgregadoDialog.ShowDialog();
+
                 return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
             }
             else
             {
-                MessageBox.Show("No se ingresaron datos en el campo Codigo.");
+                AgregadoDialogFalse oAgregadoDialog = new AgregadoDialogFalse();
+                oAgregadoDialog.ShowDialog();
                 return false;
             }
         }
@@ -62,13 +69,16 @@ namespace Juntas_MC.DAL
 
         public bool modificar(PiezasBLL oPiezasBLL)
         {
-            if (oPiezasBLL.Codigo != "")
+            if ((oPiezasBLL.Codigo != "") & Convert.ToBoolean(Convert.ToString(oPiezasBLL.Precio != 0)))
             {
-                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Codigo = '" + oPiezasBLL.Codigo + "'" + ",Precio =" + oPiezasBLL.Precio + ",PiezaTipo =" + oPiezasBLL.PiezaTipo + ",Material =" + oPiezasBLL.Material + ",Detalles = '" + oPiezasBLL.Detalles + "',Imagen = '" + oPiezasBLL.Imagen + "' where Id=" + oPiezasBLL.Id);
+                ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
+                oModificacionDialog.ShowDialog();
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Codigo = '" + oPiezasBLL.Codigo + "'" + ",Precio ='" + oPiezasBLL.Precio + "',PiezaTipo =" + oPiezasBLL.PiezaTipo + ",Material =" + oPiezasBLL.Material + ",Detalles = '" + oPiezasBLL.Detalles + "',Imagen = '" + oPiezasBLL.Imagen + "' where Id=" + oPiezasBLL.Id);
             }
             else
             {
-                MessageBox.Show("El campo nombre debe ser completado.");
+                ModificacionDialogFalse oModificacionDialog = new ModificacionDialogFalse();
+                oModificacionDialog.ShowDialog();
                 return false;
             }
         }

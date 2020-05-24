@@ -1,14 +1,6 @@
 ﻿using Juntas_MC.BLL;
 using Juntas_MC.DAL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Juntas_MC.PL
@@ -184,6 +176,7 @@ namespace Juntas_MC.PL
             btnBorrar.Enabled = false;
             lblIdPieza.Text = Convert.ToString(0);
             tabControl1.SelectedTab = tabPage1;
+            imgPieza.Image = null;
             btnLimpiar.Hide();
         }
 
@@ -275,16 +268,20 @@ namespace Juntas_MC.PL
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
-            llenarGridPiezas();
-            AgregadoDialog oAgregadoDialog = new AgregadoDialog();
-            oAgregadoDialog.ShowDialog();
+         oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
+         limpiarEntradas();
+         llenarGridPiezas();
         }
         private PiezasBLL recuperarInformacionAgregarPieza()
         {
             PiezasBLL oPieza = new PiezasBLL();
             oPieza.Codigo = txtCodigo.Text;
-            oPieza.Precio = Convert.ToDecimal(txtPrecio.Text);
+            if(txtPrecio.Text != "") 
+            {
+                txtPrecio.Text = (txtPrecio.Text).Replace(".", ",");
+                oPieza.Precio = Convert.ToDecimal(txtPrecio.Text); 
+            }
+            else { oPieza.Precio = 0; }
             oPieza.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             oPieza.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
             oPieza.Detalles = txtDetalles.Text;
@@ -305,7 +302,7 @@ namespace Juntas_MC.PL
             oPiezas.Id = Convert.ToInt32(lblIdPieza.Text);
             oPiezas.Codigo = txtCodigo.Text;
             oPiezas.Detalles = txtDetalles.Text;
-            oPiezas.Precio = Convert.ToDecimal(txtPrecio.Text);
+            oPiezas.Precio = Decimal.Parse(txtPrecio.Text);
             oPiezas.Imagen = txtRutaImagen.Text;
             oPiezas.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             oPiezas.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
@@ -347,13 +344,20 @@ namespace Juntas_MC.PL
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnBorrar.Enabled = false;
+
+            txtPrecio.Clear();
+            txtDetalles.Clear();
+            txtCodigo.Clear();
+            txtRutaImagen.Clear();
+            lblIdPieza.Text = Convert.ToString(0);
+            tabControl1.SelectedTab = tabPage1;
+            imgPieza.Image = null;
+            btnLimpiar.Hide();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
             oPiezasDAL.modificar(recuperarInformacionPieza());
-            ModificacionDialog oModificacionDialog = new ModificacionDialog();
-            oModificacionDialog.ShowDialog();
             llenarGridPiezas();
             limpiarEntradas();
             btnLimpiar.Hide();

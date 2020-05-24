@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Juntas_MC.BLL;
 using Juntas_MC.DAL;
+using Juntas_MC.PL;
 
 namespace Juntas_MC.DAL
 {
@@ -69,11 +70,16 @@ namespace Juntas_MC.DAL
             {
                 OleDbCommand oleDbComando = new OleDbCommand("Insert into Materiales (Nombre) VALUES(@Nombre)");
                 oleDbComando.Parameters.AddWithValue("@Nombre", SqlDbType.VarChar).Value = oMaterialBLL.Nombre;
+
+                AgregadoDialogTrue oAgregadoDialog = new AgregadoDialogTrue();
+                oAgregadoDialog.ShowDialog();
+
                 return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
             }
             else
             {
-                MessageBox.Show("No se ingresaron datos en el campo Nombre.");
+                AgregadoDialogFalse oAgregadoDialog = new AgregadoDialogFalse();
+                oAgregadoDialog.ShowDialog();
                 return false;
             }
         }
@@ -88,11 +94,14 @@ namespace Juntas_MC.DAL
         {
             if (oMaterialBLL.Nombre != "")
             {
+                ModificacionDialogTrue oAgregadoDialog = new ModificacionDialogTrue();
+                oAgregadoDialog.ShowDialog();
                 return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Materiales SET NOMBRE = '" + oMaterialBLL.Nombre + "'" + "where Id=" + oMaterialBLL.Id);
             }
             else
             {
-                MessageBox.Show("El campo nombre debe ser completado.");
+                ModificacionDialogFalse oAgregadoDialog = new ModificacionDialogFalse();
+                oAgregadoDialog.ShowDialog();
                 return false;
             }
         }

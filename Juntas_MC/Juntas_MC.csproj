@@ -70,11 +70,17 @@
     <Compile Include="DAL\PiezasModelosDAL.cs" />
     <Compile Include="DAL\PreciosMercadosDAL.cs" />
     <Compile Include="DAL\TiposDePiezasDAL.cs" />
-    <Compile Include="PL\AgregadoDialog.cs">
+    <Compile Include="PL\AgregadoDialogFalse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PL\AgregadoDialog.Designer.cs">
-      <DependentUpon>AgregadoDialog.cs</DependentUpon>
+    <Compile Include="PL\AgregadoDialogFalse.Designer.cs">
+      <DependentUpon>AgregadoDialogFalse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\AgregadoDialogTrue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\AgregadoDialogTrue.Designer.cs">
+      <DependentUpon>AgregadoDialogTrue.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\Marcas.cs">
       <SubType>Form</SubType>
@@ -94,11 +100,17 @@
     <Compile Include="PL\Materiales.Designer.cs">
       <DependentUpon>Materiales.cs</DependentUpon>
     </Compile>
-    <Compile Include="PL\ModificacionDialog.cs">
+    <Compile Include="PL\ModificacionDialogFalse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PL\ModificacionDialog.Designer.cs">
-      <DependentUpon>ModificacionDialog.cs</DependentUpon>
+    <Compile Include="PL\ModificacionDialogFalse.Designer.cs">
+      <DependentUpon>ModificacionDialogFalse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\ModificacionDialogTrue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\ModificacionDialogTrue.Designer.cs">
+      <DependentUpon>ModificacionDialogTrue.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\Piezas.cs">
       <SubType>Form</SubType>
@@ -123,8 +135,11 @@
     <EmbeddedResource Include="Bienvenida.resx">
       <DependentUpon>Bienvenida.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PL\AgregadoDialog.resx">
-      <DependentUpon>AgregadoDialog.cs</DependentUpon>
+    <EmbeddedResource Include="PL\AgregadoDialogFalse.resx">
+      <DependentUpon>AgregadoDialogFalse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\AgregadoDialogTrue.resx">
+      <DependentUpon>AgregadoDialogTrue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Marcas.resx">
       <DependentUpon>Marcas.cs</DependentUpon>
@@ -135,8 +150,11 @@
     <EmbeddedResource Include="PL\Modelos.resx">
       <DependentUpon>Modelos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PL\ModificacionDialog.resx">
-      <DependentUpon>ModificacionDialog.cs</DependentUpon>
+    <EmbeddedResource Include="PL\ModificacionDialogFalse.resx">
+      <DependentUpon>ModificacionDialogFalse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\ModificacionDialogTrue.resx">
+      <DependentUpon>ModificacionDialogTrue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Piezas.resx">
       <DependentUpon>Piezas.cs</DependentUpon>
@@ -223,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\check2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\failed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

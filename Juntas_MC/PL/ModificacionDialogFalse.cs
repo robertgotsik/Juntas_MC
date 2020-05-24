@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Juntas_MC.PL
 {
-    public partial class AgregadoDialog : Form
+    public partial class ModificacionDialogFalse : Form
     {
-        public AgregadoDialog()
+        public ModificacionDialogFalse()
         {
             InitializeComponent();
         }

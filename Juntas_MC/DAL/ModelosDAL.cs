@@ -79,11 +79,17 @@ namespace Juntas_MC.DAL
                 OleDbCommand oleDbComando = new OleDbCommand("Insert into Modelos (Nombre, Marca) VALUES(@Nombre,@Marca)");
                 oleDbComando.Parameters.AddWithValue("@Nombre", SqlDbType.VarChar).Value = oModelosBLL.Nombre;
                 oleDbComando.Parameters.AddWithValue("@Marca", SqlDbType.Int).Value = oModelosBLL.Marca;
+
+                AgregadoDialogTrue oAgregadoDialog = new AgregadoDialogTrue();
+                oAgregadoDialog.ShowDialog();
+
                 return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
             }
             else
             {
-                MessageBox.Show("No se ingresaron datos en el campo Nombre.");
+                AgregadoDialogFalse oAgregadoDialog = new AgregadoDialogFalse();
+                oAgregadoDialog.ShowDialog();
+
                 return false;
             }
         }
@@ -111,11 +117,15 @@ namespace Juntas_MC.DAL
         {
             if (oModelosBLL.Nombre != "")
             {
+                ModificacionDialogTrue oAgregadoDialog = new ModificacionDialogTrue();
+                oAgregadoDialog.ShowDialog();
                 return conexion.ejecutarMetodoSinRetornoDatos("UPDATE MODELOS SET NOMBRE = '" + oModelosBLL.Nombre + "'" + ",MARCA =" + oModelosBLL.Marca + " where Id=" + oModelosBLL.Id);
             }
             else
             {
-                MessageBox.Show("El campo nombre debe ser completado.");
+                ModificacionDialogFalse oAgregadoDialog = new ModificacionDialogFalse();
+                oAgregadoDialog.ShowDialog();
+
                 return false;
             }
         }

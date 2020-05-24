@@ -1,4 +1,5 @@
 ﻿using Juntas_MC.BLL;
+using Juntas_MC.PL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -49,9 +50,22 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public bool agregar(TiposDePiezasBLL oTiposDePiezas)
         {
-            OleDbCommand oleDbComando = new OleDbCommand("Insert into PiezasTipos (Nombre) VALUES(@Nombre)");
-            oleDbComando.Parameters.AddWithValue("@Nombre", SqlDbType.VarChar).Value = oTiposDePiezas.Nombre;
-            return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
+            if (oTiposDePiezas.Nombre != "")
+            {
+                OleDbCommand oleDbComando = new OleDbCommand("Insert into PiezasTipos (Nombre) VALUES(@Nombre)");
+                oleDbComando.Parameters.AddWithValue("@Nombre", SqlDbType.VarChar).Value = oTiposDePiezas.Nombre;
+
+                AgregadoDialogTrue oAgregadoDialog = new AgregadoDialogTrue();
+                oAgregadoDialog.ShowDialog();
+
+                return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
+            }
+            else
+            {
+                AgregadoDialogFalse oAgregadoDialog = new AgregadoDialogFalse();
+                oAgregadoDialog.ShowDialog();
+                return false;
+            }
         }
 
         public DataSet mostrarResultados()
@@ -69,7 +83,19 @@ namespace Juntas_MC.DAL
 
         public bool modificar(TiposDePiezasBLL oTiposDePiezas)
         {
-            return conexion.ejecutarMetodoSinRetornoDatos("UPDATE PiezasTipos SET NOMBRE = '" + oTiposDePiezas.Nombre + "' WHERE Id =" + oTiposDePiezas.Id);
+            if(oTiposDePiezas.Nombre != "")
+            {
+                ModificacionDialogTrue oAgregadoDialog = new ModificacionDialogTrue();
+                oAgregadoDialog.ShowDialog();
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE PiezasTipos SET NOMBRE = '" + oTiposDePiezas.Nombre + "' WHERE Id =" + oTiposDePiezas.Id);
+            }
+            else
+            {
+                ModificacionDialogFalse oAgregadoDialog = new ModificacionDialogFalse();
+                oAgregadoDialog.ShowDialog();
+                return false;
+            }
+            
         }
     }
 }

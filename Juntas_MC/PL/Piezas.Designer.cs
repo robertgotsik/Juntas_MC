@@ -55,7 +55,6 @@
             this.btnQuitarModelo = new System.Windows.Forms.Button();
             this.dvgPiezasModelos = new System.Windows.Forms.DataGridView();
             this.btnAgregarModelo = new System.Windows.Forms.Button();
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
             this.lblSignoMoneda = new System.Windows.Forms.Label();
             this.lblIdPieza = new System.Windows.Forms.Label();
             this.btnExaminar = new System.Windows.Forms.Button();
@@ -100,10 +99,11 @@
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(246, 92);
+            this.txtPrecio.Location = new System.Drawing.Point(233, 92);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(71, 34);
+            this.txtPrecio.Size = new System.Drawing.Size(100, 34);
             this.txtPrecio.TabIndex = 7;
+            this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblCodigo
             // 
@@ -363,7 +363,7 @@
             // 
             this.lblSignoMoneda.AutoSize = true;
             this.lblSignoMoneda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignoMoneda.Location = new System.Drawing.Point(213, 97);
+            this.lblSignoMoneda.Location = new System.Drawing.Point(213, 95);
             this.lblSignoMoneda.Name = "lblSignoMoneda";
             this.lblSignoMoneda.Size = new System.Drawing.Size(26, 29);
             this.lblSignoMoneda.TabIndex = 22;
@@ -391,12 +391,14 @@
             // 
             // txtRutaImagen
             // 
+            this.txtRutaImagen.AllowDrop = true;
             this.txtRutaImagen.Enabled = false;
             this.txtRutaImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRutaImagen.Location = new System.Drawing.Point(13, 179);
             this.txtRutaImagen.Name = "txtRutaImagen";
             this.txtRutaImagen.Size = new System.Drawing.Size(167, 19);
             this.txtRutaImagen.TabIndex = 25;
+            this.txtRutaImagen.WordWrap = false;
             // 
             // btnLimpiar
             // 
@@ -458,6 +460,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 553);
+            this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtRutaImagen);
             this.Controls.Add(this.btnExaminar);
             this.Controls.Add(this.lblIdPieza);
@@ -476,7 +479,6 @@
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.lblPiezaTipo);
             this.Controls.Add(this.lblCodigo);
-            this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblPrecio);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Piezas";
@@ -526,7 +528,6 @@
         private System.Windows.Forms.DataGridView dvgPiezasModelos;
         private System.Windows.Forms.Button btnAgregarModelo;
         private System.Windows.Forms.DataGridView dgvPiezas;
-        private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.Label lblIdModelo;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Label lblSignoMoneda;
