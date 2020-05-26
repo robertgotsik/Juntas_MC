@@ -13,6 +13,7 @@ namespace Juntas_MC.PL
         TiposDePiezasDAL oTiposDePiezasDAL;
         MaterialesDAL oMaterialesDAL;
         PiezasModelosDAL oPiezasModelosDAL;
+        BusquedaPieza busquedaPieza;
         public Piezas()
         {
             oPiezasDAL = new PiezasDAL();
@@ -21,23 +22,16 @@ namespace Juntas_MC.PL
             oTiposDePiezasDAL = new TiposDePiezasDAL();
             oMaterialesDAL = new MaterialesDAL();
             oPiezasModelosDAL = new PiezasModelosDAL();
+            busquedaPieza = new BusquedaPieza(this);
             InitializeComponent();
-            llenarGridPiezas();
             iniciarLlenadoDropDown1();
             iniciarLlenadoDropDown2();
             iniciarLlenadoDropDown3();
             iniciarLlenadoDropDown4();
             llenadoComboBoxTdPiezas();
             llenadoComboBoxMateriales();
-
-            this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            this.dgvPiezas.Columns["Imagen"].Visible = false;
+            cmbPiezaTipo.SelectedItem = null;
+            cmbMaterial.SelectedItem = null;
             cmbCP2.Enabled = false;
             cmbCP3.Enabled = false;
             cmbCP4.Enabled = false;
@@ -50,11 +44,39 @@ namespace Juntas_MC.PL
             dgvPreciosMercados.DataSource = oPreciosMercadosDAL.mostrarPreciosMercados(Pieza, Mercado1, Mercado2, Mercado3, Mercado4).Tables[0];
         }
 
+        public void llenarGridPiezas()
+        {
+            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezas().Tables[0];
+            this.dgvPiezas.Columns["PI.Id"].Visible = false;
+            this.dgvPiezas.Columns["Detalles"].Visible = false;
+            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
+            this.dgvPiezas.Columns["Detalles"].Visible = false;
+            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
+            this.dgvPiezas.Columns["PT.Id"].Visible = false;
+            this.dgvPiezas.Columns["MA.Id"].Visible = false;
+            this.dgvPiezas.Columns["Imagen"].Visible = false;
+        }
+
+        public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza)
+        {
+            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza).Tables[0];
+            //this.dgvPiezas.Columns["PI.Id"].Visible = false;
+            //this.dgvPiezas.Columns["Detalles"].Visible = false;
+            //this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
+            //this.dgvPiezas.Columns["Detalles"].Visible = false;
+            //this.dgvPiezas.Columns["PiMaterial"].Visible = false;
+            //this.dgvPiezas.Columns["PT.Id"].Visible = false;
+            //this.dgvPiezas.Columns["MA.Id"].Visible = false;
+            //this.dgvPiezas.Columns["Imagen"].Visible = false;
+        }
+
         private void iniciarLlenadoDropDown1()
         {
+
             cmbCP1.ValueMember = "Id";
             cmbCP1.DisplayMember = "Nombre";
             cmbCP1.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP1.SelectedItem = null;
         }
 
         private void iniciarLlenadoDropDown2()
@@ -62,6 +84,7 @@ namespace Juntas_MC.PL
             cmbCP2.ValueMember = "Id";
             cmbCP2.DisplayMember = "Nombre";
             cmbCP2.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP2.SelectedItem = null;
         }
 
         private void iniciarLlenadoDropDown3()
@@ -69,6 +92,7 @@ namespace Juntas_MC.PL
             cmbCP3.ValueMember = "Id";
             cmbCP3.DisplayMember = "Nombre";
             cmbCP3.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP3.SelectedItem = null;
         }
 
         private void iniciarLlenadoDropDown4()
@@ -76,16 +100,14 @@ namespace Juntas_MC.PL
             cmbCP4.ValueMember = "Id";
             cmbCP4.DisplayMember = "Nombre";
             cmbCP4.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP4.SelectedItem = null;
         }
 
         //Cuando se selecciona otra pieza > limpiar la grilla de PreciosMercados
         //El seleccionado de Clientes/Proovedores debe ser secuencial
         private void Seleccionado1(object sender, EventArgs e)
         {
-            if(cmbCP1.SelectedValue.ToString() != null)
-            {
-                cmbCP2.Enabled = true;
-            }
+            cmbCP2.Enabled = true;
             int Mercado1 = Convert.ToInt32(cmbCP1.SelectedValue);
             int Mercado2 = Convert.ToInt32(cmbCP2.SelectedValue);
             int Mercado3 = Convert.ToInt32(cmbCP3.SelectedValue);
@@ -95,10 +117,7 @@ namespace Juntas_MC.PL
         }
         private void Seleccionado2(object sender, EventArgs e)
         {
-            if (cmbCP2.SelectedValue.ToString() != null)
-            {
-                cmbCP3.Enabled = true;
-            }
+            cmbCP3.Enabled = true;
             int Mercado1 = Convert.ToInt32(cmbCP1.SelectedValue);
             int Mercado2 = Convert.ToInt32(cmbCP2.SelectedValue);
             int Mercado3 = Convert.ToInt32(cmbCP3.SelectedValue);
@@ -109,10 +128,7 @@ namespace Juntas_MC.PL
 
         private void Seleccionado3(object sender, EventArgs e)
         {
-            if (cmbCP3.SelectedValue.ToString() != null)
-            {
-                cmbCP4.Enabled = true;
-            }
+            cmbCP4.Enabled = true;
             int Mercado1 = Convert.ToInt32(cmbCP1.SelectedValue);
             int Mercado2 = Convert.ToInt32(cmbCP2.SelectedValue);
             int Mercado3 = Convert.ToInt32(cmbCP3.SelectedValue);
@@ -130,10 +146,6 @@ namespace Juntas_MC.PL
             llenarGridMercados(Pieza, Mercado1, Mercado2, Mercado3, Mercado4);
         }
 
-        public void llenarGridPiezas()
-        {
-            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezas().Tables[0];
-        }
 
         private void Seleccionar(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -154,7 +166,15 @@ namespace Juntas_MC.PL
                 llenadoComboBoxMateriales();
                 llenarGridPiezasModelos();
 
-
+                if ((cmbCP1.SelectedValue != null) | (cmbCP2.SelectedValue != null) | (cmbCP3.SelectedValue != null) | (cmbCP4.SelectedValue != null))
+                {
+                    int Mercado1 = Convert.ToInt32(cmbCP1.SelectedValue);
+                    int Mercado2 = Convert.ToInt32(cmbCP2.SelectedValue);
+                    int Mercado3 = Convert.ToInt32(cmbCP3.SelectedValue);
+                    int Mercado4 = Convert.ToInt32(cmbCP4.SelectedValue);
+                    int Pieza = Convert.ToInt32(lblIdPieza.Text);
+                    llenarGridMercados(Pieza, Mercado1, Mercado2, Mercado3, Mercado4);
+                }
 
 
                 btnAgregar.Enabled = false;
@@ -167,17 +187,7 @@ namespace Juntas_MC.PL
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            txtPrecio.Clear();
-            txtDetalles.Clear();
-            txtCodigo.Clear();
-            txtRutaImagen.Clear();
-            btnAgregar.Enabled = true;
-            btnModificar.Enabled = false;
-            btnBorrar.Enabled = false;
-            lblIdPieza.Text = Convert.ToString(0);
-            tabControl1.SelectedTab = tabPage1;
-            imgPieza.Image = null;
-            btnLimpiar.Hide();
+            limpiarEntradas();
         }
 
         private void llenadoComboBoxTdPiezas()
@@ -228,7 +238,7 @@ namespace Juntas_MC.PL
             PiezaId = lblIdPieza.Text;
             PiezaCodigo = txtCodigo.Text;
             PiezasModelos piezasModelos = new PiezasModelos();
-            
+
             piezasModelos.ShowDialog();
         }
 
@@ -246,7 +256,7 @@ namespace Juntas_MC.PL
             getImage.InitialDirectory = "C:\\";
             getImage.Filter = "Todos (*.*)|*.*|JPG /JPEG (*.jpg)(*.jpeg)|*.jpg;*.jpeg|PNG (*.png)|*.png";
 
-            if(getImage.ShowDialog() == DialogResult.OK)
+            if (getImage.ShowDialog() == DialogResult.OK)
             {
                 imgPieza.ImageLocation = getImage.FileName;
                 txtRutaImagen.Text = getImage.FileName;
@@ -268,18 +278,18 @@ namespace Juntas_MC.PL
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-         oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
-         limpiarEntradas();
-         llenarGridPiezas();
+            oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
+            //limpiarEntradas();
+            llenarGridPiezas();
         }
         private PiezasBLL recuperarInformacionAgregarPieza()
         {
             PiezasBLL oPieza = new PiezasBLL();
             oPieza.Codigo = txtCodigo.Text;
-            if(txtPrecio.Text != "") 
+            if (txtPrecio.Text != "")
             {
                 txtPrecio.Text = (txtPrecio.Text).Replace(".", ",");
-                oPieza.Precio = Convert.ToDecimal(txtPrecio.Text); 
+                oPieza.Precio = Convert.ToDecimal(txtPrecio.Text);
             }
             else { oPieza.Precio = 0; }
             oPieza.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
@@ -293,6 +303,8 @@ namespace Juntas_MC.PL
         private void btnQuitarModelo_Click(object sender, EventArgs e)
         {
             oPiezasModelosDAL.eliminar(recuperarInformacionPiezasModelos());
+            lblIdModelo.Text = "0";
+            btnQuitarModelo.Enabled = false;
             llenarGridPiezasModelos();
         }
 
@@ -341,17 +353,25 @@ namespace Juntas_MC.PL
         }
         public void limpiarEntradas()
         {
-            btnAgregar.Enabled = true;
-            btnModificar.Enabled = false;
-            btnBorrar.Enabled = false;
-
+            tabControl1.SelectedTab = tabPage1;
             txtPrecio.Clear();
             txtDetalles.Clear();
             txtCodigo.Clear();
             txtRutaImagen.Clear();
+            btnAgregar.Enabled = true;
+            btnModificar.Enabled = false;
+            btnBorrar.Enabled = false;
             lblIdPieza.Text = Convert.ToString(0);
-            tabControl1.SelectedTab = tabPage1;
             imgPieza.Image = null;
+            cmbCP1.SelectedItem = null;
+            cmbCP2.SelectedItem = null;
+            cmbCP2.Enabled = false;
+            cmbCP3.SelectedItem = null;
+            cmbCP3.Enabled = false;
+            cmbCP4.SelectedItem = null;
+            cmbCP4.Enabled = false;
+            cmbPiezaTipo.SelectedItem = null;
+            cmbMaterial.SelectedItem = null;
             btnLimpiar.Hide();
         }
 
@@ -361,6 +381,15 @@ namespace Juntas_MC.PL
             llenarGridPiezas();
             limpiarEntradas();
             btnLimpiar.Hide();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            busquedaPieza.ShowDialog();
+        }
+
+        public void abrirBuscador() {
+        busquedaPieza.ShowDialog();
         }
     }
 }

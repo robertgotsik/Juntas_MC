@@ -28,11 +28,6 @@ namespace Juntas_MC.PL
             iniciarLlenadoDropDown();
         }
 
-        private void cmbPiezasModelos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void iniciarLlenadoDropDown()
         {

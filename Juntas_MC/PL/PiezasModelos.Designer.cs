@@ -58,7 +58,6 @@
             this.cmbPiezasModelos.Name = "cmbPiezasModelos";
             this.cmbPiezasModelos.Size = new System.Drawing.Size(274, 26);
             this.cmbPiezasModelos.TabIndex = 1;
-            this.cmbPiezasModelos.SelectedIndexChanged += new System.EventHandler(this.cmbPiezasModelos_SelectedIndexChanged);
             // 
             // btnAgregar
             // 
@@ -99,6 +98,7 @@
             this.lblPiezaId.Size = new System.Drawing.Size(54, 17);
             this.lblPiezaId.TabIndex = 8;
             this.lblPiezaId.Text = "IdPieza";
+            this.lblPiezaId.Visible = false;
             // 
             // PiezasModelos
             // 

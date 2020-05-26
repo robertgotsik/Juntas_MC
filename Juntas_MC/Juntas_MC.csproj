@@ -82,6 +82,12 @@
     <Compile Include="PL\AgregadoDialogTrue.Designer.cs">
       <DependentUpon>AgregadoDialogTrue.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\BusquedaPieza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\BusquedaPieza.Designer.cs">
+      <DependentUpon>BusquedaPieza.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\Marcas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\AgregadoDialogTrue.resx">
       <DependentUpon>AgregadoDialogTrue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\BusquedaPieza.resx">
+      <DependentUpon>BusquedaPieza.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Marcas.resx">
       <DependentUpon>Marcas.cs</DependentUpon>
@@ -244,6 +253,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\failed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empty_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Search_58605.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Button Add_58476.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder_Button White Remove_58498.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

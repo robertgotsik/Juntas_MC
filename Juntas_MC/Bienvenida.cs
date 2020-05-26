@@ -73,6 +73,7 @@ namespace Juntas_MC
         {
             Piezas piezas = new Piezas();
             piezas.Show();
+            piezas.abrirBuscador();
         }
     }
 }
