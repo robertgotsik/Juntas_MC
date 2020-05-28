@@ -37,7 +37,9 @@ namespace Juntas_MC.DAL
 
         public DataSet mostrarPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza)
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) where codigo ='" + codigo +"' order by PI.Codigo");
+            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) where codigo = '" +@codigo + "' and PT.Id =" + @tipoDePieza +" order by PI.Codigo");
+            sentencia.Parameters.AddWithValue("@Codigo", SqlDbType.VarChar);
+            sentencia.Parameters.AddWithValue("@tipoDePieza", SqlDbType.Int);
             return conexion.ejecutarSentencia(sentencia);
         }
 

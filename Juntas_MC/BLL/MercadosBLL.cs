@@ -10,10 +10,13 @@ namespace Juntas_MC.BLL
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Telefono { get; set; }
+        public int Tipo { get; set; }
+        public string Telefono1 { get; set; }
+        public string Telefono2 { get; set; }
         public string Email { get; set; }
+        public string Web { get; set; }
         public string Direccion { get; set; }
         public string Localidad { get; set; }
-        public string Provincia { get; set; }
+        public int Provincia { get; set; }
     }
 }

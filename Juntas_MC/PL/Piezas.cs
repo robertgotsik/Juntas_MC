@@ -60,14 +60,14 @@ namespace Juntas_MC.PL
         public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza)
         {
             dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza).Tables[0];
-            //this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            //this.dgvPiezas.Columns["Detalles"].Visible = false;
-            //this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            //this.dgvPiezas.Columns["Detalles"].Visible = false;
-            //this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            //this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            //this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            //this.dgvPiezas.Columns["Imagen"].Visible = false;
+            this.dgvPiezas.Columns["PI.Id"].Visible = false;
+            this.dgvPiezas.Columns["Detalles"].Visible = false;
+            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
+            this.dgvPiezas.Columns["Detalles"].Visible = false;
+            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
+            this.dgvPiezas.Columns["PT.Id"].Visible = false;
+            this.dgvPiezas.Columns["MA.Id"].Visible = false;
+            this.dgvPiezas.Columns["Imagen"].Visible = false;
         }
 
         private void iniciarLlenadoDropDown1()

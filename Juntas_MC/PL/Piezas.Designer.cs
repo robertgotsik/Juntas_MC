@@ -65,6 +65,8 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.imgPieza = new System.Windows.Forms.PictureBox();
+            this.cbEstado = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPiezas)).BeginInit();
@@ -102,7 +104,7 @@
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecio.Location = new System.Drawing.Point(508, 29);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(100, 34);
+            this.txtPrecio.Size = new System.Drawing.Size(135, 34);
             this.txtPrecio.TabIndex = 7;
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -471,11 +473,32 @@
             this.imgPieza.TabIndex = 9;
             this.imgPieza.TabStop = false;
             // 
+            // cbEstado
+            // 
+            this.cbEstado.AutoSize = true;
+            this.cbEstado.Location = new System.Drawing.Point(704, 36);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(18, 17);
+            this.cbEstado.TabIndex = 28;
+            this.cbEstado.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(685, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Estado";
+            // 
             // Piezas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 594);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.lblSignoMoneda);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtPrecio);
@@ -553,5 +576,7 @@
         private System.Windows.Forms.TextBox txtRutaImagen;
         private System.Windows.Forms.Button btnQuitarModelo;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.CheckBox cbEstado;
+        private System.Windows.Forms.Label label1;
     }
 }

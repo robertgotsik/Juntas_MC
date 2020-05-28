@@ -55,7 +55,7 @@ namespace Juntas_MC.PL
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "" & txtPrecioHasta.Text != "") | (cmbMaterial.SelectedValue != null) | 
+            if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "" & txtPrecioHasta.Text != "") | (Convert.ToInt32(cmbMaterial.SelectedValue) != 0) | 
                 (cmbModComp.SelectedValue != null) | (cmbTdP.SelectedValue != null))
             {
                 string codigo = txtCodigo.Text;
