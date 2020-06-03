@@ -41,6 +41,7 @@
             this.cmbModComp = new System.Windows.Forms.ComboBox();
             this.txtGuion = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // lblCodigo
@@ -160,11 +161,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Items.AddRange(new object[] {
+            "Activo",
+            "Suspendido"});
+            this.listBox1.Location = new System.Drawing.Point(141, 19);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 36);
+            this.listBox1.TabIndex = 35;
+            // 
             // BusquedaPieza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 367);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.txtGuion);
             this.Controls.Add(this.cmbModComp);
             this.Controls.Add(this.cmbMaterial);
@@ -200,5 +214,6 @@
         private System.Windows.Forms.ComboBox cmbMaterial;
         private System.Windows.Forms.ComboBox cmbModComp;
         private System.Windows.Forms.Label txtGuion;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }

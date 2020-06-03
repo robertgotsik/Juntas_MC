@@ -15,5 +15,6 @@ namespace Juntas_MC.BLL
         public int Material { get; set; }
         public string Detalles { get; set; }
         public string Imagen { get; set; }
+        public bool Estado { get; set; }
     }
 }

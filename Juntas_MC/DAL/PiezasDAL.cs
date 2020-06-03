@@ -37,9 +37,23 @@ namespace Juntas_MC.DAL
 
         public DataSet mostrarPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza)
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) where codigo = '" +@codigo + "' and PT.Id =" + @tipoDePieza +" order by PI.Codigo");
-            sentencia.Parameters.AddWithValue("@Codigo", SqlDbType.VarChar);
-            sentencia.Parameters.AddWithValue("@tipoDePieza", SqlDbType.Int);
+            System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
+            OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
+
+
+            strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
+            if (codigo != "" | precioDesde != "" | precioHasta != "" | material != 0 | modComp != 0 | tipoDePieza != 0)
+            {
+                strSQL.Append("WHERE ");
+                string whereClause = "";
+                if (codigo != "") whereClause += "codigo = '" + codigo + "'";
+                if (material != 0) whereClause += (whereClause != "" ? "and " : "") + "PI.Material = " + material;
+                if (tipoDePieza != 0) whereClause += (whereClause != "" ? "and " : "") + "PI.PiezaTipo = " + tipoDePieza;
+                if (precioDesde != "") whereClause += (whereClause != "" ? "and " : "") + "PI.Precio >= " + precioDesde;
+                strSQL.Append(whereClause);
+            }
+
+            sentencia.CommandText = (Convert.ToString(strSQL));
             return conexion.ejecutarSentencia(sentencia);
         }
 

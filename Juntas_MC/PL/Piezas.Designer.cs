@@ -476,7 +476,7 @@
             // cbEstado
             // 
             this.cbEstado.AutoSize = true;
-            this.cbEstado.Location = new System.Drawing.Point(704, 36);
+            this.cbEstado.Location = new System.Drawing.Point(706, 36);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(18, 17);
             this.cbEstado.TabIndex = 28;
