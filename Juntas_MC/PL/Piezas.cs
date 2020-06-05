@@ -55,6 +55,7 @@ namespace Juntas_MC.PL
             this.dgvPiezas.Columns["PT.Id"].Visible = false;
             this.dgvPiezas.Columns["MA.Id"].Visible = false;
             this.dgvPiezas.Columns["Imagen"].Visible = false;
+            limpiarEntradas();
         }
 
         public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza)
@@ -68,6 +69,7 @@ namespace Juntas_MC.PL
             this.dgvPiezas.Columns["PT.Id"].Visible = false;
             this.dgvPiezas.Columns["MA.Id"].Visible = false;
             this.dgvPiezas.Columns["Imagen"].Visible = false;
+            limpiarEntradas();
         }
 
         private void iniciarLlenadoDropDown1()
