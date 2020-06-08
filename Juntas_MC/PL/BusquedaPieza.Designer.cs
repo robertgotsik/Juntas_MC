@@ -40,8 +40,8 @@
             this.cmbMaterial = new System.Windows.Forms.ComboBox();
             this.cmbModComp = new System.Windows.Forms.ComboBox();
             this.txtGuion = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbEstado = new System.Windows.Forms.ListBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblCodigo
@@ -102,6 +102,7 @@
             this.txtPrecioDesde.Name = "txtPrecioDesde";
             this.txtPrecioDesde.Size = new System.Drawing.Size(96, 22);
             this.txtPrecioDesde.TabIndex = 29;
+            this.txtPrecioDesde.Leave += new System.EventHandler(this.autoCompletarPrecioHasta);
             // 
             // txtPrecioHasta
             // 
@@ -149,36 +150,36 @@
             this.txtGuion.TabIndex = 34;
             this.txtGuion.Text = "-";
             // 
-            // button1
+            // lbEstado
             // 
-            this.button1.Image = global::Juntas_MC.Properties.Resources.iconfinder_Search_58605;
-            this.button1.Location = new System.Drawing.Point(78, 283);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 58);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "Buscar";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnBuscar_Click);
+            this.lbEstado.FormattingEnabled = true;
+            this.lbEstado.ItemHeight = 16;
+            this.lbEstado.Items.AddRange(new object[] {
+            "Suspendido",
+            "Activo"});
+            this.lbEstado.Location = new System.Drawing.Point(141, 19);
+            this.lbEstado.Name = "lbEstado";
+            this.lbEstado.Size = new System.Drawing.Size(120, 36);
+            this.lbEstado.TabIndex = 35;
             // 
-            // listBox1
+            // btnBuscar
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
-            this.listBox1.Items.AddRange(new object[] {
-            "Activo",
-            "Suspendido"});
-            this.listBox1.Location = new System.Drawing.Point(141, 19);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 36);
-            this.listBox1.TabIndex = 35;
+            this.btnBuscar.Image = global::Juntas_MC.Properties.Resources.iconfinder_Search_58605;
+            this.btnBuscar.Location = new System.Drawing.Point(78, 283);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(123, 58);
+            this.btnBuscar.TabIndex = 27;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // BusquedaPieza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 367);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lbEstado);
             this.Controls.Add(this.txtGuion);
             this.Controls.Add(this.cmbModComp);
             this.Controls.Add(this.cmbMaterial);
@@ -186,7 +187,7 @@
             this.Controls.Add(this.txtPrecioHasta);
             this.Controls.Add(this.txtPrecioDesde);
             this.Controls.Add(this.txtCodigo);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.lblModComp);
             this.Controls.Add(this.lblMaterial);
             this.Controls.Add(this.lblTdP);
@@ -206,7 +207,7 @@
         private System.Windows.Forms.Label lblTdP;
         private System.Windows.Forms.Label lblMaterial;
         private System.Windows.Forms.Label lblModComp;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TextBox txtPrecioDesde;
         private System.Windows.Forms.TextBox txtPrecioHasta;
@@ -214,6 +215,6 @@
         private System.Windows.Forms.ComboBox cmbMaterial;
         private System.Windows.Forms.ComboBox cmbModComp;
         private System.Windows.Forms.Label txtGuion;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbEstado;
     }
 }

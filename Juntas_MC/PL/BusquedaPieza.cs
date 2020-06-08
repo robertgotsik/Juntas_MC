@@ -55,16 +55,23 @@ namespace Juntas_MC.PL
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "" & txtPrecioHasta.Text != "") | (Convert.ToInt32(cmbMaterial.SelectedValue) != 0) | 
-                (cmbModComp.SelectedValue != null) | (cmbTdP.SelectedValue != null))
+            if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "") | (txtPrecioHasta.Text != "") | (Convert.ToInt32(cmbMaterial.SelectedValue) != 0) | 
+                (cmbModComp.SelectedValue != null) | (cmbTdP.SelectedValue != null) | (lbEstado.SelectedIndex != -1))
             {
                 string codigo = txtCodigo.Text;
+                if (txtPrecioDesde.Text != "" | txtPrecioHasta.Text != "")
+                {
+                    txtPrecioDesde.Text = (txtPrecioDesde.Text).Replace(",", "."); 
+                    txtPrecioHasta.Text = (txtPrecioHasta.Text).Replace(",", "."); 
+                }
                 string precioDesde = txtPrecioDesde.Text;
                 string precioHasta = txtPrecioHasta.Text;
                 int material = Convert.ToInt32(cmbMaterial.SelectedValue);
                 int modComp = Convert.ToInt32(cmbModComp.SelectedValue);
                 int tipoDePieza = Convert.ToInt32(cmbTdP.SelectedValue);
-                frmPiezas.llenarGridPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza);
+                int estado = lbEstado.SelectedIndex;
+                frmPiezas.llenarGridPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado);
+                
             }
             else
             {
@@ -75,8 +82,17 @@ namespace Juntas_MC.PL
             cmbTdP.SelectedItem = null;
             cmbMaterial.SelectedItem = null;
             cmbModComp.SelectedItem = null;
+            lbEstado.SelectedIndex = -1;
+            txtPrecioDesde.Text = null;
+            txtPrecioHasta.Text = null;
 
             this.Close();
+        }
+
+        private void autoCompletarPrecioHasta(object sender, EventArgs e)
+        {
+            if (txtPrecioHasta.Text != "") { }
+            else { txtPrecioHasta.Text = txtPrecioDesde.Text; }
         }
     }
 }

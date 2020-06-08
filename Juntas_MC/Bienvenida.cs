@@ -76,7 +76,14 @@ namespace Juntas_MC
             piezas.abrirBuscador();
         }
 
-        private void aBMClientesProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuItemProovedores_Click(object sender, EventArgs e)
+        {
+            Mercados mercados = new Mercados();
+            mercados.Show();
+            mercados.abrirBuscador();
+        }
+
+        private void esquemasComercialesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Mercados mercados = new Mercados();
             mercados.Show();

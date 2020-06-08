@@ -73,6 +73,16 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap attention {
+            get {
+                object obj = ResourceManager.GetObject("attention", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap basurero {
             get {
                 object obj = ResourceManager.GetObject("basurero", resourceCulture);
@@ -116,6 +126,16 @@ namespace Juntas_MC.Properties {
         internal static System.Drawing.Bitmap clear {
             get {
                 object obj = ResourceManager.GetObject("clear", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap clone {
+            get {
+                object obj = ResourceManager.GetObject("clone", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -286,6 +306,16 @@ namespace Juntas_MC.Properties {
         internal static System.Drawing.Bitmap pencil_edit {
             get {
                 object obj = ResourceManager.GetObject("pencil_edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Resize {
+            get {
+                object obj = ResourceManager.GetObject("Resize", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

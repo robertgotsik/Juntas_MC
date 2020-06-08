@@ -36,6 +36,28 @@ namespace Juntas_MC.DAL
             return conexion.ejecutarSentencia(sentencia);
         }
 
+        public DataSet mostrarMercadosConFiltos(string nombre, int tipo)
+        {
+
+            System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
+            OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
+
+
+            strSQL.Append("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Telefono2, Email, Web, Direccion, Localidad, Provincia from Mercados ");
+            if (nombre != "" | tipo != -1)
+            {
+                strSQL.Append("WHERE ");
+                string whereClause = "";
+                if (nombre != "") whereClause += "Nombre = '" + nombre + "'";
+                if (tipo != -1) whereClause += (whereClause != "" ? " and " : "") + "IdTipo = " + tipo;
+                strSQL.Append(whereClause);
+                strSQL.Append(" order by Nombre");
+            }
+
+            sentencia.CommandText = (Convert.ToString(strSQL));
+            return conexion.ejecutarSentencia(sentencia);
+        }
+
         public DataSet mostrarProvincias()
         {
             OleDbCommand sentencia = new OleDbCommand("SELECT * FROM Provincias ORDER BY Id");

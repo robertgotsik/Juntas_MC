@@ -82,11 +82,23 @@
     <Compile Include="PL\AgregadoDialogTrue.Designer.cs">
       <DependentUpon>AgregadoDialogTrue.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\BusquedaMercado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\BusquedaMercado.Designer.cs">
+      <DependentUpon>BusquedaMercado.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\BusquedaPieza.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PL\BusquedaPieza.Designer.cs">
       <DependentUpon>BusquedaPieza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\ErrorZoomImgPiezas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\ErrorZoomImgPiezas.Designer.cs">
+      <DependentUpon>ErrorZoomImgPiezas.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\Marcas.cs">
       <SubType>Form</SubType>
@@ -99,6 +111,12 @@
     </Compile>
     <Compile Include="PL\Mercados.Designer.cs">
       <DependentUpon>Mercados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\MercadosReplicar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\MercadosReplicar.Designer.cs">
+      <DependentUpon>MercadosReplicar.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\Modelos.cs">
       <SubType>Form</SubType>
@@ -142,6 +160,12 @@
     <Compile Include="PL\TiposDePiezas.Designer.cs">
       <DependentUpon>TiposDePiezas.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\ZoomImgPiezas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\ZoomImgPiezas.Designer.cs">
+      <DependentUpon>ZoomImgPiezas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Bienvenida.resx">
@@ -153,8 +177,14 @@
     <EmbeddedResource Include="PL\AgregadoDialogTrue.resx">
       <DependentUpon>AgregadoDialogTrue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PL\BusquedaMercado.resx">
+      <DependentUpon>BusquedaMercado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PL\BusquedaPieza.resx">
       <DependentUpon>BusquedaPieza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\ErrorZoomImgPiezas.resx">
+      <DependentUpon>ErrorZoomImgPiezas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Marcas.resx">
       <DependentUpon>Marcas.cs</DependentUpon>
@@ -164,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Mercados.resx">
       <DependentUpon>Mercados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\MercadosReplicar.resx">
+      <DependentUpon>MercadosReplicar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Modelos.resx">
       <DependentUpon>Modelos.cs</DependentUpon>
@@ -182,6 +215,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\TiposDePiezas.resx">
       <DependentUpon>TiposDePiezas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\ZoomImgPiezas.resx">
+      <DependentUpon>ZoomImgPiezas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -286,6 +322,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\iconfinder_Button White Remove_58498.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\attention.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Piezas));
             this.lblPiezaTipo = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
@@ -59,14 +60,16 @@
             this.lblIdPieza = new System.Windows.Forms.Label();
             this.btnExaminar = new System.Windows.Forms.Button();
             this.txtRutaImagen = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbEstado = new System.Windows.Forms.ListBox();
+            this.btnZoom = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.imgPieza = new System.Windows.Forms.PictureBox();
-            this.cbEstado = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPiezas)).BeginInit();
@@ -77,6 +80,7 @@
             this.gbModelosCompatibles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgPiezasModelos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPieza)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPiezaTipo
@@ -93,7 +97,7 @@
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(502, 9);
+            this.lblPrecio.Location = new System.Drawing.Point(447, 9);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(63, 20);
             this.lblPrecio.TabIndex = 6;
@@ -102,9 +106,9 @@
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(508, 29);
+            this.txtPrecio.Location = new System.Drawing.Point(451, 32);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(135, 34);
+            this.txtPrecio.Size = new System.Drawing.Size(148, 34);
             this.txtPrecio.TabIndex = 7;
             this.txtPrecio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -123,7 +127,7 @@
             this.txtCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.Location = new System.Drawing.Point(200, 32);
             this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(194, 34);
+            this.txtCodigo.Size = new System.Drawing.Size(214, 34);
             this.txtCodigo.TabIndex = 3;
             // 
             // cmbPiezaTipo
@@ -199,7 +203,9 @@
             // dgvPiezas
             // 
             this.dgvPiezas.AllowUserToAddRows = false;
+            this.dgvPiezas.AllowUserToOrderColumns = true;
             this.dgvPiezas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPiezas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgvPiezas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiezas.Location = new System.Drawing.Point(6, 6);
             this.dgvPiezas.MultiSelect = false;
@@ -368,7 +374,7 @@
             this.lblSignoMoneda.AutoSize = true;
             this.lblSignoMoneda.BackColor = System.Drawing.SystemColors.Window;
             this.lblSignoMoneda.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignoMoneda.Location = new System.Drawing.Point(510, 32);
+            this.lblSignoMoneda.Location = new System.Drawing.Point(454, 35);
             this.lblSignoMoneda.Name = "lblSignoMoneda";
             this.lblSignoMoneda.Size = new System.Drawing.Size(26, 29);
             this.lblSignoMoneda.TabIndex = 22;
@@ -405,6 +411,38 @@
             this.txtRutaImagen.TabIndex = 25;
             this.txtRutaImagen.Visible = false;
             this.txtRutaImagen.WordWrap = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(679, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 20);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Estado";
+            // 
+            // lbEstado
+            // 
+            this.lbEstado.FormattingEnabled = true;
+            this.lbEstado.ItemHeight = 16;
+            this.lbEstado.Items.AddRange(new object[] {
+            "Suspendido",
+            "Activo"});
+            this.lbEstado.Location = new System.Drawing.Point(652, 32);
+            this.lbEstado.Name = "lbEstado";
+            this.lbEstado.Size = new System.Drawing.Size(120, 36);
+            this.lbEstado.TabIndex = 30;
+            // 
+            // btnZoom
+            // 
+            this.btnZoom.Image = global::Juntas_MC.Properties.Resources.Resize;
+            this.btnZoom.Location = new System.Drawing.Point(129, 140);
+            this.btnZoom.Name = "btnZoom";
+            this.btnZoom.Size = new System.Drawing.Size(55, 41);
+            this.btnZoom.TabIndex = 31;
+            this.btnZoom.UseVisualStyleBackColor = true;
+            this.btnZoom.Click += new System.EventHandler(this.btnZoom_Click);
             // 
             // btnBuscar
             // 
@@ -470,35 +508,22 @@
             this.imgPieza.Location = new System.Drawing.Point(12, 9);
             this.imgPieza.Name = "imgPieza";
             this.imgPieza.Size = new System.Drawing.Size(175, 175);
+            this.imgPieza.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgPieza.TabIndex = 9;
             this.imgPieza.TabStop = false;
             // 
-            // cbEstado
+            // errorProvider1
             // 
-            this.cbEstado.AutoSize = true;
-            this.cbEstado.Location = new System.Drawing.Point(706, 36);
-            this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(18, 17);
-            this.cbEstado.TabIndex = 28;
-            this.cbEstado.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(685, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 20);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Estado";
+            this.errorProvider1.ContainerControl = this;
             // 
             // Piezas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 594);
+            this.Controls.Add(this.btnZoom);
+            this.Controls.Add(this.lbEstado);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.lblSignoMoneda);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtPrecio);
@@ -534,6 +559,7 @@
             this.gbModelosCompatibles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgPiezasModelos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPieza)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -576,7 +602,9 @@
         private System.Windows.Forms.TextBox txtRutaImagen;
         private System.Windows.Forms.Button btnQuitarModelo;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.CheckBox cbEstado;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lbEstado;
+        private System.Windows.Forms.Button btnZoom;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Juntas_MC.BLL;
 using Juntas_MC.DAL;
 using System;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Juntas_MC.PL
@@ -14,6 +15,9 @@ namespace Juntas_MC.PL
         MaterialesDAL oMaterialesDAL;
         PiezasModelosDAL oPiezasModelosDAL;
         BusquedaPieza busquedaPieza;
+        CultureInfo oCultureInfo;
+        ZoomImgPiezas zoomImgPiezas;
+        ErrorZoomImgPiezas errorZoomImgPiezas;
         public Piezas()
         {
             oPiezasDAL = new PiezasDAL();
@@ -23,6 +27,10 @@ namespace Juntas_MC.PL
             oMaterialesDAL = new MaterialesDAL();
             oPiezasModelosDAL = new PiezasModelosDAL();
             busquedaPieza = new BusquedaPieza(this);
+            oCultureInfo = new CultureInfo("en-US");
+            zoomImgPiezas = new ZoomImgPiezas();
+            errorZoomImgPiezas = new ErrorZoomImgPiezas();
+
             InitializeComponent();
             iniciarLlenadoDropDown1();
             iniciarLlenadoDropDown2();
@@ -58,9 +66,9 @@ namespace Juntas_MC.PL
             limpiarEntradas();
         }
 
-        public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza)
+        public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado)
         {
-            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza).Tables[0];
+            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado).Tables[0];
             this.dgvPiezas.Columns["PI.Id"].Visible = false;
             this.dgvPiezas.Columns["Detalles"].Visible = false;
             this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
@@ -163,9 +171,10 @@ namespace Juntas_MC.PL
                 cmbPiezaTipo.SelectedValue = dgvPiezas.Rows[indice].Cells[3].Value.ToString();
                 cmbMaterial.SelectedValue = dgvPiezas.Rows[indice].Cells[4].Value.ToString();
                 txtRutaImagen.Text = dgvPiezas.Rows[indice].Cells[10].Value.ToString();
+                lbEstado.SelectedItem = dgvPiezas.Rows[indice].Cells[11].Value.ToString();
                 obtenerImagen();
-                llenadoComboBoxTdPiezas();
-                llenadoComboBoxMateriales();
+                //llenadoComboBoxTdPiezas();
+                //llenadoComboBoxMateriales();
                 llenarGridPiezasModelos();
 
                 if ((cmbCP1.SelectedValue != null) | (cmbCP2.SelectedValue != null) | (cmbCP3.SelectedValue != null) | (cmbCP4.SelectedValue != null))
@@ -281,7 +290,7 @@ namespace Juntas_MC.PL
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             oPiezasDAL.agregar(recuperarInformacionAgregarPieza());
-            //limpiarEntradas();
+            limpiarEntradas();
             llenarGridPiezas();
         }
         private PiezasBLL recuperarInformacionAgregarPieza()
@@ -290,14 +299,15 @@ namespace Juntas_MC.PL
             oPieza.Codigo = txtCodigo.Text;
             if (txtPrecio.Text != "")
             {
-                txtPrecio.Text = (txtPrecio.Text).Replace(".", ",");
-                oPieza.Precio = Convert.ToDecimal(txtPrecio.Text);
+                txtPrecio.Text = (txtPrecio.Text).Replace(",", ".");
+                oPieza.Precio = (Convert.ToDecimal(txtPrecio.Text, oCultureInfo));
             }
             else { oPieza.Precio = 0; }
             oPieza.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             oPieza.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
             oPieza.Detalles = txtDetalles.Text;
             oPieza.Imagen = txtRutaImagen.Text;
+            oPieza.Estado = Convert.ToInt32(lbEstado.SelectedIndex);
 
             return oPieza;
         }
@@ -320,6 +330,7 @@ namespace Juntas_MC.PL
             oPiezas.Imagen = txtRutaImagen.Text;
             oPiezas.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             oPiezas.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
+            oPiezas.Estado = Convert.ToInt32(lbEstado.SelectedIndex);
 
             return oPiezas;
         }
@@ -375,6 +386,7 @@ namespace Juntas_MC.PL
             cmbPiezaTipo.SelectedItem = null;
             cmbMaterial.SelectedItem = null;
             btnLimpiar.Hide();
+            lbEstado.SelectedIndex = -1;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -391,7 +403,28 @@ namespace Juntas_MC.PL
         }
 
         public void abrirBuscador() {
-        busquedaPieza.ShowDialog();
+            busquedaPieza.ShowDialog();
+        }
+
+
+
+
+
+        private void btnZoom_Click(object sender, EventArgs e)
+        {
+            if (txtRutaImagen.Text != "")
+            {
+                string PiezaCodigo = txtCodigo.Text;
+                string PiezaRutaImg = txtRutaImagen.Text;
+                string PiezaDetalle = txtDetalles.Text;
+                zoomImgPiezas.enviarDataZoomImg(PiezaCodigo, PiezaRutaImg, PiezaDetalle);
+
+                zoomImgPiezas.ShowDialog();
+            }
+            else
+            {
+                errorZoomImgPiezas.ShowDialog();
+            }
         }
     }
 }
