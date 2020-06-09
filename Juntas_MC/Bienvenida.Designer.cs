@@ -43,11 +43,11 @@
             this.menuItemMateriales = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdministracion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProovedores = new System.Windows.Forms.ToolStripMenuItem();
+            this.esquemasComercialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblHora = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.btnFacturar = new System.Windows.Forms.Button();
-            this.esquemasComercialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +85,7 @@
             this.menuItemActPrec.Name = "menuItemActPrec";
             this.menuItemActPrec.Size = new System.Drawing.Size(224, 26);
             this.menuItemActPrec.Text = "Actualizar Precios";
+            this.menuItemActPrec.Click += new System.EventHandler(this.menuItemActPrec_Click);
             // 
             // menuAutomotor
             // 
@@ -157,6 +158,13 @@
             this.menuItemProovedores.Text = "Clientes/Proveedores";
             this.menuItemProovedores.Click += new System.EventHandler(this.menuItemProovedores_Click);
             // 
+            // esquemasComercialesToolStripMenuItem
+            // 
+            this.esquemasComercialesToolStripMenuItem.Name = "esquemasComercialesToolStripMenuItem";
+            this.esquemasComercialesToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
+            this.esquemasComercialesToolStripMenuItem.Text = "Esquemas Comerciales";
+            this.esquemasComercialesToolStripMenuItem.Click += new System.EventHandler(this.esquemasComercialesToolStripMenuItem_Click);
+            // 
             // lblFecha
             // 
             this.lblFecha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -192,13 +200,6 @@
             this.btnFacturar.Size = new System.Drawing.Size(227, 227);
             this.btnFacturar.TabIndex = 13;
             this.btnFacturar.UseVisualStyleBackColor = true;
-            // 
-            // esquemasComercialesToolStripMenuItem
-            // 
-            this.esquemasComercialesToolStripMenuItem.Name = "esquemasComercialesToolStripMenuItem";
-            this.esquemasComercialesToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
-            this.esquemasComercialesToolStripMenuItem.Text = "Esquemas Comerciales";
-            this.esquemasComercialesToolStripMenuItem.Click += new System.EventHandler(this.esquemasComercialesToolStripMenuItem_Click);
             // 
             // Bienvenida
             // 

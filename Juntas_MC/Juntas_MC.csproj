@@ -70,6 +70,12 @@
     <Compile Include="DAL\PiezasModelosDAL.cs" />
     <Compile Include="DAL\PreciosMercadosDAL.cs" />
     <Compile Include="DAL\TiposDePiezasDAL.cs" />
+    <Compile Include="PL\AdmPrecios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\AdmPrecios.Designer.cs">
+      <DependentUpon>AdmPrecios.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\AgregadoDialogFalse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,12 @@
     <Compile Include="PL\Piezas.Designer.cs">
       <DependentUpon>Piezas.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\PiezasActualizarPrecios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\PiezasActualizarPrecios.Designer.cs">
+      <DependentUpon>PiezasActualizarPrecios.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\PiezasModelos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +182,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Bienvenida.resx">
       <DependentUpon>Bienvenida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\AdmPrecios.resx">
+      <DependentUpon>AdmPrecios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\AgregadoDialogFalse.resx">
       <DependentUpon>AgregadoDialogFalse.cs</DependentUpon>
@@ -209,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Piezas.resx">
       <DependentUpon>Piezas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\PiezasActualizarPrecios.resx">
+      <DependentUpon>PiezasActualizarPrecios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\PiezasModelos.resx">
       <DependentUpon>PiezasModelos.cs</DependentUpon>
@@ -331,6 +349,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\attention.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actualizarPrecios.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

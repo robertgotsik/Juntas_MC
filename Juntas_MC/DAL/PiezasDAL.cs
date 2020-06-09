@@ -34,6 +34,11 @@ namespace Juntas_MC.DAL
             OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
             return conexion.ejecutarSentencia(sentencia);
         }
+        public DataSet mostrarPiezas2()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select * from Piezas order by Codigo");
+            return conexion.ejecutarSentencia(sentencia);
+        }
 
         public DataSet mostrarPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado)
         {
@@ -87,19 +92,32 @@ namespace Juntas_MC.DAL
             }
         }
 
+        public DataSet actualizadorPreciosConFiltros(int codigo, int tipoDePieza, int material)
+        {
+            System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
+            OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
+
+            strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
+            if (codigo != 0 | material != 0 | tipoDePieza != 0 )
+            {
+                strSQL.Append("WHERE ");
+                string whereClause = "";
+                if (codigo != 0) whereClause += "PI.Id = " + codigo;
+                if (material != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.Material = " + material;
+                if (tipoDePieza != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.PiezaTipo = " + tipoDePieza;
+                strSQL.Append(whereClause);
+                strSQL.Append(" Order by  PI.Codigo");
+            }
+
+            sentencia.CommandText = (Convert.ToString(strSQL));
+            return conexion.ejecutarSentencia(sentencia);
+        }
+
         public bool agregar(PiezasBLL oPiezasBLL)
         {
             if ((oPiezasBLL.Codigo != "") & Convert.ToBoolean(Convert.ToString(oPiezasBLL.Precio != 0)) & (oPiezasBLL.Estado != -1))
             {
                 OleDbCommand oleDbComando = new OleDbCommand("Insert into Piezas (Codigo, Precio, PiezaTipo, Material, Detalles, Imagen, Estado) VALUES ('" + oPiezasBLL.Codigo + "', '" + oPiezasBLL.Precio + "', " + oPiezasBLL.PiezaTipo + ", " + oPiezasBLL.Material + ", '" + oPiezasBLL.Detalles + "', '" + oPiezasBLL.Imagen + "'," + oPiezasBLL.Estado + ")");
-                //OleDbCommand oleDbComando = new OleDbCommand("Insert into Piezas (Codigo, Precio, PiezaTipo, Material, Detalles, Imagen, Estado) VALUES(@Codigo, @Precio, @PiezaTipo, @Material, @Detalles, @Imagen, @Estado)");
-                //oleDbComando.Parameters.AddWithValue("@Codigo", SqlDbType.VarChar).Value = oPiezasBLL.Codigo;
-                //oleDbComando.Parameters.AddWithValue("@Precio", SqlDbType.Money).Value = Convert.ToDecimal(oPiezasBLL.Precio);
-                //oleDbComando.Parameters.AddWithValue("@PiezaTipo", SqlDbType.Int).Value = oPiezasBLL.PiezaTipo;
-                //oleDbComando.Parameters.AddWithValue("@Material", SqlDbType.Int).Value = oPiezasBLL.Material;
-                //oleDbComando.Parameters.AddWithValue("@Detalles", SqlDbType.VarChar).Value = oPiezasBLL.Detalles;
-                //oleDbComando.Parameters.AddWithValue("@Imagen", SqlDbType.VarChar).Value = oPiezasBLL.Imagen;
-                //oleDbComando.Parameters.AddWithValue("@Estado", SqlDbType.Int).Value = oPiezasBLL.Estado;
 
                 AgregadoDialogTrue oAgregadoDialog = new AgregadoDialogTrue();
                 oAgregadoDialog.ShowDialog();
@@ -128,6 +146,22 @@ namespace Juntas_MC.DAL
                 ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
                 oModificacionDialog.ShowDialog();
                 return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Codigo = '" + oPiezasBLL.Codigo + "'" + ",Precio ='" + oPiezasBLL.Precio + "',PiezaTipo =" + oPiezasBLL.PiezaTipo + ",Material =" + oPiezasBLL.Material + ",Detalles = '" + oPiezasBLL.Detalles + "',Imagen = '" + oPiezasBLL.Imagen + "', Estado = " +oPiezasBLL.Estado +" where Id=" + oPiezasBLL.Id);
+            }
+            else
+            {
+                ModificacionDialogFalse oModificacionDialog = new ModificacionDialogFalse();
+                oModificacionDialog.ShowDialog();
+                return false;
+            }
+        }
+
+        public bool modificarPreciosMasivo(string operando, string operador)
+        {
+            if (operando != "" & operador != "")
+            {
+                //ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
+                //oModificacionDialog.ShowDialog();
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Precio = Precio " +operador +" " +operando);
             }
             else
             {

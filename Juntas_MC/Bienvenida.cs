@@ -88,5 +88,11 @@ namespace Juntas_MC
             Mercados mercados = new Mercados();
             mercados.Show();
         }
+
+        private void menuItemActPrec_Click(object sender, EventArgs e)
+        {
+            AdmPrecios actualizadorPrecios = new AdmPrecios();
+            actualizadorPrecios.Show();
+        }
     }
 }

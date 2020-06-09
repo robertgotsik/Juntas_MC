@@ -63,6 +63,16 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap actualizarPrecios {
+            get {
+                object obj = ResourceManager.GetObject("actualizarPrecios", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Add_Icon {
             get {
                 object obj = ResourceManager.GetObject("Add_Icon", resourceCulture);

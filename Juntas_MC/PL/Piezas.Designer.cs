@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Piezas));
             this.lblPiezaTipo = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
@@ -69,7 +68,6 @@
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.imgPieza = new System.Windows.Forms.PictureBox();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPiezas)).BeginInit();
@@ -80,7 +78,6 @@
             this.gbModelosCompatibles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgPiezasModelos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPieza)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblPiezaTipo
@@ -512,10 +509,6 @@
             this.imgPieza.TabIndex = 9;
             this.imgPieza.TabStop = false;
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // Piezas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -559,7 +552,6 @@
             this.gbModelosCompatibles.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dvgPiezasModelos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgPieza)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,6 +597,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox lbEstado;
         private System.Windows.Forms.Button btnZoom;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
