@@ -16,7 +16,10 @@ namespace Juntas_MC.PL
         PiezasDAL oPiezasDAL;
         TiposDePiezasDAL oTiposDePiezasDAL;
         MaterialesDAL oMaterialesDAL;
-        
+        ModificacionDialogFalse frmModificacionDialogFalse;
+        MercadosDAL oMercadosDAL;
+        PreciosMercadosDAL oPreciosMercadosDAL;
+
 
         public PiezasActualizarPrecios()
         {
@@ -24,14 +27,22 @@ namespace Juntas_MC.PL
             oPiezasDAL = new PiezasDAL();
             oTiposDePiezasDAL = new TiposDePiezasDAL();
             oMaterialesDAL = new MaterialesDAL();
+            frmModificacionDialogFalse = new ModificacionDialogFalse();
+            oMercadosDAL = new MercadosDAL();
+            oPreciosMercadosDAL = new PreciosMercadosDAL();
             llenadoComboBoxTdPiezas();
             llenadoComboBoxMateriales();
-            llenadoComboBoxPiezasCodigo();
+            llenadoComboBoxMercados();
         }
 
         public void llenarGridPiezas()
         {
             dgvPiezas.DataSource = oPiezasDAL.mostrarPiezas().Tables[0];
+            quitarColumnasSobrantes();
+        }
+
+        public void quitarColumnasSobrantes()
+        {
             this.dgvPiezas.Columns["PI.Id"].Visible = false;
             this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
             this.dgvPiezas.Columns["Material"].Visible = false;
@@ -49,7 +60,23 @@ namespace Juntas_MC.PL
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             cbTodasPiezas.Enabled = true;
-            cmbCodigo.Enabled = false;
+            txtCodigo.Enabled = false;
+            cbCodigo.Enabled = true;
+            cmbPiezaTipo.Enabled = false;
+            cbTipoPieza.Enabled = true;
+            cmbMaterial.Enabled = false;
+            cbMaterial.Enabled = true;
+        }
+        private void rdMercado_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbMercado.Enabled = true;
+        }
+        private void seleccionMercado(object sender, EventArgs e)
+        {
+            int mercado = Convert.ToInt32(cmbMercado.SelectedValue);
+            dgvPiezas.DataSource = oPreciosMercadosDAL.mostrarPreciosMercadosFull(mercado).Tables[0];
+            cbTodasPiezas.Enabled = true;
+            txtCodigo.Enabled = false;
             cbCodigo.Enabled = true;
             cmbPiezaTipo.Enabled = false;
             cbTipoPieza.Enabled = true;
@@ -58,19 +85,20 @@ namespace Juntas_MC.PL
         }
 
 
+
         //Paso 2
 
         private void TodasPiezasCheckeado(object sender, EventArgs e)
         {
-            if(cbTodasPiezas.Checked == true)
+            if(rdPrecioDeLista.Checked ==true & cbTodasPiezas.Checked == true)
             {
-                cmbCodigo.Enabled = false;
+                txtCodigo.Enabled = false;
                 cbCodigo.Enabled = false;
                 cmbPiezaTipo.Enabled = false;
                 cbTipoPieza.Enabled = false;
                 cmbMaterial.Enabled = false;
                 cbMaterial.Enabled = false;
-                cmbCodigo.SelectedItem = null;
+                txtCodigo.Text = null;
                 cmbPiezaTipo.SelectedItem = null;
                 cmbMaterial.SelectedItem = null;
                 cbMaterial.Checked = false;
@@ -79,28 +107,26 @@ namespace Juntas_MC.PL
                 llenarGridPiezas();
                 enablePaso3();
             }
+            else if (rdMercado.Checked == true & cbTodasPiezas.Checked == true)
+            {
+                int mercado = Convert.ToInt32(cmbMercado.SelectedValue);
+
+            }
             else
             {
                 cbTodasPiezas.Enabled = true;
-                cmbCodigo.Enabled = false;
+                txtCodigo.Enabled = false;
                 cbCodigo.Enabled = true;
                 cmbPiezaTipo.Enabled = false;
                 cbTipoPieza.Enabled = true;
                 cmbMaterial.Enabled = false;
                 cbMaterial.Enabled = true;
                 dgvPiezas.DataSource = null;
+                ningunCheckBoxCheckeado();
             }
         }
 
         //Lenado de ComboBoxes
-        private void llenadoComboBoxPiezasCodigo()
-        {
-            cmbCodigo.ValueMember = "Id";
-            cmbCodigo.DisplayMember = "Codigo";
-            cmbCodigo.DataSource = oPiezasDAL.mostrarPiezas2().Tables[0];
-            cmbCodigo.SelectedItem = null;
-        }
-
         private void llenadoComboBoxTdPiezas()
         {
             cmbPiezaTipo.ValueMember = "Id";
@@ -115,89 +141,116 @@ namespace Juntas_MC.PL
             cmbMaterial.DataSource = oMaterialesDAL.mostrarMateriales().Tables[0];
             cmbMaterial.SelectedItem = null;
         }
+        private void llenadoComboBoxMercados()
+        {
+            cmbMercado.ValueMember = "Id";
+            cmbMercado.DisplayMember = "Nombre";
+            cmbMercado.DataSource = oMercadosDAL.mostrarMercados().Tables[0];
+            cmbMercado.SelectedItem = null;
+        }
 
 
         private void cbCodigo_CheckedChanged(object sender, EventArgs e)
         {
+            if (cbCodigo.Checked == true) 
+            { 
+                txtCodigo.Enabled = true; 
+                btnBuscarPorCodigo.Enabled = true;
+                cbTodasPiezas.Enabled = false;
+                cbTipoPieza.Enabled = false;
+                cmbPiezaTipo.Enabled = false;
+                cbMaterial.Enabled = false;
+                enablePaso3();
 
-            if (cbCodigo.Checked == true) { cmbCodigo.Enabled = true; }
-            else if ((cbMaterial.Checked == false) & (cbCodigo.Checked == false) & (cbTipoPieza.Checked == false))
-            { dgvPiezas.DataSource = null; cmbCodigo.Enabled = false; cmbCodigo.SelectedItem = null; }
-            else { cmbCodigo.Enabled = false; cmbCodigo.SelectedItem = null;
-                int codigo = Convert.ToInt32(cmbCodigo.SelectedValue);
-                int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
-                int material = Convert.ToInt32(cmbMaterial.SelectedValue);
-                dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
-                this.dgvPiezas.Columns["PI.Id"].Visible = false;
-                this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-                this.dgvPiezas.Columns["Material"].Visible = false;
-                this.dgvPiezas.Columns["Detalles"].Visible = false;
-                this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-                this.dgvPiezas.Columns["Detalles"].Visible = false;
-                this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-                this.dgvPiezas.Columns["PT.Id"].Visible = false;
-                this.dgvPiezas.Columns["MA.Id"].Visible = false;
-                this.dgvPiezas.Columns["Imagen"].Visible = false;
-                this.dgvPiezas.Columns["Estado"].Visible = false;
+            }
+            else if (cbCodigo.Checked == false)
+            { 
+                dgvPiezas.DataSource = null; 
+                txtCodigo.Enabled = false; 
+                txtCodigo.Text = ""; 
+                btnBuscarPorCodigo.Enabled = false;
+                ningunCheckBoxCheckeado();
             }
         }
 
 
         private void cbTipoPieza_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbTipoPieza.Checked == true) { cmbPiezaTipo.Enabled = true; }
-            else if ((cbMaterial.Checked == false) & (cbCodigo.Checked == false) & (cbTipoPieza.Checked == false))
-            { dgvPiezas.DataSource = null; cmbPiezaTipo.Enabled = false; cmbPiezaTipo.SelectedItem = null; }
-            else { cmbPiezaTipo.Enabled = false; cmbPiezaTipo.SelectedItem = null;
-                int codigo = Convert.ToInt32(cmbCodigo.SelectedValue);
-                int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
-                int material = Convert.ToInt32(cmbMaterial.SelectedValue);
-                dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
-                this.dgvPiezas.Columns["PI.Id"].Visible = false;
-                this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-                this.dgvPiezas.Columns["Material"].Visible = false;
-                this.dgvPiezas.Columns["Detalles"].Visible = false;
-                this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-                this.dgvPiezas.Columns["Detalles"].Visible = false;
-                this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-                this.dgvPiezas.Columns["PT.Id"].Visible = false;
-                this.dgvPiezas.Columns["MA.Id"].Visible = false;
-                this.dgvPiezas.Columns["Imagen"].Visible = false;
-                this.dgvPiezas.Columns["Estado"].Visible = false;
+            if (cbTipoPieza.Checked == true) 
+            { 
+                cmbPiezaTipo.Enabled = true;
+                cbCodigo.Enabled = false;
+                cbTodasPiezas.Enabled = false;
+            }
+            else
+            { 
+                dgvPiezas.DataSource = null; 
+                cmbPiezaTipo.Enabled = false; 
+                cmbPiezaTipo.SelectedItem = null;
+
+                if ((cmbMaterial.SelectedItem != null) & (cbMaterial.Checked == true))
+                {
+                    cmbPiezaTipo.Enabled = false; cmbPiezaTipo.SelectedItem = null;
+                    string codigo = txtCodigo.Text;
+                    int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
+                    int material = Convert.ToInt32(cmbMaterial.SelectedValue);
+                    dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
+                    quitarColumnasSobrantes();
+                }
+
+                ningunCheckBoxCheckeado();
             }
         }
 
         private void cbMaterial_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbMaterial.Checked == true) { cmbMaterial.Enabled = true; }
-            else if ((cbMaterial.Checked == false) & (cbCodigo.Checked == false) & (cbTipoPieza.Checked == false))
+            if (cbMaterial.Checked == true) 
+            { 
+                cmbMaterial.Enabled = true;
+                cbCodigo.Enabled = false;
+                cbTodasPiezas.Enabled = false;
+            }
+            else
             { 
                 dgvPiezas.DataSource = null;
                 cmbMaterial.Enabled = false; 
                 cmbMaterial.SelectedItem = null;
+
+                if ((cmbPiezaTipo.SelectedItem != null) & (cbTipoPieza.Checked == true))
+                {
+                    cmbMaterial.Enabled = false; cmbMaterial.SelectedItem = null;
+                    string codigo = txtCodigo.Text;
+                    int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
+                    int material = Convert.ToInt32(cmbMaterial.SelectedValue);
+                    dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, tipoDePieza).Tables[0];
+                    quitarColumnasSobrantes();
+                }
+
+                ningunCheckBoxCheckeado();
             }
-            else { cmbMaterial.Enabled = false; cmbMaterial.SelectedItem = null;
-                int codigo = Convert.ToInt32(cmbCodigo.SelectedValue);
-                int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
-                int material = Convert.ToInt32(cmbMaterial.SelectedValue);
-                dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
-                this.dgvPiezas.Columns["PI.Id"].Visible = false;
-                this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-                this.dgvPiezas.Columns["Material"].Visible = false;
-                this.dgvPiezas.Columns["Detalles"].Visible = false;
-                this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-                this.dgvPiezas.Columns["Detalles"].Visible = false;
-                this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-                this.dgvPiezas.Columns["PT.Id"].Visible = false;
-                this.dgvPiezas.Columns["MA.Id"].Visible = false;
-                this.dgvPiezas.Columns["Imagen"].Visible = false;
-                this.dgvPiezas.Columns["Estado"].Visible = false;
+        }
+
+        private void ningunCheckBoxCheckeado()
+        {
+            if (cbTodasPiezas.Checked == false & cbCodigo.Checked == false & cbTipoPieza.Checked == false & cbMaterial.Checked == false)
+            {
+                cbTodasPiezas.Enabled = true;
+                cbCodigo.Enabled = true;
+                txtCodigo.Text = null;
+                cbTipoPieza.Enabled = true;
+                cmbPiezaTipo.SelectedItem = null;
+                cbMaterial.Enabled = true;
+                cmbMaterial.SelectedItem = null;
+                cmbOperando.SelectedItem = null;
+                cmbOperando.Enabled = false;
+                txtValorOperando.Enabled = false;
+                txtValorOperando.Text = null;
             }
         }
 
         private void enablePaso3()
         {
-            if(cbTodasPiezas.Checked == true | cmbCodigo.SelectedIndex != -1 | cmbPiezaTipo.SelectedIndex != -1 | cmbMaterial.SelectedIndex != -1 )
+            if(cbTodasPiezas.Checked == true | cbCodigo.Checked == true | cmbPiezaTipo.SelectedIndex != -1 | cmbMaterial.SelectedIndex != -1 )
             { 
                 cmbOperando.Enabled = true; 
                 txtValorOperando.Enabled = true; 
@@ -205,65 +258,23 @@ namespace Juntas_MC.PL
             else { cmbOperando.Enabled = false; txtValorOperando.Enabled = false; }
         }
 
-
-
-        private void SeleccionCodigo(object sender, EventArgs e)
-        {
-            int codigo = Convert.ToInt32(cmbCodigo.SelectedValue);
-            int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
-            int material = Convert.ToInt32(cmbMaterial.SelectedValue);
-            dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
-            this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-            this.dgvPiezas.Columns["Material"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            this.dgvPiezas.Columns["Imagen"].Visible = false;
-            this.dgvPiezas.Columns["Estado"].Visible = false;
-            enablePaso3();
-        }
-
         private void SeleccionMaterial(object sender, EventArgs e)
         {
-            int codigo = Convert.ToInt32(cmbCodigo.SelectedValue);
+            string codigo = txtCodigo.Text;
             int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             int material = Convert.ToInt32(cmbMaterial.SelectedValue);
-            dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
-            this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-            this.dgvPiezas.Columns["Material"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            this.dgvPiezas.Columns["Imagen"].Visible = false;
-            this.dgvPiezas.Columns["Estado"].Visible = false;
+            dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, tipoDePieza).Tables[0];
+            quitarColumnasSobrantes();
             enablePaso3();
         }
 
         private void SeleccionTipoDePieza(object sender, EventArgs e)
         {
-            int codigo = Convert.ToInt32(cmbCodigo.SelectedValue);
+            string codigo = txtCodigo.Text;
             int tipoDePieza = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             int material = Convert.ToInt32(cmbMaterial.SelectedValue);
-            dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, tipoDePieza, material).Tables[0];
-            this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-            this.dgvPiezas.Columns["Material"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            this.dgvPiezas.Columns["Imagen"].Visible = false;
-            this.dgvPiezas.Columns["Estado"].Visible = false;
+            dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, tipoDePieza).Tables[0];
+            quitarColumnasSobrantes();
             enablePaso3();
         }
 
@@ -274,6 +285,11 @@ namespace Juntas_MC.PL
 
 
         //Resto de codigo
+
+        private void limpiarEntradas()
+        {
+
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -282,16 +298,79 @@ namespace Juntas_MC.PL
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string operador;
+            string codigo = txtCodigo.Text;
+            int material = Convert.ToInt32(cmbMaterial.SelectedValue);
+            int piezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
+
+
             if (cmbOperando.SelectedIndex == 0){ operador = "+"; }
             else if (cmbOperando.SelectedIndex == 1) { operador = "-"; }
             else if (cmbOperando.SelectedIndex == 2) { operador = "*"; }
-            else { operador = "/"; }
+            else if (cmbOperando.SelectedIndex == 3) { operador = "/"; }
+            else { operador = ""; }
+
             if(txtValorOperando.Text != "") { txtValorOperando.Text = (txtValorOperando.Text).Replace(",", "."); }
             string operando = txtValorOperando.Text;
+
+
             if(rdPrecioDeLista.Checked == true & cbTodasPiezas.Checked == true)
             {
                 oPiezasDAL.modificarPreciosMasivo(operando, operador);
+                txtValorOperando.Text = null;
                 llenarGridPiezas();
+            }
+            else if ((rdPrecioDeLista.Checked == true) & ((cbCodigo.Checked == true & txtCodigo.Text != "") | (cbTipoPieza.Checked == true & cmbPiezaTipo.SelectedItem != null) | (cbMaterial.Checked == true & cmbMaterial.SelectedItem != null)))
+            {
+                if ((cbTipoPieza.Checked == true & cmbPiezaTipo.SelectedItem != null) & (cbMaterial.Checked == true & cmbMaterial.SelectedItem != null))
+                {
+                    oPiezasDAL.modificarPreciosConFiltros(operando, operador, codigo, material, piezaTipo);
+                    dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, piezaTipo).Tables[0];
+                    quitarColumnasSobrantes();
+                }
+                else if (((cbTipoPieza.Checked == true & cmbPiezaTipo.SelectedItem != null) & (cbMaterial.Checked == true & cmbMaterial.SelectedItem == null)) | ((cbTipoPieza.Checked == true & cmbPiezaTipo.SelectedItem == null) &(cbMaterial.Checked == true & cmbMaterial.SelectedItem != null)))
+                {
+                    frmModificacionDialogFalse.ShowDialog();
+                }
+                else if (cbCodigo.Checked == true & txtCodigo.Text != "")
+                {
+                    oPiezasDAL.modificarPreciosConFiltros(operando, operador, codigo, material, piezaTipo);
+                    dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, piezaTipo).Tables[0];
+                    quitarColumnasSobrantes();
+                }
+                else if (cbTipoPieza.Checked == true & cmbPiezaTipo.SelectedItem != null)
+                {
+                    oPiezasDAL.modificarPreciosConFiltros(operando, operador, codigo, material, piezaTipo);
+                    dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, piezaTipo).Tables[0];
+                    quitarColumnasSobrantes();
+                }
+                else if (cbMaterial.Checked == true & cmbMaterial.SelectedItem != null)
+                {
+                    oPiezasDAL.modificarPreciosConFiltros(operando, operador, codigo, material, piezaTipo);
+                    dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, piezaTipo).Tables[0];
+                    quitarColumnasSobrantes();
+                }
+            }
+            else
+            {
+                frmModificacionDialogFalse.ShowDialog();
+            }
+            txtValorOperando.Text = null;
+            cmbOperando.SelectedItem = null;
+        }
+
+        private void btnBuscarPorCodigo_Click(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text != "")
+            {
+                string codigo = txtCodigo.Text;
+                string precioDesde = "";
+                string precioHasta = "";
+                int material = 0;
+                int modComp = 0;
+                int tipoDePieza = 0;
+                int estado = 1;
+                dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado).Tables[0];
+                quitarColumnasSobrantes();
             }
         }
     }

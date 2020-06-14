@@ -54,12 +54,12 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dvgMercadosPrecios = new System.Windows.Forms.DataGridView();
             this.lblIdMercado = new System.Windows.Forms.Label();
-            this.btnReplicar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.ultimoMercadoInsertado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMercados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -323,16 +323,6 @@
             this.lblIdMercado.Text = "IdMercado";
             this.lblIdMercado.Visible = false;
             // 
-            // btnReplicar
-            // 
-            this.btnReplicar.Image = global::Juntas_MC.Properties.Resources.clone;
-            this.btnReplicar.Location = new System.Drawing.Point(206, 229);
-            this.btnReplicar.Name = "btnReplicar";
-            this.btnReplicar.Size = new System.Drawing.Size(58, 58);
-            this.btnReplicar.TabIndex = 36;
-            this.btnReplicar.UseVisualStyleBackColor = true;
-            this.btnReplicar.Click += new System.EventHandler(this.btnReplicar_Click);
-            // 
             // btnBuscar
             // 
             this.btnBuscar.Image = global::Juntas_MC.Properties.Resources.iconfinder_Search_58605;
@@ -389,12 +379,22 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // ultimoMercadoInsertado
+            // 
+            this.ultimoMercadoInsertado.AutoSize = true;
+            this.ultimoMercadoInsertado.Location = new System.Drawing.Point(206, 289);
+            this.ultimoMercadoInsertado.Name = "ultimoMercadoInsertado";
+            this.ultimoMercadoInsertado.Size = new System.Drawing.Size(46, 17);
+            this.ultimoMercadoInsertado.TabIndex = 36;
+            this.ultimoMercadoInsertado.Text = "label1";
+            this.ultimoMercadoInsertado.Visible = false;
+            // 
             // Mercados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 735);
-            this.Controls.Add(this.btnReplicar);
+            this.Controls.Add(this.ultimoMercadoInsertado);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.lblIdMercado);
             this.Controls.Add(this.groupBox4);
@@ -454,6 +454,6 @@
         private System.Windows.Forms.DataGridView dvgMercadosPrecios;
         private System.Windows.Forms.Label lblIdMercado;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Button btnReplicar;
+        private System.Windows.Forms.Label ultimoMercadoInsertado;
     }
 }

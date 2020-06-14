@@ -131,6 +131,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.lblPregunta);
             this.Name = "AdmPrecios";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ActualizadorPrecios";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

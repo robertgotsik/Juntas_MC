@@ -54,13 +54,25 @@ namespace Juntas_MC.PL
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            if((cmbReferencia.SelectedItem != null) & (cmbReplicar.SelectedItem != null) & (cmbReferencia.SelectedItem != cmbReplicar.SelectedItem))
+            if (radMercado.Checked ==true)
             {
-                int aReplicar = Convert.ToInt32(cmbReplicar.SelectedValue);
-                int referencia = Convert.ToInt32(cmbReferencia.SelectedValue);
-                oPreciosMercadosDAL.borrarPreciosMercadosExistentes(aReplicar);
-                oPreciosMercadosDAL.replicarPreciosMercados(aReplicar, referencia);
-                this.Close();
+                if ((cmbReferencia.SelectedItem != null) & (cmbReplicar.SelectedItem != null) & (cmbReferencia.SelectedItem != cmbReplicar.SelectedItem))
+                {
+                    int aReplicar = Convert.ToInt32(cmbReplicar.SelectedValue);
+                    int referencia = Convert.ToInt32(cmbReferencia.SelectedValue);
+                    oPreciosMercadosDAL.borrarPreciosMercadosExistentes(aReplicar);
+                    oPreciosMercadosDAL.replicarPreciosMercados(aReplicar, referencia);
+                    this.Close();
+                }
+            }
+            else if (radPdL.Checked == true)
+            {
+                if (cmbReplicar.SelectedItem != null)
+                {
+                    int aReplicar = Convert.ToInt32(cmbReplicar.SelectedValue);
+                    oPreciosMercadosDAL.borrarPreciosMercadosExistentes(aReplicar);
+                    oPreciosMercadosDAL.insertarPreciosListaAMercados(aReplicar);
+                }
             }
         }
     }

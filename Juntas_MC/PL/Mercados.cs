@@ -61,6 +61,8 @@ namespace Juntas_MC.PL
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             oMercadosDAL.agregar(recuperarInformacionMercados());
+            //ultimoMercadoInsertado.Text = oMercadosDAL.buscarUltimoIdInsertado();
+            //oPreciosMercadosDAL.insertarPreciosListaNuevosMercados(ultimoMercadoInsertado.Text);
             llenarGridMercados();
         }
         private MercadosBLL recuperarInformacionMercados()

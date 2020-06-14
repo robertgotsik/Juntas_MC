@@ -31,12 +31,12 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public DataSet mostrarPiezas()
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
+            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, Round (PI.Precio, 2), PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
             return conexion.ejecutarSentencia(sentencia);
         }
         public DataSet mostrarPiezas2()
         {
-            OleDbCommand sentencia = new OleDbCommand("Select * from Piezas order by Codigo");
+            OleDbCommand sentencia = new OleDbCommand("Select Id, Codigo from Piezas where Estado = 1 order by Codigo");
             return conexion.ejecutarSentencia(sentencia);
         }
 
@@ -92,21 +92,21 @@ namespace Juntas_MC.DAL
             }
         }
 
-        public DataSet actualizadorPreciosConFiltros(int codigo, int tipoDePieza, int material)
+        public DataSet actualizadorPreciosConFiltros(string codigo, int material, int tipoDePieza)
         {
             System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
             OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
             strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
-            if (codigo != 0 | material != 0 | tipoDePieza != 0 )
+            if (codigo != "" | material != 0 | tipoDePieza != 0 )
             {
                 strSQL.Append("WHERE ");
                 string whereClause = "";
-                if (codigo != 0) whereClause += "PI.Id = " + codigo;
+                if (codigo != "") whereClause += "PI.Codigo = '" + codigo +"'";
                 if (material != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.Material = " + material;
                 if (tipoDePieza != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.PiezaTipo = " + tipoDePieza;
                 strSQL.Append(whereClause);
-                strSQL.Append(" Order by  PI.Codigo");
+                strSQL.Append(" and Estado = 1 Order by  PI.Codigo");
             }
 
             sentencia.CommandText = (Convert.ToString(strSQL));
@@ -159,9 +159,9 @@ namespace Juntas_MC.DAL
         {
             if (operando != "" & operador != "")
             {
-                //ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
-                //oModificacionDialog.ShowDialog();
-                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Precio = Precio " +operador +" " +operando);
+                ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
+                oModificacionDialog.ShowDialog();
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Precio = Precio " +operador +" " +operando +" where Estado = 1");
             }
             else
             {
@@ -170,5 +170,36 @@ namespace Juntas_MC.DAL
                 return false;
             }
         }
+
+        public bool modificarPreciosConFiltros(string operando, string operador, string codigo, int material, int piezaTipo)
+        {
+            if (operando != "" & operador != "")
+            {
+                System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
+                OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
+
+
+                strSQL.Append("UPDATE Piezas SET Precio = Precio " + operador + " " + operando);
+                if (operando != "" & operador != "")
+                {
+                    strSQL.Append(" WHERE ");
+                    string whereClause = "";
+                    if (codigo != "") whereClause += "Codigo = '" + codigo +"'";
+                    if (material != 0) whereClause += (whereClause != "" ? " and " : "") + "Material = " + material;
+                    if (piezaTipo != 0) whereClause += (whereClause != "" ? " and " : "") + "PiezaTipo = " + piezaTipo;
+                    strSQL.Append(whereClause);
+                    strSQL.Append(" and Estado = 1");
+                }
+
+                sentencia.CommandText = (Convert.ToString(strSQL));
+                return conexion.ejecutarMetodoSinRetornoDatos(sentencia);
+            }
+            else
+            {
+                ModificacionDialogFalse oModificacionDialog = new ModificacionDialogFalse();
+                oModificacionDialog.ShowDialog();
+                return false;
+            }
+        }        
     }
 }

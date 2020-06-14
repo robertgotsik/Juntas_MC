@@ -57,5 +57,15 @@ namespace Juntas_MC.DAL
 
             return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
         }
+
+
+        
+        public void insertarPreciosListaAMercados(int aReplicar)
+        {
+            //Cuando agrego un nuevo Mercado le inserto los precios de lista (provenientes de tabla piezas)
+            OleDbCommand oleDbComando = new OleDbCommand("INSERT INTO PreciosMercados ( PiezaId, Mercado, Precio, Estado ) SELECT Id,"+ aReplicar + ", Precio, Estado FROM Piezas");
+
+            conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
+        }
     }
 }

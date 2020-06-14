@@ -93,5 +93,11 @@ namespace Juntas_MC.DAL
             }
         }
 
+
+        public string buscarUltimoIdInsertado()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select TOP 1 Id FROM Mercados ORDER BY Id DESC");
+            return conexion.ejecutarSentencia2(sentencia);
+        }
     }
 }

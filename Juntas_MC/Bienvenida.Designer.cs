@@ -77,13 +77,13 @@
             // menuItemGenFact
             // 
             this.menuItemGenFact.Name = "menuItemGenFact";
-            this.menuItemGenFact.Size = new System.Drawing.Size(224, 26);
+            this.menuItemGenFact.Size = new System.Drawing.Size(209, 26);
             this.menuItemGenFact.Text = "Generar Factura";
             // 
             // menuItemActPrec
             // 
             this.menuItemActPrec.Name = "menuItemActPrec";
-            this.menuItemActPrec.Size = new System.Drawing.Size(224, 26);
+            this.menuItemActPrec.Size = new System.Drawing.Size(209, 26);
             this.menuItemActPrec.Text = "Actualizar Precios";
             this.menuItemActPrec.Click += new System.EventHandler(this.menuItemActPrec_Click);
             // 
@@ -212,6 +212,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Bienvenida";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JuntasMC";
             this.Load += new System.EventHandler(this.Bienvenida_Load);
             this.menuStrip1.ResumeLayout(false);

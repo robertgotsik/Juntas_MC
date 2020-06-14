@@ -156,5 +156,49 @@ namespace Juntas_MC.DAL
                 return false;
             }
         }
+
+        public int ejecutarMetodoContador(OleDbCommand oleDbComando)
+        {
+            try
+            {
+                OleDbCommand Comando = oleDbComando;
+                Comando.Connection = this.establecerConexion();
+                Conexion.Open();
+                int cantidadDeFilasAfectadas = Comando.ExecuteNonQuery();
+                Conexion.Close();
+                return cantidadDeFilasAfectadas;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                return -1;
+            }
+        }
+
+        public string ejecutarSentencia2(OleDbCommand oleDbComando)
+        {
+            DataSet DS = new DataSet();
+            OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+            string value;
+
+            try
+            {
+                OleDbCommand Comando = new OleDbCommand();
+                Comando = oleDbComando;
+                Comando.Connection = establecerConexion();
+                Adaptador.SelectCommand = Comando;
+                Conexion.Open();
+                Adaptador.Fill(DS);
+                Conexion.Close();
+                value = DS.Tables[0].Rows[0]["Id"].ToString();
+                return value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                value = "Hubo una falla";
+                return value;
+            }
+        }
     }
 }
