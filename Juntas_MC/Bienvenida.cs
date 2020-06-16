@@ -94,5 +94,11 @@ namespace Juntas_MC
             AdmPrecios actualizadorPrecios = new AdmPrecios();
             actualizadorPrecios.Show();
         }
+
+        private void btnFacturar_Click(object sender, EventArgs e)
+        {
+            Facturador facturador = new Facturador();
+            facturador.Show();
+        }
     }
 }

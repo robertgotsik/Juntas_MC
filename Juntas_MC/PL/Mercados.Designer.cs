@@ -42,9 +42,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbProv = new System.Windows.Forms.ComboBox();
             this.dvgMercados = new System.Windows.Forms.DataGridView();
-            this.txtTelefono2 = new System.Windows.Forms.TextBox();
-            this.lblTelefono2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtWeb = new System.Windows.Forms.TextBox();
             this.lblWeb = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -59,7 +60,6 @@
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.ultimoMercadoInsertado = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMercados)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,7 +93,7 @@
             this.lbTipo.Items.AddRange(new object[] {
             "Cliente",
             "Proveedor"});
-            this.lbTipo.Location = new System.Drawing.Point(7, 78);
+            this.lbTipo.Location = new System.Drawing.Point(294, 29);
             this.lbTipo.Name = "lbTipo";
             this.lbTipo.Size = new System.Drawing.Size(120, 36);
             this.lbTipo.TabIndex = 3;
@@ -101,23 +101,23 @@
             // lblTelefono1
             // 
             this.lblTelefono1.AutoSize = true;
-            this.lblTelefono1.Location = new System.Drawing.Point(255, 24);
+            this.lblTelefono1.Location = new System.Drawing.Point(3, 73);
             this.lblTelefono1.Name = "lblTelefono1";
-            this.lblTelefono1.Size = new System.Drawing.Size(76, 17);
+            this.lblTelefono1.Size = new System.Drawing.Size(64, 17);
             this.lblTelefono1.TabIndex = 4;
-            this.lblTelefono1.Text = "Telefono 1";
+            this.lblTelefono1.Text = "Telefono";
             // 
             // txtTelefono1
             // 
-            this.txtTelefono1.Location = new System.Drawing.Point(258, 43);
+            this.txtTelefono1.Location = new System.Drawing.Point(6, 92);
             this.txtTelefono1.Name = "txtTelefono1";
-            this.txtTelefono1.Size = new System.Drawing.Size(175, 22);
+            this.txtTelefono1.Size = new System.Drawing.Size(156, 22);
             this.txtTelefono1.TabIndex = 5;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(153, 73);
+            this.lblEmail.Location = new System.Drawing.Point(165, 73);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(42, 17);
             this.lblEmail.TabIndex = 6;
@@ -125,7 +125,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(156, 92);
+            this.txtEmail.Location = new System.Drawing.Point(168, 92);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(225, 22);
             this.txtEmail.TabIndex = 7;
@@ -194,31 +194,16 @@
             this.dvgMercados.TabIndex = 26;
             this.dvgMercados.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Seleccionar);
             // 
-            // txtTelefono2
-            // 
-            this.txtTelefono2.Location = new System.Drawing.Point(448, 43);
-            this.txtTelefono2.Name = "txtTelefono2";
-            this.txtTelefono2.Size = new System.Drawing.Size(185, 22);
-            this.txtTelefono2.TabIndex = 30;
-            // 
-            // lblTelefono2
-            // 
-            this.lblTelefono2.AutoSize = true;
-            this.lblTelefono2.Location = new System.Drawing.Point(445, 24);
-            this.lblTelefono2.Name = "lblTelefono2";
-            this.lblTelefono2.Size = new System.Drawing.Size(76, 17);
-            this.lblTelefono2.TabIndex = 29;
-            this.lblTelefono2.Text = "Telefono 2";
-            // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.lbTipo);
             this.groupBox1.Controls.Add(this.txtWeb);
             this.groupBox1.Controls.Add(this.lblWeb);
             this.groupBox1.Controls.Add(this.lblNombre);
-            this.groupBox1.Controls.Add(this.txtTelefono2);
             this.groupBox1.Controls.Add(this.txtNombre);
-            this.groupBox1.Controls.Add(this.lblTelefono2);
             this.groupBox1.Controls.Add(this.lblTelefono1);
             this.groupBox1.Controls.Add(this.txtTelefono1);
             this.groupBox1.Controls.Add(this.lblEmail);
@@ -229,6 +214,32 @@
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Generales";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.Window;
+            this.label4.Location = new System.Drawing.Point(528, 46);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 17);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "%";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(489, 43);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(60, 22);
+            this.textBox1.TabIndex = 34;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(486, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 17);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Porcentaje";
             // 
             // txtWeb
             // 
@@ -379,22 +390,11 @@
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // ultimoMercadoInsertado
-            // 
-            this.ultimoMercadoInsertado.AutoSize = true;
-            this.ultimoMercadoInsertado.Location = new System.Drawing.Point(206, 289);
-            this.ultimoMercadoInsertado.Name = "ultimoMercadoInsertado";
-            this.ultimoMercadoInsertado.Size = new System.Drawing.Size(46, 17);
-            this.ultimoMercadoInsertado.TabIndex = 36;
-            this.ultimoMercadoInsertado.Text = "label1";
-            this.ultimoMercadoInsertado.Visible = false;
-            // 
             // Mercados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(663, 735);
-            this.Controls.Add(this.ultimoMercadoInsertado);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.lblIdMercado);
             this.Controls.Add(this.groupBox4);
@@ -441,8 +441,6 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.DataGridView dvgMercados;
-        private System.Windows.Forms.TextBox txtTelefono2;
-        private System.Windows.Forms.Label lblTelefono2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtWeb;
@@ -454,6 +452,8 @@
         private System.Windows.Forms.DataGridView dvgMercadosPrecios;
         private System.Windows.Forms.Label lblIdMercado;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Label ultimoMercadoInsertado;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -52,7 +52,7 @@ namespace Juntas_MC.PL
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(recuperarInformacionMarca());
+            
             oMarcasDAL.agregar(recuperarInformacionAgregarMarca());
             borrarInput();
             llenarGrid();

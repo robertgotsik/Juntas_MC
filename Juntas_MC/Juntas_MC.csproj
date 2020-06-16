@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
@@ -105,6 +106,12 @@
     </Compile>
     <Compile Include="PL\ErrorZoomImgPiezas.Designer.cs">
       <DependentUpon>ErrorZoomImgPiezas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\Facturador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\Facturador.Designer.cs">
+      <DependentUpon>Facturador.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\Marcas.cs">
       <SubType>Form</SubType>
@@ -200,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\ErrorZoomImgPiezas.resx">
       <DependentUpon>ErrorZoomImgPiezas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\Facturador.resx">
+      <DependentUpon>Facturador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Marcas.resx">
       <DependentUpon>Marcas.cs</DependentUpon>
@@ -352,6 +362,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\actualizarPrecios.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cashbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

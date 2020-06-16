@@ -32,7 +32,7 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public DataSet mostrarMercados()
         {
-            OleDbCommand sentencia = new OleDbCommand("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Telefono2, Email, Web, Direccion, Localidad, Provincia from Mercados order by Nombre");
+            OleDbCommand sentencia = new OleDbCommand("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Porcentaje, Email, Web, Direccion, Localidad, Provincia from Mercados order by Nombre");
             return conexion.ejecutarSentencia(sentencia);
         }
 
@@ -97,6 +97,12 @@ namespace Juntas_MC.DAL
         public string buscarUltimoIdInsertado()
         {
             OleDbCommand sentencia = new OleDbCommand("Select TOP 1 Id FROM Mercados ORDER BY Id DESC");
+            return conexion.ejecutarSentencia2(sentencia);
+        }
+
+        public string averiguarporcentaje(int mercado)
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select TOP 1 Porcentaje FROM Mercados where id= " +mercado);
             return conexion.ejecutarSentencia2(sentencia);
         }
     }

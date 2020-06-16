@@ -40,6 +40,12 @@ namespace Juntas_MC.DAL
             return conexion.ejecutarSentencia(sentencia);
         }
 
+        public string averiguarPrecio(int pieza)
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select Round (Precio, 2) as Precio FROM Piezas where id= " + pieza);
+            return conexion.ejecutarSentencia3(sentencia);
+        }
+
         public DataSet mostrarPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado)
         {
             if (modComp != 0)

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Configuration;
+using System.Diagnostics;
 
 namespace Juntas_MC.DAL
 {
@@ -87,8 +84,10 @@ namespace Juntas_MC.DAL
 
 
         //Conexion mediante ACCES
-        private string cadenaDeConexion = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\BackUp BD\Juntas_MC.accdb;Persist Security Info=False;";
+        //private string cadenaDeConexion = @"Provider = Microsoft.ACE.OLEDB.12.0; Data Source = C:\BackUp BD\Juntas_MC.accdb;Persist Security Info=False;";
+        private string cadenaDeConexion = ConfigurationManager.ConnectionStrings["MS Access 12"].ConnectionString;
         OleDbConnection Conexion;
+        StackTrace stackTrace = new StackTrace(); 
 
         public OleDbConnection establecerConexion()
         {
@@ -190,7 +189,34 @@ namespace Juntas_MC.DAL
                 Conexion.Open();
                 Adaptador.Fill(DS);
                 Conexion.Close();
-                value = DS.Tables[0].Rows[0]["Id"].ToString();
+                value = DS.Tables[0].Rows[0]["Porcentaje"].ToString();
+                return value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                value = "Hubo una falla";
+                return value;
+            }
+        }
+
+        public string ejecutarSentencia3(OleDbCommand oleDbComando)
+        {
+            DataSet DS = new DataSet();
+            OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+            string value;
+
+            try
+            {
+                OleDbCommand Comando = new OleDbCommand();
+                Comando = oleDbComando;
+                Comando.Connection = establecerConexion();
+                Adaptador.SelectCommand = Comando;
+                Conexion.Open();
+                Adaptador.Fill(DS);
+                Conexion.Close();
+                value = DS.Tables[0].Rows[0]["Precio"].ToString();
+                //value = value.Replace(",", ".");
                 return value;
             }
             catch (Exception ex)

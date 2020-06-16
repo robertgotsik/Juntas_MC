@@ -33,7 +33,7 @@ namespace Juntas_MC.PL
             dvgMercados.DataSource = oMercadosDAL.mostrarMercados().Tables[0];
             this.dvgMercados.Columns["Id"].Visible = false;
             this.dvgMercados.Columns["IdTipo"].Visible = false;
-            this.dvgMercados.Columns["Telefono2"].Visible = false;
+            this.dvgMercados.Columns["Porcentaje"].Visible = false;
             this.dvgMercados.Columns["Email"].Visible = false;
             this.dvgMercados.Columns["Web"].Visible = false;
             this.dvgMercados.Columns["Direccion"].Visible = false;
@@ -71,7 +71,6 @@ namespace Juntas_MC.PL
             oMercados.Nombre = txtNombre.Text;
             oMercados.Tipo = Convert.ToInt32(lbTipo.SelectedIndex);
             oMercados.Telefono1 = txtTelefono1.Text;
-            oMercados.Telefono2 = txtTelefono2.Text;
             oMercados.Email = txtEmail.Text;
             oMercados.Web = txtWeb.Text;
             oMercados.Direccion = txtDireccion.Text;
