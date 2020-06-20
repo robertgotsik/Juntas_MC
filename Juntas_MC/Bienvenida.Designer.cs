@@ -43,7 +43,6 @@
             this.menuItemMateriales = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAdministracion = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemProovedores = new System.Windows.Forms.ToolStripMenuItem();
-            this.esquemasComercialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblHora = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
@@ -77,13 +76,13 @@
             // menuItemGenFact
             // 
             this.menuItemGenFact.Name = "menuItemGenFact";
-            this.menuItemGenFact.Size = new System.Drawing.Size(209, 26);
+            this.menuItemGenFact.Size = new System.Drawing.Size(224, 26);
             this.menuItemGenFact.Text = "Generar Factura";
             // 
             // menuItemActPrec
             // 
             this.menuItemActPrec.Name = "menuItemActPrec";
-            this.menuItemActPrec.Size = new System.Drawing.Size(209, 26);
+            this.menuItemActPrec.Size = new System.Drawing.Size(224, 26);
             this.menuItemActPrec.Text = "Actualizar Precios";
             this.menuItemActPrec.Click += new System.EventHandler(this.menuItemActPrec_Click);
             // 
@@ -145,8 +144,7 @@
             // menuAdministracion
             // 
             this.menuAdministracion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemProovedores,
-            this.esquemasComercialesToolStripMenuItem});
+            this.menuItemProovedores});
             this.menuAdministracion.Name = "menuAdministracion";
             this.menuAdministracion.Size = new System.Drawing.Size(123, 24);
             this.menuAdministracion.Text = "Administracion";
@@ -154,16 +152,9 @@
             // menuItemProovedores
             // 
             this.menuItemProovedores.Name = "menuItemProovedores";
-            this.menuItemProovedores.Size = new System.Drawing.Size(243, 26);
+            this.menuItemProovedores.Size = new System.Drawing.Size(232, 26);
             this.menuItemProovedores.Text = "Clientes/Proveedores";
             this.menuItemProovedores.Click += new System.EventHandler(this.menuItemProovedores_Click);
-            // 
-            // esquemasComercialesToolStripMenuItem
-            // 
-            this.esquemasComercialesToolStripMenuItem.Name = "esquemasComercialesToolStripMenuItem";
-            this.esquemasComercialesToolStripMenuItem.Size = new System.Drawing.Size(243, 26);
-            this.esquemasComercialesToolStripMenuItem.Text = "Esquemas Comerciales";
-            this.esquemasComercialesToolStripMenuItem.Click += new System.EventHandler(this.esquemasComercialesToolStripMenuItem_Click);
             // 
             // lblFecha
             // 
@@ -241,7 +232,6 @@
         private System.Windows.Forms.Label lblHora;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Button btnFacturar;
-        private System.Windows.Forms.ToolStripMenuItem esquemasComercialesToolStripMenuItem;
     }
 }
 

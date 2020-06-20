@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mercados));
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lbTipo = new System.Windows.Forms.ListBox();
@@ -43,9 +44,9 @@
             this.cmbProv = new System.Windows.Forms.ComboBox();
             this.dvgMercados = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPorciento = new System.Windows.Forms.Label();
+            this.nudPorcentaje = new System.Windows.Forms.NumericUpDown();
+            this.lblPorcentaje = new System.Windows.Forms.Label();
             this.txtWeb = new System.Windows.Forms.TextBox();
             this.lblWeb = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -53,6 +54,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblPiezaId = new System.Windows.Forms.Label();
+            this.btnQuitarPieza = new System.Windows.Forms.Button();
+            this.btnAgregarModelo = new System.Windows.Forms.Button();
             this.dvgMercadosPrecios = new System.Windows.Forms.DataGridView();
             this.lblIdMercado = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -62,6 +66,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMercados)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPorcentaje)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -97,6 +102,7 @@
             this.lbTipo.Name = "lbTipo";
             this.lbTipo.Size = new System.Drawing.Size(120, 36);
             this.lbTipo.TabIndex = 3;
+            this.lbTipo.SelectedIndexChanged += new System.EventHandler(this.ActivarPorcentaje);
             // 
             // lblTelefono1
             // 
@@ -196,9 +202,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.lblPorciento);
+            this.groupBox1.Controls.Add(this.nudPorcentaje);
+            this.groupBox1.Controls.Add(this.lblPorcentaje);
             this.groupBox1.Controls.Add(this.lbTipo);
             this.groupBox1.Controls.Add(this.txtWeb);
             this.groupBox1.Controls.Add(this.lblWeb);
@@ -215,31 +221,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Generales";
             // 
-            // label4
+            // lblPorciento
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(528, 46);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 17);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "%";
+            this.lblPorciento.AutoSize = true;
+            this.lblPorciento.BackColor = System.Drawing.SystemColors.Window;
+            this.lblPorciento.Enabled = false;
+            this.lblPorciento.Location = new System.Drawing.Point(526, 47);
+            this.lblPorciento.Name = "lblPorciento";
+            this.lblPorciento.Size = new System.Drawing.Size(20, 17);
+            this.lblPorciento.TabIndex = 35;
+            this.lblPorciento.Text = "%";
             // 
-            // textBox1
+            // nudPorcentaje
             // 
-            this.textBox1.Location = new System.Drawing.Point(489, 43);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(60, 22);
-            this.textBox1.TabIndex = 34;
+            this.nudPorcentaje.Enabled = false;
+            this.nudPorcentaje.Location = new System.Drawing.Point(489, 44);
+            this.nudPorcentaje.Name = "nudPorcentaje";
+            this.nudPorcentaje.Size = new System.Drawing.Size(80, 22);
+            this.nudPorcentaje.TabIndex = 36;
             // 
-            // label1
+            // lblPorcentaje
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(486, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 17);
-            this.label1.TabIndex = 33;
-            this.label1.Text = "Porcentaje";
+            this.lblPorcentaje.AutoSize = true;
+            this.lblPorcentaje.Enabled = false;
+            this.lblPorcentaje.Location = new System.Drawing.Point(486, 24);
+            this.lblPorcentaje.Name = "lblPorcentaje";
+            this.lblPorcentaje.Size = new System.Drawing.Size(76, 17);
+            this.lblPorcentaje.TabIndex = 33;
+            this.lblPorcentaje.Text = "Porcentaje";
             // 
             // txtWeb
             // 
@@ -305,6 +314,9 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblPiezaId);
+            this.tabPage2.Controls.Add(this.btnQuitarPieza);
+            this.tabPage2.Controls.Add(this.btnAgregarModelo);
             this.tabPage2.Controls.Add(this.dvgMercadosPrecios);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
@@ -313,6 +325,36 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Precios";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblPiezaId
+            // 
+            this.lblPiezaId.AutoSize = true;
+            this.lblPiezaId.Location = new System.Drawing.Point(517, 286);
+            this.lblPiezaId.Name = "lblPiezaId";
+            this.lblPiezaId.Size = new System.Drawing.Size(68, 17);
+            this.lblPiezaId.TabIndex = 38;
+            this.lblPiezaId.Text = "lblPiezaId";
+            this.lblPiezaId.Visible = false;
+            // 
+            // btnQuitarPieza
+            // 
+            this.btnQuitarPieza.Image = global::Juntas_MC.Properties.Resources.iconfinder_Button_White_Remove_58498;
+            this.btnQuitarPieza.Location = new System.Drawing.Point(530, 182);
+            this.btnQuitarPieza.Name = "btnQuitarPieza";
+            this.btnQuitarPieza.Size = new System.Drawing.Size(50, 50);
+            this.btnQuitarPieza.TabIndex = 37;
+            this.btnQuitarPieza.UseVisualStyleBackColor = true;
+            this.btnQuitarPieza.Click += new System.EventHandler(this.btnQuitarPieza_Click);
+            // 
+            // btnAgregarModelo
+            // 
+            this.btnAgregarModelo.Image = global::Juntas_MC.Properties.Resources.iconfinder_Button_Add_58476;
+            this.btnAgregarModelo.Location = new System.Drawing.Point(530, 100);
+            this.btnAgregarModelo.Name = "btnAgregarModelo";
+            this.btnAgregarModelo.Size = new System.Drawing.Size(50, 50);
+            this.btnAgregarModelo.TabIndex = 36;
+            this.btnAgregarModelo.UseVisualStyleBackColor = true;
+            this.btnAgregarModelo.Click += new System.EventHandler(this.btnAgregarPieza_Click);
             // 
             // dvgMercadosPrecios
             // 
@@ -323,6 +365,7 @@
             this.dvgMercadosPrecios.RowTemplate.Height = 24;
             this.dvgMercadosPrecios.Size = new System.Drawing.Size(368, 341);
             this.dvgMercadosPrecios.TabIndex = 0;
+            this.dvgMercadosPrecios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SeleccionarPrecioMercado);
             // 
             // lblIdMercado
             // 
@@ -377,6 +420,7 @@
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnAgregar
             // 
@@ -404,17 +448,21 @@
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAgregar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Mercados";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mercados";
             ((System.ComponentModel.ISupportInitialize)(this.dvgMercados)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPorcentaje)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvgMercadosPrecios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -452,8 +500,11 @@
         private System.Windows.Forms.DataGridView dvgMercadosPrecios;
         private System.Windows.Forms.Label lblIdMercado;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPorciento;
+        private System.Windows.Forms.Label lblPorcentaje;
+        private System.Windows.Forms.Button btnAgregarModelo;
+        private System.Windows.Forms.Button btnQuitarPieza;
+        private System.Windows.Forms.Label lblPiezaId;
+        private System.Windows.Forms.NumericUpDown nudPorcentaje;
     }
 }

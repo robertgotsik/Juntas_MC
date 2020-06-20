@@ -10,7 +10,7 @@ namespace Juntas_MC.PL
     {
         PiezasDAL oPiezasDAL;
         MercadosDAL oClientesDAL;
-        PreciosMercadosDAL oPreciosMercadosDAL;
+        DAL.PreciosMercadosDAL oPreciosMercadosDAL;
         TiposDePiezasDAL oTiposDePiezasDAL;
         MaterialesDAL oMaterialesDAL;
         PiezasModelosDAL oPiezasModelosDAL;
@@ -22,7 +22,7 @@ namespace Juntas_MC.PL
         {
             oPiezasDAL = new PiezasDAL();
             oClientesDAL = new MercadosDAL();
-            oPreciosMercadosDAL = new PreciosMercadosDAL();
+            oPreciosMercadosDAL = new DAL.PreciosMercadosDAL();
             oTiposDePiezasDAL = new TiposDePiezasDAL();
             oMaterialesDAL = new MaterialesDAL();
             oPiezasModelosDAL = new PiezasModelosDAL();
@@ -85,7 +85,7 @@ namespace Juntas_MC.PL
 
             cmbCP1.ValueMember = "Id";
             cmbCP1.DisplayMember = "Nombre";
-            cmbCP1.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP1.DataSource = oClientesDAL.mostrarProveedores().Tables[0];
             cmbCP1.SelectedItem = null;
         }
 
@@ -93,7 +93,7 @@ namespace Juntas_MC.PL
         {
             cmbCP2.ValueMember = "Id";
             cmbCP2.DisplayMember = "Nombre";
-            cmbCP2.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP2.DataSource = oClientesDAL.mostrarProveedores().Tables[0];
             cmbCP2.SelectedItem = null;
         }
 
@@ -101,7 +101,7 @@ namespace Juntas_MC.PL
         {
             cmbCP3.ValueMember = "Id";
             cmbCP3.DisplayMember = "Nombre";
-            cmbCP3.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP3.DataSource = oClientesDAL.mostrarProveedores().Tables[0];
             cmbCP3.SelectedItem = null;
         }
 
@@ -109,7 +109,7 @@ namespace Juntas_MC.PL
         {
             cmbCP4.ValueMember = "Id";
             cmbCP4.DisplayMember = "Nombre";
-            cmbCP4.DataSource = oClientesDAL.mostrarMercados().Tables[0];
+            cmbCP4.DataSource = oClientesDAL.mostrarProveedores().Tables[0];
             cmbCP4.SelectedItem = null;
         }
 

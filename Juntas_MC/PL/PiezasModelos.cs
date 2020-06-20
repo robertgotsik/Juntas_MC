@@ -34,6 +34,7 @@ namespace Juntas_MC.PL
             cmbPiezasModelos.ValueMember = "MO.Id";
             cmbPiezasModelos.DisplayMember = "NombreModeloMarca";
             cmbPiezasModelos.DataSource = oModelosDAL.mostrarModelosCmb().Tables[0];
+            cmbPiezasModelos.SelectedItem = null;
         }
 
         private void PiezasModelos_Load(object sender, EventArgs e)

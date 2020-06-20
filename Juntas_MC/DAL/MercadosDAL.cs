@@ -32,7 +32,19 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public DataSet mostrarMercados()
         {
-            OleDbCommand sentencia = new OleDbCommand("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Porcentaje, Email, Web, Direccion, Localidad, Provincia from Mercados order by Nombre");
+            OleDbCommand sentencia = new OleDbCommand("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1 as Telefono, Porcentaje, Email, Web, Direccion, Localidad, Provincia from Mercados order by Nombre");
+            return conexion.ejecutarSentencia(sentencia);
+        }
+
+        public DataSet mostrarProveedores()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1 as Telefono, Porcentaje, Email, Web, Direccion, Localidad, Provincia from Mercados where IdTipo = 1 order by Nombre");
+            return conexion.ejecutarSentencia(sentencia);
+        }
+
+        public DataSet mostrarClientes()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Porcentaje, Email, Web, Direccion, Localidad, Provincia from Mercados where IdTipo = 0 order by Nombre");
             return conexion.ejecutarSentencia(sentencia);
         }
 
@@ -43,7 +55,7 @@ namespace Juntas_MC.DAL
             OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
 
-            strSQL.Append("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Telefono2, Email, Web, Direccion, Localidad, Provincia from Mercados ");
+            strSQL.Append("Select Id, Nombre, IdTipo, Switch(IdTipo = 0, 'Cliente', IdTipo = 1, 'Proveedor') as Tipo, Telefono1, Porcentaje, Email, Web, Direccion, Localidad, Provincia from Mercados ");
             if (nombre != "" | tipo != -1)
             {
                 strSQL.Append("WHERE ");
@@ -69,11 +81,11 @@ namespace Juntas_MC.DAL
         {
             if ((oMercadosBLL.Nombre != "") & Convert.ToBoolean(Convert.ToInt32(oMercadosBLL.Tipo != -1)) & Convert.ToBoolean(Convert.ToInt32(oMercadosBLL.Provincia != 0)))
             {
-                OleDbCommand oleDbComando = new OleDbCommand("Insert into Mercados (Nombre, IdTipo, Telefono1, Telefono2, Email, Web, Direccion, Localidad, Provincia) VALUES(@Nombre, @IdTipo, @Telefono1, @Telefono2, @Email, @Web, @Direccion, @Localidad, @Provincia)");
+                OleDbCommand oleDbComando = new OleDbCommand("Insert into Mercados (Nombre, IdTipo, Telefono1, Porcentaje, Email, Web, Direccion, Localidad, Provincia) VALUES(@Nombre, @IdTipo, @Telefono1, @Porcentaje, @Email, @Web, @Direccion, @Localidad, @Provincia)");
                 oleDbComando.Parameters.AddWithValue("@Nombre", SqlDbType.VarChar).Value = oMercadosBLL.Nombre;
                 oleDbComando.Parameters.AddWithValue("@IdTipo", SqlDbType.Int).Value = oMercadosBLL.Tipo;
                 oleDbComando.Parameters.AddWithValue("@Telefono1", SqlDbType.VarChar).Value = oMercadosBLL.Telefono1;
-                oleDbComando.Parameters.AddWithValue("@Telefono2", SqlDbType.VarChar).Value = oMercadosBLL.Telefono2;
+                oleDbComando.Parameters.AddWithValue("@Porcentaje", SqlDbType.Int).Value = oMercadosBLL.Porcentaje;
                 oleDbComando.Parameters.AddWithValue("@Email", SqlDbType.VarChar).Value = oMercadosBLL.Email;
                 oleDbComando.Parameters.AddWithValue("@Web", SqlDbType.VarChar).Value = oMercadosBLL.Web;
                 oleDbComando.Parameters.AddWithValue("@Direccion", SqlDbType.VarChar).Value = oMercadosBLL.Direccion;
@@ -104,6 +116,22 @@ namespace Juntas_MC.DAL
         {
             OleDbCommand sentencia = new OleDbCommand("Select TOP 1 Porcentaje FROM Mercados where id= " +mercado);
             return conexion.ejecutarSentencia2(sentencia);
+        }
+
+        public bool modificar(MercadosBLL oMercadosBLL)
+        {
+            if ((oMercadosBLL.Nombre != "") & Convert.ToBoolean(Convert.ToString(oMercadosBLL.Porcentaje != 0)))
+            {
+                ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
+                oModificacionDialog.ShowDialog();
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Mercados SET Nombre = '" + oMercadosBLL.Nombre + "'" + ",IdTipo = " + oMercadosBLL.Tipo + ",Telefono1 = '" + oMercadosBLL.Telefono1 + "',Porcentaje =" + oMercadosBLL.Porcentaje + ",Email = '" + oMercadosBLL.Email + "',Web = '" + oMercadosBLL.Web + "', Direccion = '" + oMercadosBLL.Direccion + "', Localidad = '" + oMercadosBLL.Localidad +"', Provincia = " + oMercadosBLL.Provincia +" where Id = " + oMercadosBLL.Id);
+            }
+            else
+            {
+                ModificacionDialogFalse oModificacionDialog = new ModificacionDialogFalse();
+                oModificacionDialog.ShowDialog();
+                return false;
+            }
         }
     }
 }

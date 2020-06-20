@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Juntas_MC.BLL
 {
-    class PreciosMercados
+    class PreciosMercadosBLL
     {
         public int Id { get; set; }
         public int PiezaId { get; set; }

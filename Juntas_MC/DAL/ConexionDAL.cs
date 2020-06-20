@@ -226,5 +226,32 @@ namespace Juntas_MC.DAL
                 return value;
             }
         }
+
+        public string ejecutarSentencia4(OleDbCommand oleDbComando)
+        {
+            DataSet DS = new DataSet();
+            OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+            string value;
+
+            try
+            {
+                OleDbCommand Comando = new OleDbCommand();
+                Comando = oleDbComando;
+                Comando.Connection = establecerConexion();
+                Adaptador.SelectCommand = Comando;
+                Conexion.Open();
+                Adaptador.Fill(DS);
+                Conexion.Close();
+                value = DS.Tables[0].Rows[0]["Precio"].ToString();
+                //value = value.Replace(",", ".");
+                return value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                value = "Hubo una falla";
+                return value;
+            }
+        }
     }
 }

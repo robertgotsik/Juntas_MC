@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>iconfinder_Settings_105244.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -54,7 +57,7 @@
     <Compile Include="BLL\ModelosBLL.cs" />
     <Compile Include="BLL\PiezasBLL.cs" />
     <Compile Include="BLL\PiezasModelosBLL.cs" />
-    <Compile Include="BLL\PreciosMercados.cs" />
+    <Compile Include="BLL\PreciosMercadosBLL.cs" />
     <Compile Include="BLL\TiposDePiezasBLL.cs" />
     <Compile Include="DAL\MercadosDAL.cs" />
     <Compile Include="DAL\ConexionDAL.cs" />
@@ -124,6 +127,12 @@
     </Compile>
     <Compile Include="PL\Mercados.Designer.cs">
       <DependentUpon>Mercados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\MercadosPiezas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\MercadosPiezas.Designer.cs">
+      <DependentUpon>MercadosPiezas.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\MercadosReplicar.cs">
       <SubType>Form</SubType>
@@ -219,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Mercados.resx">
       <DependentUpon>Mercados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\MercadosPiezas.resx">
+      <DependentUpon>MercadosPiezas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\MercadosReplicar.resx">
       <DependentUpon>MercadosReplicar.cs</DependentUpon>
@@ -365,6 +377,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cashbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="iconfinder_Settings_105244.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

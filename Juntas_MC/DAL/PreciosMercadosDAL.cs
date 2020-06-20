@@ -29,13 +29,13 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public DataSet mostrarPreciosMercados(int PiezaId, int MercadoId1, int MercadoId2, int MercadoId3, int MercadoId4)
         {
-            OleDbCommand sentencia = new OleDbCommand("Select ME.Nombre as Mercado, PM.Precio from PreciosMercados PM inner join Mercados ME on ME.ID = PM.Mercado where Mercado in(" + MercadoId1 + "," + MercadoId2 + "," + MercadoId3 + "," + MercadoId4 + ") and PiezaId=" + PiezaId);
+            OleDbCommand sentencia = new OleDbCommand("Select ME.Nombre as Mercado, Round (PM.Precio, 2) as Precio from PreciosMercados PM inner join Mercados ME on ME.ID = PM.Mercado where Mercado in(" + MercadoId1 + "," + MercadoId2 + "," + MercadoId3 + "," + MercadoId4 + ") and PiezaId=" + PiezaId);
             return conexion.ejecutarSentencia(sentencia);
         }
 
         public DataSet mostrarPreciosMercadosFull(int IdMercado)
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PI.Codigo as Pieza, PM.Precio from PreciosMercados PM inner join Piezas PI on PI.ID = PM.PiezaId where Mercado = " +IdMercado);
+            OleDbCommand sentencia = new OleDbCommand("Select PM.PiezaId, PI.Codigo as Pieza, Round (PM.Precio, 2) from PreciosMercados PM inner join Piezas PI on PI.ID = PM.PiezaId where Mercado = " + IdMercado);
             return conexion.ejecutarSentencia(sentencia);
         }
 
@@ -66,6 +66,29 @@ namespace Juntas_MC.DAL
             OleDbCommand oleDbComando = new OleDbCommand("INSERT INTO PreciosMercados ( PiezaId, Mercado, Precio, Estado ) SELECT Id,"+ aReplicar + ", Precio, Estado FROM Piezas");
 
             conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
+        }
+
+        public bool agregar(PreciosMercadosBLL oPreciosMercadosBLL)
+        {
+            OleDbCommand oleDbComando = new OleDbCommand("Insert into PreciosMercados (PiezaId, Mercado, Precio, Estado) values (@Pieza, @Mercado, @Precio, 1)");
+            oleDbComando.Parameters.AddWithValue("@Pieza", SqlDbType.Int).Value = oPreciosMercadosBLL.PiezaId;
+            oleDbComando.Parameters.AddWithValue("@Mercado", SqlDbType.Int).Value = oPreciosMercadosBLL.Mercado;
+            oleDbComando.Parameters.AddWithValue("@Precio", SqlDbType.Decimal).Value = oPreciosMercadosBLL.Precio;
+            //oleDbComando.Parameters.AddWithValue("@Estado", SqlDbType.Int).Value = oPreciosMercadosBLL.Estado;
+            return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
+        }
+
+        public int eliminar(PreciosMercadosBLL oPreciosMercadosBLL)
+        {
+            conexion.ejecutarMetodoSinRetornoDatos("DELETE FROM PreciosMercados where Mercado= " + oPreciosMercadosBLL.Mercado +" and PiezaId = " +oPreciosMercadosBLL.PiezaId);
+
+            return 1;
+        }
+
+        public string buscarPrecioProveedorPieza(int MercadoId, int PiezaId)
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select ME.Nombre as Mercado, Round (PM.Precio, 2) as Precio from PreciosMercados PM inner join Mercados ME on ME.ID = PM.Mercado where Mercado = "+ MercadoId + " and PiezaId=" + PiezaId);
+            return conexion.ejecutarSentencia4(sentencia);
         }
     }
 }

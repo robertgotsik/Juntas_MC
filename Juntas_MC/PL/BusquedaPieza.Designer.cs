@@ -194,6 +194,7 @@
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblCodigo);
             this.Name = "BusquedaPieza";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Busqueda";
             this.ResumeLayout(false);
             this.PerformLayout();

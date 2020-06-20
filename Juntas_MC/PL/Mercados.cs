@@ -15,13 +15,13 @@ namespace Juntas_MC.PL
     public partial class Mercados : Form
     {
         MercadosDAL oMercadosDAL;
-        PreciosMercadosDAL oPreciosMercadosDAL;
+        DAL.PreciosMercadosDAL oPreciosMercadosDAL;
         BusquedaMercado busquedaMercado;
         MercadosReplicar mercadosClonar;
         public Mercados()
         {
             oMercadosDAL = new MercadosDAL();
-            oPreciosMercadosDAL = new PreciosMercadosDAL();
+            oPreciosMercadosDAL = new DAL.PreciosMercadosDAL();
             busquedaMercado = new BusquedaMercado(this);
             mercadosClonar = new MercadosReplicar();
             InitializeComponent();
@@ -33,7 +33,7 @@ namespace Juntas_MC.PL
             dvgMercados.DataSource = oMercadosDAL.mostrarMercados().Tables[0];
             this.dvgMercados.Columns["Id"].Visible = false;
             this.dvgMercados.Columns["IdTipo"].Visible = false;
-            this.dvgMercados.Columns["Porcentaje"].Visible = false;
+            this.dvgMercados.Columns["Localidad"].Visible = false;
             this.dvgMercados.Columns["Email"].Visible = false;
             this.dvgMercados.Columns["Web"].Visible = false;
             this.dvgMercados.Columns["Direccion"].Visible = false;
@@ -48,6 +48,7 @@ namespace Juntas_MC.PL
         public void llenarGridMercadosPrecios(int IdMercado)
         {
             dvgMercadosPrecios.DataSource = oPreciosMercadosDAL.mostrarPreciosMercadosFull(IdMercado).Tables[0];
+            this.dvgMercadosPrecios.Columns["PiezaId"].Visible = false;
         }
 
         private void llenadoComboBoxProvincias()
@@ -68,9 +69,11 @@ namespace Juntas_MC.PL
         private MercadosBLL recuperarInformacionMercados()
         {
             MercadosBLL oMercados = new MercadosBLL();
+            //oMercados.Id = Convert.ToInt32(lblIdMercado.Text);
             oMercados.Nombre = txtNombre.Text;
             oMercados.Tipo = Convert.ToInt32(lbTipo.SelectedIndex);
             oMercados.Telefono1 = txtTelefono1.Text;
+            oMercados.Porcentaje = Convert.ToInt32(nudPorcentaje.Value);
             oMercados.Email = txtEmail.Text;
             oMercados.Web = txtWeb.Text;
             oMercados.Direccion = txtDireccion.Text;
@@ -91,6 +94,15 @@ namespace Juntas_MC.PL
                 
                 lblIdMercado.Text = dvgMercados.Rows[indice].Cells[0].Value.ToString();
                 txtNombre.Text = dvgMercados.Rows[indice].Cells[1].Value.ToString();
+                lbTipo.SelectedItem = dvgMercados.Rows[indice].Cells[3].Value.ToString();
+                nudPorcentaje.Value = Convert.ToDecimal(dvgMercados.Rows[indice].Cells[5].Value.ToString());
+                txtTelefono1.Text = dvgMercados.Rows[indice].Cells[4].Value.ToString();
+                txtEmail.Text = dvgMercados.Rows[indice].Cells[6].Value.ToString();
+                txtWeb.Text = dvgMercados.Rows[indice].Cells[7].Value.ToString();
+                txtDireccion.Text = dvgMercados.Rows[indice].Cells[8].Value.ToString();
+                txtLocalidad.Text = dvgMercados.Rows[indice].Cells[9].Value.ToString();
+                cmbProv.SelectedValue = dvgMercados.Rows[indice].Cells[10].Value.ToString();
+
 
                 int IdMercado = Convert.ToInt32(lblIdMercado.Text);
                 llenarGridMercadosPrecios(IdMercado);
@@ -118,6 +130,70 @@ namespace Juntas_MC.PL
             mercadosClonar.ShowDialog();
             int IdMercado = Convert.ToInt32(lblIdMercado.Text);
             llenarGridMercadosPrecios(IdMercado);
+        }
+
+        public static string MercadoId = "";
+        public static string MercadoNombre = "";
+        private void btnAgregarPieza_Click(object sender, EventArgs e)
+        {
+            MercadoId = lblIdMercado.Text;
+            MercadoNombre = txtNombre.Text;
+            MercadosPiezas oMercadosPiezas = new MercadosPiezas();
+            oMercadosPiezas.ShowDialog();
+        }
+
+        private void btnQuitarPieza_Click(object sender, EventArgs e)
+        {
+            oPreciosMercadosDAL.eliminar(recuperarInformacionPreciosMercados());
+            int IdMercado = Convert.ToInt32(lblIdMercado.Text);
+            llenarGridMercadosPrecios(IdMercado);
+            lblIdMercado.Text = "0";
+            btnQuitarPieza.Enabled = false;
+        }
+
+        private PreciosMercadosBLL recuperarInformacionPreciosMercados()
+        {
+            PreciosMercadosBLL oPreciosMercadosBLL = new PreciosMercadosBLL();
+            oPreciosMercadosBLL.Mercado = Convert.ToInt32(lblIdMercado.Text);
+            oPreciosMercadosBLL.PiezaId = Convert.ToInt32(lblPiezaId.Text);
+
+            return oPreciosMercadosBLL;
+        }
+
+        private void SeleccionarPrecioMercado(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int indice = e.RowIndex;
+
+            dvgMercadosPrecios.ClearSelection();
+            if (indice >= 0)
+            {
+                lblPiezaId.Text = dvgMercadosPrecios.Rows[indice].Cells[0].Value.ToString();
+                btnQuitarPieza.Enabled = true;
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            oMercadosDAL.modificar(recuperarInformacionMercados());
+            //llenarGridPiezas();
+            //limpiarEntradas();
+            btnLimpiar.Hide();
+        }
+
+        private void ActivarPorcentaje(object sender, EventArgs e)
+        {
+            if(lbTipo.SelectedIndex == 0)
+            {
+                lblPorcentaje.Enabled = true;
+                lblPorciento.Enabled = true;
+                nudPorcentaje.Enabled = true;
+            }
+            else
+            {
+                lblPorcentaje.Enabled = false;
+                lblPorciento.Enabled = false;
+                nudPorcentaje.Enabled = false;
+            }
         }
     }
 }

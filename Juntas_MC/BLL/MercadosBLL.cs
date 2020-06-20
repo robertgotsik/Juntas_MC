@@ -12,7 +12,7 @@ namespace Juntas_MC.BLL
         public string Nombre { get; set; }
         public int Tipo { get; set; }
         public string Telefono1 { get; set; }
-        public string Telefono2 { get; set; }
+        public int Porcentaje { get; set; }
         public string Email { get; set; }
         public string Web { get; set; }
         public string Direccion { get; set; }
