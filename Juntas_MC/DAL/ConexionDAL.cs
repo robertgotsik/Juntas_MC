@@ -253,5 +253,84 @@ namespace Juntas_MC.DAL
                 return value;
             }
         }
+
+        public string ejecutarSentencia5(OleDbCommand oleDbComando)
+        {
+            DataSet DS = new DataSet();
+            OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+            string value;
+
+            try
+            {
+                OleDbCommand Comando = new OleDbCommand();
+                Comando = oleDbComando;
+                Comando.Connection = establecerConexion();
+                Adaptador.SelectCommand = Comando;
+                Conexion.Open();
+                Adaptador.Fill(DS);
+                Conexion.Close();
+                value = DS.Tables[0].Rows[0]["Detalles"].ToString();
+                //value = value.Replace(",", ".");
+                return value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                value = "Hubo una falla";
+                return value;
+            }
+        }
+
+        public string ejecutarSentencia6(OleDbCommand oleDbComando)
+        {
+            DataSet DS = new DataSet();
+            OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+            string value;
+
+            try
+            {
+                OleDbCommand Comando = new OleDbCommand();
+                Comando = oleDbComando;
+                Comando.Connection = establecerConexion();
+                Adaptador.SelectCommand = Comando;
+                Conexion.Open();
+                Adaptador.Fill(DS);
+                Conexion.Close();
+                value = DS.Tables[0].Rows[0]["Id"].ToString();
+                return value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                value = "Hubo una falla";
+                return value;
+            }
+        }
+
+        public string consultarNombreEmpresa(OleDbCommand oleDbComando)
+        {
+            DataSet DS = new DataSet();
+            OleDbDataAdapter Adaptador = new OleDbDataAdapter();
+            string value;
+
+            try
+            {
+                OleDbCommand Comando = new OleDbCommand();
+                Comando = oleDbComando;
+                Comando.Connection = establecerConexion();
+                Adaptador.SelectCommand = Comando;
+                Conexion.Open();
+                Adaptador.Fill(DS);
+                Conexion.Close();
+                value = DS.Tables[0].Rows[0]["Id"].ToString();
+                return value;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
+                value = "Hubo una falla";
+                return value;
+            }
+        }
     }
 }

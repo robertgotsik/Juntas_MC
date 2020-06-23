@@ -206,6 +206,12 @@ namespace Juntas_MC.DAL
                 oModificacionDialog.ShowDialog();
                 return false;
             }
-        }        
+        }
+
+        public string averiguarDetalles(int PiezaId)
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select Detalles from Piezas where Id = " + PiezaId);
+            return conexion.ejecutarSentencia5(sentencia);
+        }
     }
 }

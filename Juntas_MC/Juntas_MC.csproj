@@ -36,6 +36,9 @@
     <ApplicationIcon>iconfinder_Settings_105244.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.35\lib\net461\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -51,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\EmpresasBLL.cs" />
+    <Compile Include="BLL\FacturasBLL.cs" />
+    <Compile Include="BLL\FacturasItemsBLL.cs" />
     <Compile Include="BLL\MercadosBLL.cs" />
     <Compile Include="BLL\MarcasBLL.cs" />
     <Compile Include="BLL\MaterialesBLL.cs" />
@@ -59,6 +65,9 @@
     <Compile Include="BLL\PiezasModelosBLL.cs" />
     <Compile Include="BLL\PreciosMercadosBLL.cs" />
     <Compile Include="BLL\TiposDePiezasBLL.cs" />
+    <Compile Include="DAL\EmpresasDAL.cs" />
+    <Compile Include="DAL\FacturasDAL.cs" />
+    <Compile Include="DAL\FacturasItemsDAL.cs" />
     <Compile Include="DAL\MercadosDAL.cs" />
     <Compile Include="DAL\ConexionDAL.cs" />
     <Compile Include="DAL\MarcasDAL.cs" />
@@ -74,6 +83,7 @@
     <Compile Include="DAL\PiezasModelosDAL.cs" />
     <Compile Include="DAL\PreciosMercadosDAL.cs" />
     <Compile Include="DAL\TiposDePiezasDAL.cs" />
+    <Compile Include="DVGPrinter.cs" />
     <Compile Include="PL\AdmPrecios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +114,12 @@
     <Compile Include="PL\BusquedaPieza.Designer.cs">
       <DependentUpon>BusquedaPieza.cs</DependentUpon>
     </Compile>
+    <Compile Include="PL\ConfigSistema.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\ConfigSistema.Designer.cs">
+      <DependentUpon>ConfigSistema.cs</DependentUpon>
+    </Compile>
     <Compile Include="PL\ErrorZoomImgPiezas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +131,12 @@
     </Compile>
     <Compile Include="PL\Facturador.Designer.cs">
       <DependentUpon>Facturador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PL\ImpresionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PL\ImpresionDialog.Designer.cs">
+      <DependentUpon>ImpresionDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="PL\Marcas.cs">
       <SubType>Form</SubType>
@@ -214,11 +236,17 @@
     <EmbeddedResource Include="PL\BusquedaPieza.resx">
       <DependentUpon>BusquedaPieza.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PL\ConfigSistema.resx">
+      <DependentUpon>ConfigSistema.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PL\ErrorZoomImgPiezas.resx">
       <DependentUpon>ErrorZoomImgPiezas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Facturador.resx">
       <DependentUpon>Facturador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PL\ImpresionDialog.resx">
+      <DependentUpon>ImpresionDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PL\Marcas.resx">
       <DependentUpon>Marcas.cs</DependentUpon>
@@ -269,6 +297,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -380,6 +409,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Settings_105244.ico" />
+    <None Include="Resources\printer.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

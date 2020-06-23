@@ -100,5 +100,11 @@ namespace Juntas_MC
             Facturador facturador = new Facturador();
             facturador.Show();
         }
+
+        private void laEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigSistema configSistema = new ConfigSistema();
+            configSistema.Show();
+        }
     }
 }
