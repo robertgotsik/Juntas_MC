@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Juntas_MC.PL
         FacturasDAL oFacturasDAL;
         FacturasItemsDAL oFacturasItemsDAL;
         ImpresionDialog frmImpresionDialog;
+        CultureInfo oCultureInfo;
         public Facturador()
         {
             InitializeComponent();
@@ -32,6 +34,7 @@ namespace Juntas_MC.PL
             oFacturasDAL = new FacturasDAL();
             oFacturasItemsDAL = new FacturasItemsDAL();
             frmImpresionDialog = new ImpresionDialog(this);
+            oCultureInfo = new CultureInfo("en-US");
             llenadoDropDownClientes();
             llenadoDropDownPiezas();
             llenadoDropDownProveedores();
@@ -44,8 +47,11 @@ namespace Juntas_MC.PL
             //dt.Columns.Add("Precio x cant");
             dt.Columns.Add("Bonificacion");
             dt.Columns.Add("Importe total");
+            dt.Columns.Add("PiezaId");
 
             dvgFactura.DataSource = dt;
+
+            this.dvgFactura.Columns["PiezaId"].Visible = false;
         }
 
         private void llenadoDropDownClientes()
@@ -121,6 +127,7 @@ namespace Juntas_MC.PL
                 //row["Precio x cant"] = precioPorCantidad;
                 row["Bonificacion"] = precioDividido100;
                 row["Importe total"] = valorMenosPorcentaje;
+                row["PiezaId"] = cmbPieza.SelectedValue;
 
                 dt.Rows.Add(row);
 
@@ -140,8 +147,12 @@ namespace Juntas_MC.PL
                 //row["Precio x cant"] = precioPorCantidad;
                 row["Bonificacion"] = "";
                 row["Importe total"] = precioPorCantidad;
+                row["PiezaId"] = cmbPieza.SelectedValue;
 
                 dt.Rows.Add(row);
+
+                
+
                 importeTotal += Math.Round(precioPorCantidad, 2);
                 lblImporteTotal.Text = importeTotal.ToString(); ;
                 precio = 0;
@@ -166,7 +177,12 @@ namespace Juntas_MC.PL
             //oMercados.Id = Convert.ToInt32(lblIdMercado.Text);
             oFacturasBLL.Numero = txtFactura.Text;
             oFacturasBLL.Cliente = Convert.ToInt32(cmbCliente.SelectedValue);
-            oFacturasBLL.ImporteTotal = Convert.ToDecimal(lblImporteTotal.Text);
+            if (lblImporteTotal.Text != "")
+            {
+                lblImporteTotal.Text = (lblImporteTotal.Text).Replace(",", ".");
+                oFacturasBLL.ImporteTotal = Convert.ToDecimal(lblImporteTotal.Text, oCultureInfo);
+            }
+            
 
             return oFacturasBLL;
         }
@@ -180,6 +196,7 @@ namespace Juntas_MC.PL
             {
                 ultimaFacturaInsertada.Text = oFacturasDAL.buscarUltimoIdInsertado();
                 int FacturaId = Convert.ToInt32(ultimaFacturaInsertada.Text);
+                int PiezaId = Convert.ToInt32(dvgFactura.Rows[i].Cells[6].Value);
                 string PiezaCodigo = dvgFactura.Rows[i].Cells[0].Value.ToString();
                 string Descripcion = dvgFactura.Rows[i].Cells[1].Value.ToString();
                 int Cantidad = Convert.ToInt32(dvgFactura.Rows[i].Cells[2].Value);
@@ -188,14 +205,15 @@ namespace Juntas_MC.PL
                 { Bonificacion = 0; }
                 else { Bonificacion = Convert.ToDecimal(dvgFactura.Rows[i].Cells[4].Value); }
                 decimal ItemImporteTotal = Convert.ToDecimal(dvgFactura.Rows[i].Cells[5].Value);
-                oFacturasItemsDAL.insertarFacturasItems(FacturaId, PiezaCodigo, Cantidad, Descripcion,PrecioUnitario, Bonificacion, ItemImporteTotal);
+                
+                oFacturasItemsDAL.insertarFacturasItems(FacturaId, PiezaId, PiezaCodigo, Cantidad, Descripcion,PrecioUnitario, Bonificacion, ItemImporteTotal);
             }
 
             
             frmImpresionDialog.ShowDialog();
         }
 
-        public void imprimirFactura()
+        public void imprimirFacturaDGVPrinter()
         {
             DGVPrinter printer = new DGVPrinter();
             printer.Title = "Juntas MARCELO";
@@ -209,6 +227,11 @@ namespace Juntas_MC.PL
             printer.Footer = lblImporteTotal.Text;
             printer.FooterSpacing = 15;
             printer.PrintPreviewDataGridView(dvgFactura);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmImpresionDialog.ShowDialog();
         }
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Juntas_MC.BLL
 {
-    class FacturasItemsBLL
+    public class FacturasItemsBLL
     {
         public int Id { get; set; }
         public int FacturaId { get; set; }
+        public string PiezaCodigo { get; set; }
         public int PiezaId {get;set;}
         public string Descripcion { get; set; }
         public int Cantidad { get; set; }

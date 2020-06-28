@@ -47,12 +47,13 @@
             this.lblPiezaId = new System.Windows.Forms.Label();
             this.cbProveedor = new System.Windows.Forms.CheckBox();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
-            this.btnAgregarModelo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnFacturar = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ultimaFacturaInsertada = new System.Windows.Forms.Label();
+            this.btnAgregarModelo = new System.Windows.Forms.Button();
+            this.btnFacturar = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dvgFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -242,16 +243,6 @@
             this.cmbProveedor.Size = new System.Drawing.Size(151, 24);
             this.cmbProveedor.TabIndex = 19;
             // 
-            // btnAgregarModelo
-            // 
-            this.btnAgregarModelo.Image = global::Juntas_MC.Properties.Resources.iconfinder_Button_Add_58476;
-            this.btnAgregarModelo.Location = new System.Drawing.Point(814, 45);
-            this.btnAgregarModelo.Name = "btnAgregarModelo";
-            this.btnAgregarModelo.Size = new System.Drawing.Size(50, 50);
-            this.btnAgregarModelo.TabIndex = 17;
-            this.btnAgregarModelo.UseVisualStyleBackColor = true;
-            this.btnAgregarModelo.Click += new System.EventHandler(this.btnAgregarPieza_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label6);
@@ -264,6 +255,36 @@
             this.groupBox1.Size = new System.Drawing.Size(924, 50);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(13, 261);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(36, 39);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "$";
+            // 
+            // ultimaFacturaInsertada
+            // 
+            this.ultimaFacturaInsertada.AutoSize = true;
+            this.ultimaFacturaInsertada.Location = new System.Drawing.Point(854, 23);
+            this.ultimaFacturaInsertada.Name = "ultimaFacturaInsertada";
+            this.ultimaFacturaInsertada.Size = new System.Drawing.Size(152, 17);
+            this.ultimaFacturaInsertada.TabIndex = 22;
+            this.ultimaFacturaInsertada.Text = "ultimaFacturaInsertada";
+            this.ultimaFacturaInsertada.Visible = false;
+            // 
+            // btnAgregarModelo
+            // 
+            this.btnAgregarModelo.Image = global::Juntas_MC.Properties.Resources.iconfinder_Button_Add_58476;
+            this.btnAgregarModelo.Location = new System.Drawing.Point(814, 45);
+            this.btnAgregarModelo.Name = "btnAgregarModelo";
+            this.btnAgregarModelo.Size = new System.Drawing.Size(50, 50);
+            this.btnAgregarModelo.TabIndex = 17;
+            this.btnAgregarModelo.UseVisualStyleBackColor = true;
+            this.btnAgregarModelo.Click += new System.EventHandler(this.btnAgregarPieza_Click);
             // 
             // btnFacturar
             // 
@@ -287,30 +308,22 @@
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
-            // label3
+            // button1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 261);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 39);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "$";
-            // 
-            // ultimaFacturaInsertada
-            // 
-            this.ultimaFacturaInsertada.AutoSize = true;
-            this.ultimaFacturaInsertada.Location = new System.Drawing.Point(854, 23);
-            this.ultimaFacturaInsertada.Name = "ultimaFacturaInsertada";
-            this.ultimaFacturaInsertada.Size = new System.Drawing.Size(152, 17);
-            this.ultimaFacturaInsertada.TabIndex = 22;
-            this.ultimaFacturaInsertada.Text = "ultimaFacturaInsertada";
+            this.button1.Location = new System.Drawing.Point(11, 388);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(181, 23);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Imprimir";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Facturador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 514);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ultimaFacturaInsertada);
             this.Controls.Add(this.lblImporteTotal);
             this.Controls.Add(this.label3);
@@ -363,5 +376,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label ultimaFacturaInsertada;
+        private System.Windows.Forms.Button button1;
     }
 }

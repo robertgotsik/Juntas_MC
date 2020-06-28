@@ -89,12 +89,6 @@ namespace Juntas_MC
             mercados.Show();
         }
 
-        private void menuItemActPrec_Click(object sender, EventArgs e)
-        {
-            AdmPrecios actualizadorPrecios = new AdmPrecios();
-            actualizadorPrecios.Show();
-        }
-
         private void btnFacturar_Click(object sender, EventArgs e)
         {
             Facturador facturador = new Facturador();
@@ -105,6 +99,18 @@ namespace Juntas_MC
         {
             ConfigSistema configSistema = new ConfigSistema();
             configSistema.Show();
+        }
+
+        private void actualizarPreciosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AdmPrecios actualizadorPrecios = new AdmPrecios();
+            actualizadorPrecios.Show();
+        }
+
+        private void menuItemGenFact_Click(object sender, EventArgs e)
+        {
+            FacturasHistorial facturasHistorial = new FacturasHistorial();
+            facturasHistorial.Show();
         }
     }
 }

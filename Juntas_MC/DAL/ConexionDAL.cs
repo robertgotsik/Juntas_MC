@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace Juntas_MC.DAL
 {
-    class ConexionDAL
+    public class ConexionDAL
     {
         //private string cadenaDeConexion = "Data Source = LAPTOP-B8SR8G56\\SQLEXPRESS; Initial Catalog = Juntas_MC; Integrated Security = True";
         //SqlConnection Conexion; //Obj Conexion

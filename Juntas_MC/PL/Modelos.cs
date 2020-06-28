@@ -68,6 +68,7 @@ namespace Juntas_MC.PL
             dropMarca.ValueMember = "Id";
             dropMarca.DisplayMember = "Nombre";
             dropMarca.DataSource = oMarcasDAL.mostrarMarcas().Tables[0];
+            dropMarca.SelectedItem = null;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

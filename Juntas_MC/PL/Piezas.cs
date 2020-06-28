@@ -300,7 +300,7 @@ namespace Juntas_MC.PL
             if (txtPrecio.Text != "")
             {
                 txtPrecio.Text = (txtPrecio.Text).Replace(",", ".");
-                oPieza.Precio = (Convert.ToDecimal(txtPrecio.Text, oCultureInfo));
+                oPieza.Precio = Convert.ToDecimal(txtPrecio.Text, oCultureInfo);
             }
             else { oPieza.Precio = 0; }
             oPieza.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);

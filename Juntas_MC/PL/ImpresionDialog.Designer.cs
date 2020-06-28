@@ -28,12 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImpresionDialog));
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dgvFacturasItems = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importeTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaEmision = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.facturasBLLBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFacturasItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.facturasBLLBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -76,11 +86,81 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // dgvFacturasItems
+            // 
+            this.dgvFacturasItems.AllowUserToAddRows = false;
+            this.dgvFacturasItems.AllowUserToDeleteRows = false;
+            this.dgvFacturasItems.AutoGenerateColumns = false;
+            this.dgvFacturasItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvFacturasItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFacturasItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.numeroDataGridViewTextBoxColumn,
+            this.clienteDataGridViewTextBoxColumn,
+            this.importeTotalDataGridViewTextBoxColumn,
+            this.FechaEmision});
+            this.dgvFacturasItems.DataSource = this.facturasBLLBindingSource;
+            this.dgvFacturasItems.Location = new System.Drawing.Point(12, 95);
+            this.dgvFacturasItems.MultiSelect = false;
+            this.dgvFacturasItems.Name = "dgvFacturasItems";
+            this.dgvFacturasItems.ReadOnly = true;
+            this.dgvFacturasItems.RowHeadersWidth = 51;
+            this.dgvFacturasItems.RowTemplate.Height = 24;
+            this.dgvFacturasItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvFacturasItems.Size = new System.Drawing.Size(243, 26);
+            this.dgvFacturasItems.TabIndex = 13;
+            this.dgvFacturasItems.Visible = false;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // numeroDataGridViewTextBoxColumn
+            // 
+            this.numeroDataGridViewTextBoxColumn.DataPropertyName = "Numero";
+            this.numeroDataGridViewTextBoxColumn.HeaderText = "Numero";
+            this.numeroDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.numeroDataGridViewTextBoxColumn.Name = "numeroDataGridViewTextBoxColumn";
+            this.numeroDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clienteDataGridViewTextBoxColumn
+            // 
+            this.clienteDataGridViewTextBoxColumn.DataPropertyName = "Cliente";
+            this.clienteDataGridViewTextBoxColumn.HeaderText = "Cliente";
+            this.clienteDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.clienteDataGridViewTextBoxColumn.Name = "clienteDataGridViewTextBoxColumn";
+            this.clienteDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // importeTotalDataGridViewTextBoxColumn
+            // 
+            this.importeTotalDataGridViewTextBoxColumn.DataPropertyName = "ImporteTotal";
+            this.importeTotalDataGridViewTextBoxColumn.HeaderText = "ImporteTotal";
+            this.importeTotalDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.importeTotalDataGridViewTextBoxColumn.Name = "importeTotalDataGridViewTextBoxColumn";
+            this.importeTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // FechaEmision
+            // 
+            this.FechaEmision.DataPropertyName = "FechaEmision";
+            this.FechaEmision.HeaderText = "FechaEmision";
+            this.FechaEmision.MinimumWidth = 6;
+            this.FechaEmision.Name = "FechaEmision";
+            this.FechaEmision.ReadOnly = true;
+            // 
+            // facturasBLLBindingSource
+            // 
+            this.facturasBLLBindingSource.DataSource = typeof(Juntas_MC.BLL.FacturasBLL);
+            // 
             // ImpresionDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 101);
+            this.ClientSize = new System.Drawing.Size(277, 98);
+            this.Controls.Add(this.dgvFacturasItems);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
@@ -89,6 +169,8 @@
             this.Name = "ImpresionDialog";
             this.Text = "ImpresionDialog";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFacturasItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.facturasBLLBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,5 +182,13 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dgvFacturasItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource facturasBLLBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clienteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn importeTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaEmision;
     }
 }
