@@ -44,17 +44,32 @@
             this.gbVentas = new System.Windows.Forms.GroupBox();
             this.gbPiezas = new System.Windows.Forms.GroupBox();
             this.chartPiezas = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.gbCantVentas = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblVentas = new System.Windows.Forms.Label();
+            this.lblCantPiezas = new System.Windows.Forms.Label();
+            this.lblClientes = new System.Windows.Forms.Label();
+            this.lblModelo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartVentas)).BeginInit();
             this.gbVentas.SuspendLayout();
             this.gbPiezas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartPiezas)).BeginInit();
+            this.gbCantVentas.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -158,6 +173,87 @@
             this.chartPiezas.TabIndex = 1;
             this.chartPiezas.Text = "chart2";
             // 
+            // gbCantVentas
+            // 
+            this.gbCantVentas.Controls.Add(this.lblVentas);
+            this.gbCantVentas.Controls.Add(this.pictureBox1);
+            this.gbCantVentas.Location = new System.Drawing.Point(40, 83);
+            this.gbCantVentas.Name = "gbCantVentas";
+            this.gbCantVentas.Size = new System.Drawing.Size(200, 148);
+            this.gbCantVentas.TabIndex = 4;
+            this.gbCantVentas.TabStop = false;
+            this.gbCantVentas.Text = "Total $ Ventas";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblCantPiezas);
+            this.groupBox3.Controls.Add(this.pictureBox2);
+            this.groupBox3.Location = new System.Drawing.Point(288, 83);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(200, 148);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Cant Piezas Vendidas";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblClientes);
+            this.groupBox4.Controls.Add(this.pictureBox3);
+            this.groupBox4.Location = new System.Drawing.Point(540, 83);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(200, 148);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Clientes Alcanzados";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lblModelo);
+            this.groupBox5.Controls.Add(this.pictureBox4);
+            this.groupBox5.Location = new System.Drawing.Point(788, 83);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 148);
+            this.groupBox5.TabIndex = 7;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Modelo mas vendido";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::Juntas_MC.Properties.Resources.iconfinder_small_car_64675;
+            this.pictureBox4.Location = new System.Drawing.Point(144, 21);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(50, 43);
+            this.pictureBox4.TabIndex = 1;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::Juntas_MC.Properties.Resources.iconfinder_Users_58625;
+            this.pictureBox3.InitialImage = null;
+            this.pictureBox3.Location = new System.Drawing.Point(144, 21);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(50, 43);
+            this.pictureBox3.TabIndex = 1;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Juntas_MC.Properties.Resources.iconfinder_Box_58473;
+            this.pictureBox2.Location = new System.Drawing.Point(144, 21);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(50, 43);
+            this.pictureBox2.TabIndex = 1;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Juntas_MC.Properties.Resources.iconfinder_Money_58588;
+            this.pictureBox1.Location = new System.Drawing.Point(144, 21);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 43);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // btnBuscar
             // 
             this.btnBuscar.Image = global::Juntas_MC.Properties.Resources.find2;
@@ -168,58 +264,53 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // gbCantVentas
+            // lblVentas
             // 
-            this.gbCantVentas.Location = new System.Drawing.Point(10, 83);
-            this.gbCantVentas.Name = "gbCantVentas";
-            this.gbCantVentas.Size = new System.Drawing.Size(200, 148);
-            this.gbCantVentas.TabIndex = 4;
-            this.gbCantVentas.TabStop = false;
-            this.gbCantVentas.Text = "Total Ventas";
+            this.lblVentas.AutoSize = true;
+            this.lblVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVentas.Location = new System.Drawing.Point(26, 87);
+            this.lblVentas.Name = "lblVentas";
+            this.lblVentas.Size = new System.Drawing.Size(27, 29);
+            this.lblVentas.TabIndex = 8;
+            this.lblVentas.Text = "#";
             // 
-            // groupBox3
+            // lblCantPiezas
             // 
-            this.groupBox3.Location = new System.Drawing.Point(216, 83);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(200, 148);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Cant Piezas Vendidas";
+            this.lblCantPiezas.AutoSize = true;
+            this.lblCantPiezas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCantPiezas.Location = new System.Drawing.Point(33, 87);
+            this.lblCantPiezas.Name = "lblCantPiezas";
+            this.lblCantPiezas.Size = new System.Drawing.Size(27, 29);
+            this.lblCantPiezas.TabIndex = 9;
+            this.lblCantPiezas.Text = "#";
             // 
-            // groupBox4
+            // lblClientes
             // 
-            this.groupBox4.Location = new System.Drawing.Point(422, 83);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(200, 148);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Clientes Alcanzados";
+            this.lblClientes.AutoSize = true;
+            this.lblClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClientes.Location = new System.Drawing.Point(32, 87);
+            this.lblClientes.Name = "lblClientes";
+            this.lblClientes.Size = new System.Drawing.Size(27, 29);
+            this.lblClientes.TabIndex = 9;
+            this.lblClientes.Text = "#";
             // 
-            // groupBox5
+            // lblModelo
             // 
-            this.groupBox5.Location = new System.Drawing.Point(628, 83);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(200, 148);
-            this.groupBox5.TabIndex = 7;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Modelo mas vendido";
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Location = new System.Drawing.Point(834, 83);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(182, 148);
-            this.groupBox6.TabIndex = 5;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "groupBox6";
+            this.lblModelo.AutoSize = true;
+            this.lblModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModelo.Location = new System.Drawing.Point(32, 87);
+            this.lblModelo.Name = "lblModelo";
+            this.lblModelo.Size = new System.Drawing.Size(27, 29);
+            this.lblModelo.TabIndex = 10;
+            this.lblModelo.Text = "#";
             // 
             // Estadisticas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 604);
-            this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -237,6 +328,18 @@
             this.gbVentas.ResumeLayout(false);
             this.gbPiezas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chartPiezas)).EndInit();
+            this.gbCantVentas.ResumeLayout(false);
+            this.gbCantVentas.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,6 +360,13 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label lblVentas;
+        private System.Windows.Forms.Label lblCantPiezas;
+        private System.Windows.Forms.Label lblClientes;
+        private System.Windows.Forms.Label lblModelo;
     }
 }

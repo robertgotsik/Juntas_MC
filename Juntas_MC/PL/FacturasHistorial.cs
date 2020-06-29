@@ -56,7 +56,7 @@ namespace Juntas_MC.PL
             this.dgvFacturas.Columns["ClienteId"].Visible = false;
 
             
-            lblFactura.Text = dgvFacturas.Rows[0].Cells[0].Value.ToString(); ;
+            //lblFactura.Text = dgvFacturas.Rows[0].Cells[0].Value.ToString();
         }
 
         private void Seleccionar(object sender, DataGridViewCellMouseEventArgs e)

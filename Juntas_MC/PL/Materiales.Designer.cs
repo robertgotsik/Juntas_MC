@@ -45,13 +45,13 @@
             this.dgvMateriales.AllowUserToAddRows = false;
             this.dgvMateriales.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMateriales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMateriales.Location = new System.Drawing.Point(13, 130);
+            this.dgvMateriales.Location = new System.Drawing.Point(13, 154);
             this.dgvMateriales.MultiSelect = false;
             this.dgvMateriales.Name = "dgvMateriales";
             this.dgvMateriales.ReadOnly = true;
             this.dgvMateriales.RowHeadersWidth = 51;
             this.dgvMateriales.RowTemplate.Height = 24;
-            this.dgvMateriales.Size = new System.Drawing.Size(394, 297);
+            this.dgvMateriales.Size = new System.Drawing.Size(417, 414);
             this.dgvMateriales.TabIndex = 9;
             this.dgvMateriales.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Seleccionar);
             // 
@@ -77,28 +77,29 @@
             // 
             this.lblIdMaterial.AutoSize = true;
             this.lblIdMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdMaterial.Location = new System.Drawing.Point(351, 430);
+            this.lblIdMaterial.Location = new System.Drawing.Point(383, 571);
             this.lblIdMaterial.Name = "lblIdMaterial";
             this.lblIdMaterial.Size = new System.Drawing.Size(55, 13);
             this.lblIdMaterial.TabIndex = 13;
             this.lblIdMaterial.Text = "IDMaterial";
+            this.lblIdMaterial.Visible = false;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Image = global::Juntas_MC.Properties.Resources.cross2;
-            this.btnLimpiar.Location = new System.Drawing.Point(264, 31);
+            this.btnLimpiar.Image = global::Juntas_MC.Properties.Resources.empty_icon;
+            this.btnLimpiar.Location = new System.Drawing.Point(264, 12);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(42, 41);
+            this.btnLimpiar.Size = new System.Drawing.Size(58, 58);
             this.btnLimpiar.TabIndex = 14;
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash24px;
-            this.btnBorrar.Location = new System.Drawing.Point(297, 81);
+            this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash_Icon;
+            this.btnBorrar.Location = new System.Drawing.Point(307, 81);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(112, 43);
+            this.btnBorrar.Size = new System.Drawing.Size(123, 58);
             this.btnBorrar.TabIndex = 12;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -107,10 +108,10 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
-            this.btnModificar.Location = new System.Drawing.Point(181, 81);
+            this.btnModificar.Image = global::Juntas_MC.Properties.Resources.pencil_edit;
+            this.btnModificar.Location = new System.Drawing.Point(178, 81);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(112, 43);
+            this.btnModificar.Size = new System.Drawing.Size(123, 58);
             this.btnModificar.TabIndex = 11;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -119,10 +120,10 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(65, 81);
+            this.btnAgregar.Image = global::Juntas_MC.Properties.Resources.Add_Icon;
+            this.btnAgregar.Location = new System.Drawing.Point(49, 81);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(112, 43);
+            this.btnAgregar.Size = new System.Drawing.Size(123, 58);
             this.btnAgregar.TabIndex = 10;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -133,7 +134,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 445);
+            this.ClientSize = new System.Drawing.Size(442, 588);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblIdMaterial);
             this.Controls.Add(this.btnBorrar);
@@ -142,7 +143,9 @@
             this.Controls.Add(this.dgvMateriales);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.txtNombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Materiales";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Materiales";
             ((System.ComponentModel.ISupportInitialize)(this.dgvMateriales)).EndInit();
             this.ResumeLayout(false);

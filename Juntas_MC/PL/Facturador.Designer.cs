@@ -47,10 +47,10 @@
             this.lblPiezaId = new System.Windows.Forms.Label();
             this.cbProveedor = new System.Windows.Forms.CheckBox();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
+            this.btnAgregarModelo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ultimaFacturaInsertada = new System.Windows.Forms.Label();
-            this.btnAgregarModelo = new System.Windows.Forms.Button();
             this.btnFacturar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -91,6 +91,8 @@
             // 
             // cmbCliente
             // 
+            this.cmbCliente.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbCliente.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCliente.FormattingEnabled = true;
             this.cmbCliente.Location = new System.Drawing.Point(88, 18);
@@ -169,6 +171,8 @@
             // 
             // cmbPieza
             // 
+            this.cmbPieza.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbPieza.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbPieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPieza.FormattingEnabled = true;
             this.cmbPieza.Location = new System.Drawing.Point(88, 60);
@@ -236,12 +240,24 @@
             // 
             // cmbProveedor
             // 
+            this.cmbProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbProveedor.Enabled = false;
             this.cmbProveedor.FormattingEnabled = true;
             this.cmbProveedor.Location = new System.Drawing.Point(414, 60);
             this.cmbProveedor.Name = "cmbProveedor";
             this.cmbProveedor.Size = new System.Drawing.Size(151, 24);
             this.cmbProveedor.TabIndex = 19;
+            // 
+            // btnAgregarModelo
+            // 
+            this.btnAgregarModelo.Image = global::Juntas_MC.Properties.Resources.iconfinder_Button_Add_58476;
+            this.btnAgregarModelo.Location = new System.Drawing.Point(814, 45);
+            this.btnAgregarModelo.Name = "btnAgregarModelo";
+            this.btnAgregarModelo.Size = new System.Drawing.Size(50, 50);
+            this.btnAgregarModelo.TabIndex = 17;
+            this.btnAgregarModelo.UseVisualStyleBackColor = true;
+            this.btnAgregarModelo.Click += new System.EventHandler(this.btnAgregarPieza_Click);
             // 
             // groupBox1
             // 
@@ -276,16 +292,6 @@
             this.ultimaFacturaInsertada.Text = "ultimaFacturaInsertada";
             this.ultimaFacturaInsertada.Visible = false;
             // 
-            // btnAgregarModelo
-            // 
-            this.btnAgregarModelo.Image = global::Juntas_MC.Properties.Resources.iconfinder_Button_Add_58476;
-            this.btnAgregarModelo.Location = new System.Drawing.Point(814, 45);
-            this.btnAgregarModelo.Name = "btnAgregarModelo";
-            this.btnAgregarModelo.Size = new System.Drawing.Size(50, 50);
-            this.btnAgregarModelo.TabIndex = 17;
-            this.btnAgregarModelo.UseVisualStyleBackColor = true;
-            this.btnAgregarModelo.Click += new System.EventHandler(this.btnAgregarPieza_Click);
-            // 
             // btnFacturar
             // 
             this.btnFacturar.Image = global::Juntas_MC.Properties.Resources.actualizarPrecios;
@@ -316,6 +322,7 @@
             this.button1.TabIndex = 23;
             this.button1.Text = "Imprimir";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Facturador

@@ -179,6 +179,8 @@
             // 
             // cmbProv
             // 
+            this.cmbProv.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbProv.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbProv.FormattingEnabled = true;
             this.cmbProv.Location = new System.Drawing.Point(450, 36);
             this.cmbProv.Name = "cmbProv";
@@ -189,6 +191,7 @@
             // 
             this.dvgMercados.AllowUserToAddRows = false;
             this.dvgMercados.AllowUserToDeleteRows = false;
+            this.dvgMercados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dvgMercados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgMercados.Location = new System.Drawing.Point(6, 6);
             this.dvgMercados.MultiSelect = false;
@@ -300,6 +303,7 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(626, 382);
             this.tabControl1.TabIndex = 27;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -358,6 +362,7 @@
             // 
             // dvgMercadosPrecios
             // 
+            this.dvgMercadosPrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dvgMercadosPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgMercadosPrecios.Location = new System.Drawing.Point(131, 6);
             this.dvgMercadosPrecios.Name = "dvgMercadosPrecios";
@@ -372,9 +377,9 @@
             this.lblIdMercado.AutoSize = true;
             this.lblIdMercado.Location = new System.Drawing.Point(498, 716);
             this.lblIdMercado.Name = "lblIdMercado";
-            this.lblIdMercado.Size = new System.Drawing.Size(74, 17);
+            this.lblIdMercado.Size = new System.Drawing.Size(16, 17);
             this.lblIdMercado.TabIndex = 35;
-            this.lblIdMercado.Text = "IdMercado";
+            this.lblIdMercado.Text = "0";
             this.lblIdMercado.Visible = false;
             // 
             // btnBuscar
@@ -398,9 +403,11 @@
             this.btnLimpiar.TabIndex = 25;
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Visible = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnBorrar
             // 
+            this.btnBorrar.Enabled = false;
             this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash_Icon;
             this.btnBorrar.Location = new System.Drawing.Point(528, 229);
             this.btnBorrar.Name = "btnBorrar";
@@ -412,6 +419,7 @@
             // 
             // btnModificar
             // 
+            this.btnModificar.Enabled = false;
             this.btnModificar.Image = global::Juntas_MC.Properties.Resources.pencil_edit;
             this.btnModificar.Location = new System.Drawing.Point(399, 229);
             this.btnModificar.Name = "btnModificar";

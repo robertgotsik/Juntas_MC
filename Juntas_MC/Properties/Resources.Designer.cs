@@ -63,6 +63,16 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _57504529_565561130632513_6052637543256555520_n {
+            get {
+                object obj = ResourceManager.GetObject("57504529_565561130632513_6052637543256555520_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap actualizarPrecios {
             get {
                 object obj = ResourceManager.GetObject("actualizarPrecios", resourceCulture);
@@ -263,6 +273,16 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Box_58473 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Box_58473", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_Button_Add_58476 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_Button Add_58476", resourceCulture);
@@ -303,9 +323,49 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Money_58588 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Money_58588", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_Search_58605 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_Search_58605", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Settings_105244 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Settings_105244", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_small_car_64675 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_small_car_64675", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Users_58625 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Users_58625", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

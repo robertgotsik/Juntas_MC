@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Modelos));
             this.lblNombre = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.dgvModelos = new System.Windows.Forms.DataGridView();
@@ -57,7 +58,7 @@
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(99, 9);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(238, 30);
+            this.txtNombre.Size = new System.Drawing.Size(211, 30);
             this.txtNombre.TabIndex = 1;
             // 
             // dgvModelos
@@ -66,23 +67,23 @@
             this.dgvModelos.AllowUserToDeleteRows = false;
             this.dgvModelos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvModelos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvModelos.Location = new System.Drawing.Point(12, 151);
+            this.dgvModelos.Location = new System.Drawing.Point(12, 154);
             this.dgvModelos.MultiSelect = false;
             this.dgvModelos.Name = "dgvModelos";
             this.dgvModelos.ReadOnly = true;
             this.dgvModelos.RowHeadersWidth = 51;
             this.dgvModelos.RowTemplate.Height = 24;
             this.dgvModelos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvModelos.Size = new System.Drawing.Size(396, 377);
+            this.dgvModelos.Size = new System.Drawing.Size(427, 407);
             this.dgvModelos.TabIndex = 2;
             this.dgvModelos.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Seleccionar);
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash24px;
-            this.btnBorrar.Location = new System.Drawing.Point(297, 105);
+            this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash_Icon;
+            this.btnBorrar.Location = new System.Drawing.Point(316, 86);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(112, 43);
+            this.btnBorrar.Size = new System.Drawing.Size(123, 58);
             this.btnBorrar.TabIndex = 5;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -101,11 +102,13 @@
             // 
             // dropMarca
             // 
+            this.dropMarca.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.dropMarca.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.dropMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dropMarca.FormattingEnabled = true;
             this.dropMarca.Location = new System.Drawing.Point(99, 47);
             this.dropMarca.Name = "dropMarca";
-            this.dropMarca.Size = new System.Drawing.Size(237, 30);
+            this.dropMarca.Size = new System.Drawing.Size(211, 30);
             this.dropMarca.TabIndex = 8;
             this.dropMarca.SelectedIndexChanged += new System.EventHandler(this.dropMarca_SelectedIndexChanged);
             // 
@@ -113,28 +116,30 @@
             // 
             this.lblIdMarca.AutoSize = true;
             this.lblIdMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdMarca.Location = new System.Drawing.Point(361, 531);
+            this.lblIdMarca.Location = new System.Drawing.Point(401, 564);
             this.lblIdMarca.Name = "lblIdMarca";
             this.lblIdMarca.Size = new System.Drawing.Size(47, 13);
             this.lblIdMarca.TabIndex = 9;
             this.lblIdMarca.Text = "IDMarca";
+            this.lblIdMarca.Visible = false;
             // 
             // lblIdModelo
             // 
             this.lblIdModelo.AutoSize = true;
             this.lblIdModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdModelo.Location = new System.Drawing.Point(329, 531);
+            this.lblIdModelo.Location = new System.Drawing.Point(369, 564);
             this.lblIdModelo.Name = "lblIdModelo";
             this.lblIdModelo.Size = new System.Drawing.Size(53, 13);
             this.lblIdModelo.TabIndex = 10;
             this.lblIdModelo.Text = "IDModelo";
+            this.lblIdModelo.Visible = false;
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Image = global::Juntas_MC.Properties.Resources.cross2;
-            this.btnLimpiar.Location = new System.Drawing.Point(343, 22);
+            this.btnLimpiar.Image = global::Juntas_MC.Properties.Resources.empty_icon;
+            this.btnLimpiar.Location = new System.Drawing.Point(316, 14);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(54, 50);
+            this.btnLimpiar.Size = new System.Drawing.Size(58, 58);
             this.btnLimpiar.TabIndex = 11;
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
@@ -142,9 +147,9 @@
             // btnModificar
             // 
             this.btnModificar.Image = global::Juntas_MC.Properties.Resources.iconfinder_Modify_132500;
-            this.btnModificar.Location = new System.Drawing.Point(179, 105);
+            this.btnModificar.Location = new System.Drawing.Point(187, 86);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(112, 43);
+            this.btnModificar.Size = new System.Drawing.Size(123, 58);
             this.btnModificar.TabIndex = 4;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -153,10 +158,10 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = global::Juntas_MC.Properties.Resources.iconfinder_floppy_285657;
-            this.btnAgregar.Location = new System.Drawing.Point(61, 105);
+            this.btnAgregar.Image = global::Juntas_MC.Properties.Resources.Add_Icon;
+            this.btnAgregar.Location = new System.Drawing.Point(58, 86);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(112, 43);
+            this.btnAgregar.Size = new System.Drawing.Size(123, 58);
             this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -167,7 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 545);
+            this.ClientSize = new System.Drawing.Size(451, 580);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.lblIdModelo);
             this.Controls.Add(this.lblIdMarca);
@@ -179,7 +184,9 @@
             this.Controls.Add(this.dgvModelos);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.lblNombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Modelos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmModelos";
             ((System.ComponentModel.ISupportInitialize)(this.dgvModelos)).EndInit();
             this.ResumeLayout(false);

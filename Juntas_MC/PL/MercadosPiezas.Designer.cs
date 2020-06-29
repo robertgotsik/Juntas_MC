@@ -98,9 +98,9 @@
             this.lblMercadoId.AutoSize = true;
             this.lblMercadoId.Location = new System.Drawing.Point(13, 180);
             this.lblMercadoId.Name = "lblMercadoId";
-            this.lblMercadoId.Size = new System.Drawing.Size(88, 17);
+            this.lblMercadoId.Size = new System.Drawing.Size(16, 17);
             this.lblMercadoId.TabIndex = 13;
-            this.lblMercadoId.Text = "lblMercadoId";
+            this.lblMercadoId.Text = "0";
             this.lblMercadoId.Visible = false;
             // 
             // lblPrecio
@@ -149,6 +149,7 @@
             this.Controls.Add(this.lblPieza);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MercadosPiezas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MercadosPiezas";
             this.Load += new System.EventHandler(this.MercadosPiezas_Load);
             this.ResumeLayout(false);

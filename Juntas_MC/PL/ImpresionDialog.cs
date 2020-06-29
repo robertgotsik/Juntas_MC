@@ -26,7 +26,7 @@ namespace Juntas_MC.PL
 
 
             InitializeComponent();
-            llenarGrid();
+            //llenarGrid();
         }
 
         private void button1_Click(object sender, EventArgs e)

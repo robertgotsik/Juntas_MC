@@ -177,6 +177,7 @@
             this.Controls.Add(this.btnConfirmar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigSistema";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ConfigSistema";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

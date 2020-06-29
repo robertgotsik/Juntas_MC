@@ -1,6 +1,7 @@
 ﻿using Juntas_MC.BLL;
 using Juntas_MC.PL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -55,6 +56,19 @@ namespace Juntas_MC.DAL
             conexion.ejecutarMetodoSinRetornoDatos("DELETE FROM FacturasItems where FacturaId= " + facturaId);
 
             return 1;
+        }
+
+        public string CantPiezasVendidas(string FechaDesde, string FechaHasta)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT SUM (Cantidad) as Valor FROM FacturasItems FI INNER JOIN Facturas F ON F.Id = FI.FacturaId where FechaEmision >= '" + FechaDesde + "' and FechaEmision <= '" + FechaHasta + "'");
+            return conexion.MetodoString(sentencia);
+        }
+
+
+        public string CodigoPiezaTopVentas(string FechaDesde, string FechaHasta)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT P.Codigo, COUNT (PiezaId) as Cant  FROM (FacturasItems FI INNER JOIN Piezas P ON P.Id = FI.PiezaId) inner join Facturas F on F.Id = FI.FacturaId where FechaEmision >= '" + FechaDesde + "' and FechaEmision <= '" + FechaHasta + "' GROUP BY P.Codigo, PiezaId");
+            return conexion.MetodoString(sentencia);
         }
     }
 }

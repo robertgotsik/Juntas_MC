@@ -5,16 +5,21 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Juntas_MC", "Juntas_MC\Juntas_MC.csproj", "{69416A15-1627-4715-A2B3-AFB719F0C994}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{710BE69B-27F5-451E-9400-8C54B6564E65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{69416A15-1627-4715-A2B3-AFB719F0C994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69416A15-1627-4715-A2B3-AFB719F0C994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69416A15-1627-4715-A2B3-AFB719F0C994}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{69416A15-1627-4715-A2B3-AFB719F0C994}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{69416A15-1627-4715-A2B3-AFB719F0C994}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69416A15-1627-4715-A2B3-AFB719F0C994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{710BE69B-27F5-451E-9400-8C54B6564E65}.Debug|Any CPU.ActiveCfg = Release
+		{710BE69B-27F5-451E-9400-8C54B6564E65}.Debug|Any CPU.Build.0 = Release
+		{710BE69B-27F5-451E-9400-8C54B6564E65}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

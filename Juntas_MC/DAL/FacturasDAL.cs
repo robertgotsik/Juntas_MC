@@ -14,12 +14,9 @@ namespace Juntas_MC.DAL
     public class FacturasDAL
     {
         ConexionDAL conexion;
-        //NumberFormatInfo nfi;
         public FacturasDAL()
         {
             conexion = new ConexionDAL();
-            //nfi = new NumberFormatInfo();
-            //nfi.NumberDecimalSeparator = ".";
         }
 
         public bool agregar(FacturasBLL oFacturasBLL)
@@ -106,6 +103,12 @@ namespace Juntas_MC.DAL
             conexion.ejecutarMetodoSinRetornoDatos("DELETE FROM Facturas where Id= " + facturaId);
 
             return 1;
+        }
+
+        public string TotalVentas(string FechaDesde, string FechaHasta)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT SUM (ImporteTotal) as Valor from Facturas where FechaEmision >= '" + FechaDesde + "' and FechaEmision <= '" + FechaHasta +"'");
+            return conexion.MetodoString(sentencia);
         }
     }
 }

@@ -195,5 +195,39 @@ namespace Juntas_MC.PL
                 nudPorcentaje.Enabled = false;
             }
         }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((lblIdMercado.Text != Convert.ToString(0)) && (tabControl1.SelectedTab == tabPage2))
+            {
+                tabControl1.SelectedTab = tabPage2;
+            }
+            else if ((lblIdMercado.Text == Convert.ToString(0)) && (tabControl1.SelectedTab == tabPage2))
+            {
+                tabControl1.SelectedTab = tabPage1;
+            }
+        }
+
+        private void limpiarEntradas()
+        {
+            txtNombre.Clear();
+            txtEmail.Clear();
+            txtDireccion.Clear();
+            txtTelefono1.Clear();
+            txtWeb.Clear();
+            txtLocalidad.Clear();
+            cmbProv.SelectedItem = null;
+            nudPorcentaje.Value = 0;
+            lbTipo.SelectedItem = null;
+            btnModificar.Enabled = false;
+            btnBorrar.Enabled = false;
+            btnLimpiar.Visible = false;
+            btnAgregar.Enabled = true;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiarEntradas();
+        }
     }
 }

@@ -54,9 +54,12 @@ namespace Juntas_MC.PL
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            oPreciosMercadosDAL.agregar(recuperarInformacionMercadoPieza());
-            int mercadoId = Convert.ToInt32(lblMercadoId.Text);
-            obj.llenarGridMercadosPrecios(mercadoId);
+            if(lblMercadoId.Text != "0")
+            {
+                oPreciosMercadosDAL.agregar(recuperarInformacionMercadoPieza());
+                int mercadoId = Convert.ToInt32(lblMercadoId.Text);
+                obj.llenarGridMercadosPrecios(mercadoId);
+            }
         }
     }
 }

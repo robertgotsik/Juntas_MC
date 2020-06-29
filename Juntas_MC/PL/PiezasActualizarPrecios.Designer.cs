@@ -312,7 +312,7 @@
             // btnAceptar
             // 
             this.btnAceptar.Image = global::Juntas_MC.Properties.Resources.check2;
-            this.btnAceptar.Location = new System.Drawing.Point(425, 536);
+            this.btnAceptar.Location = new System.Drawing.Point(269, 536);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(123, 58);
             this.btnAceptar.TabIndex = 26;
@@ -324,7 +324,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Image = global::Juntas_MC.Properties.Resources.failed;
-            this.btnCancelar.Location = new System.Drawing.Point(275, 536);
+            this.btnCancelar.Location = new System.Drawing.Point(431, 536);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(123, 58);
             this.btnCancelar.TabIndex = 25;

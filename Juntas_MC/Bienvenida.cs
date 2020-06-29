@@ -103,14 +103,20 @@ namespace Juntas_MC
 
         private void actualizarPreciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AdmPrecios actualizadorPrecios = new AdmPrecios();
-            actualizadorPrecios.Show();
+            PiezasActualizarPrecios actualizarPrecios = new PiezasActualizarPrecios();
+            actualizarPrecios.Show();
         }
 
         private void menuItemGenFact_Click(object sender, EventArgs e)
         {
             FacturasHistorial facturasHistorial = new FacturasHistorial();
             facturasHistorial.Show();
+        }
+
+        private void acercaDeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AcercaDe acercaDe = new AcercaDe();
+            acercaDe.Show();
         }
     }
 }

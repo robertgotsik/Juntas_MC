@@ -46,12 +46,14 @@
             this.dgvTiposDePiezas.AllowUserToDeleteRows = false;
             this.dgvTiposDePiezas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvTiposDePiezas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTiposDePiezas.Location = new System.Drawing.Point(12, 130);
+            this.dgvTiposDePiezas.Location = new System.Drawing.Point(12, 145);
+            this.dgvTiposDePiezas.MultiSelect = false;
             this.dgvTiposDePiezas.Name = "dgvTiposDePiezas";
+            this.dgvTiposDePiezas.ReadOnly = true;
             this.dgvTiposDePiezas.RowHeadersWidth = 51;
             this.dgvTiposDePiezas.RowTemplate.Height = 24;
             this.dgvTiposDePiezas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTiposDePiezas.Size = new System.Drawing.Size(394, 408);
+            this.dgvTiposDePiezas.Size = new System.Drawing.Size(426, 454);
             this.dgvTiposDePiezas.TabIndex = 18;
             this.dgvTiposDePiezas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.Seleccionar);
             // 
@@ -75,20 +77,20 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Image = global::Juntas_MC.Properties.Resources.cross2;
-            this.btnLimpiar.Location = new System.Drawing.Point(263, 31);
+            this.btnLimpiar.Image = global::Juntas_MC.Properties.Resources.empty_icon;
+            this.btnLimpiar.Location = new System.Drawing.Point(263, 12);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(42, 41);
+            this.btnLimpiar.Size = new System.Drawing.Size(58, 58);
             this.btnLimpiar.TabIndex = 22;
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnBorrar
             // 
-            this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash24px;
-            this.btnBorrar.Location = new System.Drawing.Point(296, 81);
+            this.btnBorrar.Image = global::Juntas_MC.Properties.Resources.trash_Icon;
+            this.btnBorrar.Location = new System.Drawing.Point(315, 81);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(112, 43);
+            this.btnBorrar.Size = new System.Drawing.Size(123, 58);
             this.btnBorrar.TabIndex = 21;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -97,10 +99,10 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Image = ((System.Drawing.Image)(resources.GetObject("btnModificar.Image")));
-            this.btnModificar.Location = new System.Drawing.Point(180, 81);
+            this.btnModificar.Image = global::Juntas_MC.Properties.Resources.pencil_edit;
+            this.btnModificar.Location = new System.Drawing.Point(186, 81);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(112, 43);
+            this.btnModificar.Size = new System.Drawing.Size(123, 58);
             this.btnModificar.TabIndex = 20;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -109,10 +111,10 @@
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(64, 81);
+            this.btnAgregar.Image = global::Juntas_MC.Properties.Resources.Add_Icon;
+            this.btnAgregar.Location = new System.Drawing.Point(57, 81);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(112, 43);
+            this.btnAgregar.Size = new System.Drawing.Size(123, 58);
             this.btnAgregar.TabIndex = 19;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -123,17 +125,18 @@
             // 
             this.lblIdTdP.AutoSize = true;
             this.lblIdTdP.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdTdP.Location = new System.Drawing.Point(372, 541);
+            this.lblIdTdP.Location = new System.Drawing.Point(372, 602);
             this.lblIdTdP.Name = "lblIdTdP";
             this.lblIdTdP.Size = new System.Drawing.Size(34, 13);
             this.lblIdTdP.TabIndex = 23;
             this.lblIdTdP.Text = "IdTdP";
+            this.lblIdTdP.Visible = false;
             // 
             // TiposDePiezas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 553);
+            this.ClientSize = new System.Drawing.Size(450, 624);
             this.Controls.Add(this.lblIdTdP);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnBorrar);
@@ -142,7 +145,9 @@
             this.Controls.Add(this.dgvTiposDePiezas);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.txtNombre);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TiposDePiezas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TiposDePiezas";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTiposDePiezas)).EndInit();
             this.ResumeLayout(false);

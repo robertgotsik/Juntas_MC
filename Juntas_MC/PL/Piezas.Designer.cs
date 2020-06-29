@@ -129,6 +129,8 @@
             // 
             // cmbPiezaTipo
             // 
+            this.cmbPiezaTipo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbPiezaTipo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbPiezaTipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPiezaTipo.FormattingEnabled = true;
             this.cmbPiezaTipo.Location = new System.Drawing.Point(199, 100);
@@ -157,6 +159,8 @@
             // 
             // cmbMaterial
             // 
+            this.cmbMaterial.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbMaterial.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbMaterial.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMaterial.FormattingEnabled = true;
             this.cmbMaterial.Location = new System.Drawing.Point(506, 100);

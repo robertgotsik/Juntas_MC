@@ -35,6 +35,7 @@ namespace Juntas_MC.PL
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnBorrar.Enabled = false;
+            dropMarca.SelectedItem = null;
         }
 
         private void frmModelos_Load(object sender, EventArgs e)
@@ -122,6 +123,7 @@ namespace Juntas_MC.PL
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnBorrar.Enabled = false;
+            dropMarca.SelectedItem = null;
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
