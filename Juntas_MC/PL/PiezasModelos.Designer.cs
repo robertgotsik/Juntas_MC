@@ -112,6 +112,7 @@
             this.Controls.Add(this.cmbPiezasModelos);
             this.Controls.Add(this.lblModelo);
             this.Name = "PiezasModelos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PiezasModelos";
             this.Load += new System.EventHandler(this.PiezasModelos_Load);
             this.ResumeLayout(false);

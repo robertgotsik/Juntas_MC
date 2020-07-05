@@ -322,6 +322,7 @@
             this.lblIdModelo.Size = new System.Drawing.Size(13, 13);
             this.lblIdModelo.TabIndex = 17;
             this.lblIdModelo.Text = "0";
+            this.lblIdModelo.Visible = false;
             // 
             // gbModelosCompatibles
             // 
@@ -390,6 +391,7 @@
             this.lblIdPieza.Size = new System.Drawing.Size(8, 7);
             this.lblIdPieza.TabIndex = 23;
             this.lblIdPieza.Text = "0";
+            this.lblIdPieza.Visible = false;
             // 
             // btnExaminar
             // 

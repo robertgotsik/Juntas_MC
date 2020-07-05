@@ -105,6 +105,16 @@ namespace Juntas_MC.DAL
             OleDbCommand sentencia = new OleDbCommand("SELECT MO.Id, MO.Nombre & " +" ' ['" +" & MA.Nombre & " +"']' " +"as NombreModeloMarca from Modelos MO inner join Marcas MA on MO.Marca = MA.Id order by Mo.Nombre");
             return conexion.ejecutarSentencia(sentencia);
         }
+        public DataSet mostrarModelosCmb2()
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT Id, Nombre from Modelos order by Nombre");
+            return conexion.ejecutarSentencia(sentencia);
+        }
+        public DataSet mostrarModelosCmb3(int marca)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT Id, Nombre from Modelos where marca = " +marca +" order by Nombre");
+            return conexion.ejecutarSentencia(sentencia);
+        }
 
         public int eliminar(ModelosBLL oModelosBLL)
         {

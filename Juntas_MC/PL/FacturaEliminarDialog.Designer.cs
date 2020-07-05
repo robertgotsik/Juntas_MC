@@ -52,9 +52,9 @@
             this.lblAdvertencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdvertencia.Location = new System.Drawing.Point(67, 23);
             this.lblAdvertencia.Name = "lblAdvertencia";
-            this.lblAdvertencia.Size = new System.Drawing.Size(382, 18);
+            this.lblAdvertencia.Size = new System.Drawing.Size(328, 18);
             this.lblAdvertencia.TabIndex = 3;
-            this.lblAdvertencia.Text = "¿Desea eliminar la Factura/Remito: \" #####-######## \" ?";
+            this.lblAdvertencia.Text = "¿Desea eliminar el Remito: \" #####-######## \" ?";
             // 
             // pictureBox1
             // 
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 101);
+            this.ClientSize = new System.Drawing.Size(441, 101);
             this.Controls.Add(this.btnSi);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.pictureBox1);

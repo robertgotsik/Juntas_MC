@@ -213,5 +213,66 @@ namespace Juntas_MC.DAL
             OleDbCommand sentencia = new OleDbCommand("Select Detalles from Piezas where Id = " + PiezaId);
             return conexion.ejecutarSentencia5(sentencia);
         }
+
+        public List<PiezasBLL> mostrarPiezasListado(string ganancia, string operando, string aumento, int piezaTipo, int material, int marca, int modelo)
+        {
+            if(piezaTipo == 0 & material == 0 & marca == 0 & modelo == 0)
+            {
+                OleDbCommand sentencia = new OleDbCommand("Select Codigo, Detalles, Round (Precio * " + ganancia + " / " + operando + " , 2) as Importe, Imagen, Round (Precio * " + ganancia + " / " + operando + " * " + aumento + " , 2) AS PrecioDeVenta from Piezas where Estado = 1 order by Codigo");
+
+                List<PiezasBLL> piezasList = conexion.ejecutarSentencia(sentencia).Tables[0].AsEnumerable()
+                    .Select(dataRow => new PiezasBLL
+                    {
+                    //Id = dataRow.Field<int>("Id"),
+                    Codigo = dataRow.Field<string>("Codigo"),
+                        Precio = Convert.ToDecimal(dataRow.Field<double>("Importe")),
+                    //PiezaTipo = dataRow.Field<int>("PiezaTipo"),
+                    //Material = dataRow.Field<int>("Material"),
+                    Detalles = dataRow.Field<string>("Detalles"),
+                        Imagen = dataRow.Field<string>("Imagen"),
+                    //Estado = dataRow.Field<int>("Estado"),
+                    PrecioDeVenta = dataRow.Field<double>("PrecioDeVenta")
+                    }).ToList();
+
+                return piezasList;
+            }
+            else
+            {
+                System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
+                OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
+
+
+                strSQL.Append("Select Codigo, Detalles, Round (Precio * " + ganancia + " / " + operando + " , 2) as Importe, Imagen, Round (Precio * " + ganancia + " / " + operando + " * " + aumento + " , 2) AS PrecioDeVenta from ((((Piezas P INNER JOIN PiezasTipos PT on PT.Id = P.PiezaTipo) INNER JOIN Materiales MA on MA.Id = P.Material) INNER JOIN PiezasModelos PM on PM.Pieza = P.Id) INNER JOIN Modelos MO on MO.Id = PM.Modelo) INNER JOIN Marcas MAR on MAR.Id = MO.Marca ");
+                
+                    strSQL.Append(" WHERE ");
+                    string whereClause = "";
+                    if (piezaTipo != 0) whereClause += "PiezaTipo = " + piezaTipo ;
+                    if (material != 0) whereClause += (whereClause != "" ? " and " : "") + "P.Material = " + material;
+                    if (marca != 0) whereClause += (whereClause != "" ? " and " : "") + "MAR.Id = " + marca;
+                    if (modelo != 0) whereClause += (whereClause != "" ? " and " : "") + "MO.Id = " + modelo;
+                strSQL.Append(whereClause);
+                    strSQL.Append(" and Estado = 1 GROUP BY P.Codigo, Detalles, Precio, Imagen");
+
+                sentencia.CommandText = (Convert.ToString(strSQL));
+                conexion.ejecutarMetodoSinRetornoDatos(sentencia);
+
+                List<PiezasBLL> piezasList = conexion.ejecutarSentencia(sentencia).Tables[0].AsEnumerable()
+                    .Select(dataRow => new PiezasBLL
+                    {
+                        //Id = dataRow.Field<int>("Id"),
+                        Codigo = dataRow.Field<string>("Codigo"),
+                        Precio = Convert.ToDecimal(dataRow.Field<double>("Importe")),
+                        //PiezaTipo = dataRow.Field<int>("PiezaTipo"),
+                        //Material = dataRow.Field<int>("Material"),
+                        Detalles = dataRow.Field<string>("Detalles"),
+                        Imagen = dataRow.Field<string>("Imagen"),
+                        //Estado = dataRow.Field<int>("Estado"),
+                        PrecioDeVenta = dataRow.Field<double>("PrecioDeVenta")
+                    }).ToList();
+
+                return piezasList;
+            }
+            
+        }
     }
 }

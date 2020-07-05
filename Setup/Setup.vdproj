@@ -88,12 +88,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A638A8DFD94FAC874C5EDBA504AD30DE"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_2F49B32C7A8E45E192817CD31FCBF725"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -133,6 +127,12 @@
         "OwnerKey" = "8:_E5078F90A8F8672A9548F9C009BCE5E7"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A638A8DFD94FAC874C5EDBA504AD30DE"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -151,6 +151,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -180,11 +196,6 @@
                     {
                     "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 y x64)"
                     "ProductCode" = "8:.NETFramework,Version=v4.7.2"
-                    }
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:SAP.CrystalReports14.NET.2.0"
-                    {
-                    "Name" = "8:SAP Crystal Reports Runtime Engine for .NET Framework"
-                    "ProductCode" = "8:SAP.CrystalReports14.NET.2.0"
                     }
                 }
             }
@@ -542,7 +553,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Juntas MC"
         "ProductCode" = "8:{78F9A37C-9A49-44D6-96CE-8E6208C8A32D}"
-        "PackageCode" = "8:{28AC66F8-EC45-4546-B52E-57F2277F4592}"
+        "PackageCode" = "8:{E39A78D1-A003-409E-A201-4AFD58BD3183}"
         "UpgradeCode" = "8:{232077E8-BEE5-437C-90A3-8EC3F3D82471}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

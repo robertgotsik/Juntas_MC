@@ -118,5 +118,11 @@ namespace Juntas_MC
             AcercaDe acercaDe = new AcercaDe();
             acercaDe.Show();
         }
+
+        private void listadosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Listados listados = new Listados();
+            listados.Show();
+        }
     }
 }
