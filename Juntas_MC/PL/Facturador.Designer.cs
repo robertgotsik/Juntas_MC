@@ -44,6 +44,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.nupCantidad = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtGanancia = new System.Windows.Forms.TextBox();
+            this.lblGanancia = new System.Windows.Forms.Label();
             this.lblPiezaId = new System.Windows.Forms.Label();
             this.cbProveedor = new System.Windows.Forms.CheckBox();
             this.cmbProveedor = new System.Windows.Forms.ComboBox();
@@ -54,6 +56,7 @@
             this.btnFacturar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvgFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -67,9 +70,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(418, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 29);
+            this.label1.Size = new System.Drawing.Size(136, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "N° Factura:";
+            this.label1.Text = "N° Remito:";
             // 
             // txtFactura
             // 
@@ -103,6 +106,7 @@
             // 
             // dvgFactura
             // 
+            this.dvgFactura.AllowUserToAddRows = false;
             this.dvgFactura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dvgFactura.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgFactura.Location = new System.Drawing.Point(6, 112);
@@ -111,6 +115,7 @@
             this.dvgFactura.RowTemplate.Height = 24;
             this.dvgFactura.Size = new System.Drawing.Size(918, 274);
             this.dvgFactura.TabIndex = 5;
+            this.dvgFactura.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EliminarRow);
             // 
             // lblTotal
             // 
@@ -201,6 +206,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.txtGanancia);
+            this.groupBox2.Controls.Add(this.lblGanancia);
             this.groupBox2.Controls.Add(this.lblPiezaId);
             this.groupBox2.Controls.Add(this.cbProveedor);
             this.groupBox2.Controls.Add(this.cmbProveedor);
@@ -217,6 +225,22 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle";
             // 
+            // txtGanancia
+            // 
+            this.txtGanancia.Location = new System.Drawing.Point(437, 61);
+            this.txtGanancia.Name = "txtGanancia";
+            this.txtGanancia.Size = new System.Drawing.Size(77, 22);
+            this.txtGanancia.TabIndex = 23;
+            // 
+            // lblGanancia
+            // 
+            this.lblGanancia.AutoSize = true;
+            this.lblGanancia.Location = new System.Drawing.Point(358, 64);
+            this.lblGanancia.Name = "lblGanancia";
+            this.lblGanancia.Size = new System.Drawing.Size(73, 17);
+            this.lblGanancia.TabIndex = 22;
+            this.lblGanancia.Text = "Ganancia:";
+            // 
             // lblPiezaId
             // 
             this.lblPiezaId.AutoSize = true;
@@ -230,12 +254,13 @@
             // cbProveedor
             // 
             this.cbProveedor.AutoSize = true;
-            this.cbProveedor.Location = new System.Drawing.Point(312, 60);
+            this.cbProveedor.Location = new System.Drawing.Point(313, 21);
             this.cbProveedor.Name = "cbProveedor";
             this.cbProveedor.Size = new System.Drawing.Size(96, 21);
             this.cbProveedor.TabIndex = 20;
             this.cbProveedor.Text = "Proveedor";
             this.cbProveedor.UseVisualStyleBackColor = true;
+            this.cbProveedor.Visible = false;
             this.cbProveedor.CheckedChanged += new System.EventHandler(this.habilitaProveedor);
             // 
             // cmbProveedor
@@ -244,10 +269,11 @@
             this.cmbProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbProveedor.Enabled = false;
             this.cmbProveedor.FormattingEnabled = true;
-            this.cmbProveedor.Location = new System.Drawing.Point(414, 60);
+            this.cmbProveedor.Location = new System.Drawing.Point(415, 21);
             this.cmbProveedor.Name = "cmbProveedor";
             this.cmbProveedor.Size = new System.Drawing.Size(151, 24);
             this.cmbProveedor.TabIndex = 19;
+            this.cmbProveedor.Visible = false;
             // 
             // btnAgregarModelo
             // 
@@ -325,6 +351,16 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.Window;
+            this.label8.Location = new System.Drawing.Point(493, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 17);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "%";
+            // 
             // Facturador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -384,5 +420,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label ultimaFacturaInsertada;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtGanancia;
+        private System.Windows.Forms.Label lblGanancia;
+        private System.Windows.Forms.Label label8;
     }
 }

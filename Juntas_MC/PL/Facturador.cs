@@ -100,7 +100,22 @@ namespace Juntas_MC.PL
             int pieza = Convert.ToInt32(cmbPieza.SelectedValue);
             int cantidad = (int)nupCantidad.Value;
             string descripcion = oPiezasDAL.averiguarDetalles(pieza);
+            if (descripcion == "")
+            {
+                descripcion = "Sin descripcion";
+            }
             decimal precio = 0;
+            decimal ganancia;
+            if (txtGanancia.Text != "") 
+            { 
+                ganancia = Convert.ToDecimal((txtGanancia.Text).Replace(".", ",")); 
+            }
+            else
+            {
+                ganancia = 1;
+            }
+            
+
 
             //Calculo Precio de Lista + Porcentaje Cliente.
             if (cbProveedor.Checked == true & cmbProveedor.SelectedValue != null)
@@ -113,7 +128,7 @@ namespace Juntas_MC.PL
                 precio = Convert.ToDecimal(oPiezasDAL.averiguarPrecio(pieza)); //Trae el precio de lista (Piezas)
             }
 
-            decimal precioPorCantidad = Math.Round(precio * cantidad, 2);
+            decimal precioPorCantidad = Math.Round(precio * cantidad + (precio * cantidad * ganancia / 100), 2);
             if (porcentaje != -1)
             {
                 decimal precioPorPorcentaje = Math.Round(precioPorCantidad * porcentaje, 2);
@@ -123,7 +138,7 @@ namespace Juntas_MC.PL
                 row["Codigo"] = cmbPieza.Text;
                 row["Descripcion"] = descripcion;
                 row["Cantidad"] = nupCantidad.Value;
-                row["Precio unit"] = precio;
+                row["Precio unit"] = precio + (precio * ganancia / 100);
                 //row["Precio x cant"] = precioPorCantidad;
                 row["Bonificacion"] = precioDividido100;
                 row["Importe total"] = valorMenosPorcentaje;
@@ -134,16 +149,15 @@ namespace Juntas_MC.PL
                 precio = 0;
                 precioPorPorcentaje = 0;
                 precioDividido100 = 0;
-                importeTotal += Math.Round(valorMenosPorcentaje, 2);
-                lblImporteTotal.Text = importeTotal.ToString(); ;
                 valorMenosPorcentaje = 0;
+                calcularTotal();
             }
             else
             {
                 row["Codigo"] = cmbPieza.Text;
                 row["Descripcion"] = descripcion;
                 row["Cantidad"] = nupCantidad.Value;
-                row["Precio unit"] = precio;
+                row["Precio unit"] = precio + (precio * ganancia / 100);
                 //row["Precio x cant"] = precioPorCantidad;
                 row["Bonificacion"] = "";
                 row["Importe total"] = precioPorCantidad;
@@ -151,11 +165,11 @@ namespace Juntas_MC.PL
 
                 dt.Rows.Add(row);
 
-                
 
-                importeTotal += Math.Round(precioPorCantidad, 2);
-                lblImporteTotal.Text = importeTotal.ToString(); ;
-                precio = 0;
+
+                //importeTotal += Math.Round(precioPorCantidad, 2);
+                //lblImporteTotal.Text = importeTotal.ToString(); ;
+                calcularTotal();
             }
             
             
@@ -232,6 +246,28 @@ namespace Juntas_MC.PL
         private void button1_Click(object sender, EventArgs e)
         {
             frmImpresionDialog.ShowDialog();
+        }
+
+        private void EliminarRow(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (dvgFactura.CurrentRow.Index != -1)
+                {
+                    dvgFactura.Rows.RemoveAt(dvgFactura.CurrentRow.Index);
+                    calcularTotal();
+                }
+            }
+        }
+
+        private void calcularTotal()
+        {
+            decimal total = 0;
+            foreach (DataGridViewRow row in dvgFactura.Rows)
+            {
+                total += Convert.ToDecimal(row.Cells["Importe total"].Value);
+            }
+            lblImporteTotal.Text = Convert.ToString(total);
         }
     }
 }

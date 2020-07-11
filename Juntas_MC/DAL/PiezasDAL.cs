@@ -54,13 +54,13 @@ namespace Juntas_MC.DAL
                 OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
 
-                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from (((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) inner join PiezasModelos PM on PM.Pieza = PI.ID) ");
+                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from (((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) inner join PiezasModelos PM on PM.Pieza = PI.ID) ");
                 if (codigo != "" | precioDesde != "" | precioHasta != "" | material != 0 | modComp != 0 | tipoDePieza != 0 | estado != -1)
                 {
                     strSQL.Append("WHERE ");
                     string whereClause = "";
                     if (modComp != 0) whereClause += "PM.Modelo = " + modComp;
-                    if (codigo != "") whereClause += (whereClause != "" ? " and " : "") + "codigo = '" + codigo + "'";
+                    if (codigo != "") whereClause += (whereClause != "" ? " and " : "") + "codigo like '%" + codigo + "%'";
                     if (material != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.Material = " + material;
                     if (tipoDePieza != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.PiezaTipo = " + tipoDePieza;
                     if (precioDesde != "") whereClause += (whereClause != "" ? " and " : "") + "PI.Precio >= " + precioDesde;
@@ -78,12 +78,12 @@ namespace Juntas_MC.DAL
                 System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
                 OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
-                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
+                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
                 if (codigo != "" | precioDesde != "" | precioHasta != "" | material != 0 | modComp != 0 | tipoDePieza != 0 | estado != -1)
                 {
                     strSQL.Append("WHERE ");
                     string whereClause = "";
-                    if (codigo != "") whereClause += "codigo = '" + codigo + "'";
+                    if (codigo != "") whereClause += "codigo like '%" + codigo + "%'";
                     if (material != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.Material = " + material;
                     if (tipoDePieza != 0) whereClause += (whereClause != "" ? " and " : "") + "PI.PiezaTipo = " + tipoDePieza;
                     if (precioDesde != "") whereClause += (whereClause != "" ? " and " : "") + "PI.Precio >= " + precioDesde;
@@ -121,7 +121,7 @@ namespace Juntas_MC.DAL
 
         public bool agregar(PiezasBLL oPiezasBLL)
         {
-            if ((oPiezasBLL.Codigo != "") & Convert.ToBoolean(Convert.ToString(oPiezasBLL.Precio != 0)) & (oPiezasBLL.Estado != 0) & (oPiezasBLL.PiezaTipo != -1) & (oPiezasBLL.Material != 0))
+            if ((oPiezasBLL.Codigo != "") & Convert.ToBoolean(Convert.ToString(oPiezasBLL.Precio != 0)) & (oPiezasBLL.Estado != -1) & (oPiezasBLL.PiezaTipo != -1) & (oPiezasBLL.Material != 0))
             {
                 OleDbCommand oleDbComando = new OleDbCommand("Insert into Piezas (Codigo, Precio, PiezaTipo, Material, Detalles, Imagen, Estado) VALUES ('" + oPiezasBLL.Codigo + "', '" + oPiezasBLL.Precio + "', " + oPiezasBLL.PiezaTipo + ", " + oPiezasBLL.Material + ", '" + oPiezasBLL.Detalles + "', '" + oPiezasBLL.Imagen + "'," + oPiezasBLL.Estado + ")");
 
@@ -218,20 +218,20 @@ namespace Juntas_MC.DAL
         {
             if(piezaTipo == 0 & material == 0 & marca == 0 & modelo == 0)
             {
-                OleDbCommand sentencia = new OleDbCommand("Select Codigo, Detalles, Round (Precio * " + ganancia + " / " + operando + " , 2) as Importe, Imagen, Round (Precio * " + ganancia + " / " + operando + " * " + aumento + " , 2) AS PrecioDeVenta from Piezas where Estado = 1 order by Codigo");
+                OleDbCommand sentencia = new OleDbCommand("Select Codigo, Detalles, Round (((Precio + (Precio * " + ganancia + " / 100)) - ((Precio + (Precio * " + ganancia + " / 100)) * (" + operando+ " / 100))), 2) as Importe, Imagen, Round (Importe + (Importe * " + aumento + " / 100), 2) AS PrecioDeVenta from Piezas where Estado = 1 order by Codigo");
 
                 List<PiezasBLL> piezasList = conexion.ejecutarSentencia(sentencia).Tables[0].AsEnumerable()
                     .Select(dataRow => new PiezasBLL
                     {
-                    //Id = dataRow.Field<int>("Id"),
-                    Codigo = dataRow.Field<string>("Codigo"),
-                        Precio = Convert.ToDecimal(dataRow.Field<double>("Importe")),
-                    //PiezaTipo = dataRow.Field<int>("PiezaTipo"),
-                    //Material = dataRow.Field<int>("Material"),
-                    Detalles = dataRow.Field<string>("Detalles"),
+                        //Id = dataRow.Field<int>("Id"),
+                        Codigo = dataRow.Field<string>("Codigo"),
+                        Precio = Convert.ToDecimal(dataRow.Field<double>("Importe").ToString("0.00")),
+                        //PiezaTipo = dataRow.Field<int>("PiezaTipo"),
+                        //Material = dataRow.Field<int>("Material"),
+                        Detalles = dataRow.Field<string>("Detalles"),
                         Imagen = dataRow.Field<string>("Imagen"),
-                    //Estado = dataRow.Field<int>("Estado"),
-                    PrecioDeVenta = dataRow.Field<double>("PrecioDeVenta")
+                        //Estado = dataRow.Field<int>("Estado"),
+                        PrecioDeVenta = Convert.ToDecimal(dataRow.Field<double>("PrecioDeVenta").ToString("0.00"))
                     }).ToList();
 
                 return piezasList;
@@ -242,7 +242,7 @@ namespace Juntas_MC.DAL
                 OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
 
-                strSQL.Append("Select Codigo, Detalles, Round (Precio * " + ganancia + " / " + operando + " , 2) as Importe, Imagen, Round (Precio * " + ganancia + " / " + operando + " * " + aumento + " , 2) AS PrecioDeVenta from ((((Piezas P INNER JOIN PiezasTipos PT on PT.Id = P.PiezaTipo) INNER JOIN Materiales MA on MA.Id = P.Material) INNER JOIN PiezasModelos PM on PM.Pieza = P.Id) INNER JOIN Modelos MO on MO.Id = PM.Modelo) INNER JOIN Marcas MAR on MAR.Id = MO.Marca ");
+                strSQL.Append("Select Codigo, Detalles, Round (Precio * " + ganancia + " - (Precio * " + ganancia + " * (" + operando + " / 100)), 2) as Importe, Imagen, Round ((Precio * " + ganancia + " - (Precio * " + ganancia + " * (" + operando + " / 100))) * " + aumento + " , 2) AS PrecioDeVenta from ((((Piezas P INNER JOIN PiezasTipos PT on PT.Id = P.PiezaTipo) INNER JOIN Materiales MA on MA.Id = P.Material) INNER JOIN PiezasModelos PM on PM.Pieza = P.Id) INNER JOIN Modelos MO on MO.Id = PM.Modelo) INNER JOIN Marcas MAR on MAR.Id = MO.Marca ");
                 
                     strSQL.Append(" WHERE ");
                     string whereClause = "";
@@ -261,13 +261,13 @@ namespace Juntas_MC.DAL
                     {
                         //Id = dataRow.Field<int>("Id"),
                         Codigo = dataRow.Field<string>("Codigo"),
-                        Precio = Convert.ToDecimal(dataRow.Field<double>("Importe")),
+                        Precio = Convert.ToDecimal(dataRow.Field<double>("Importe").ToString("0.00")),
                         //PiezaTipo = dataRow.Field<int>("PiezaTipo"),
                         //Material = dataRow.Field<int>("Material"),
                         Detalles = dataRow.Field<string>("Detalles"),
                         Imagen = dataRow.Field<string>("Imagen"),
                         //Estado = dataRow.Field<int>("Estado"),
-                        PrecioDeVenta = dataRow.Field<double>("PrecioDeVenta")
+                        PrecioDeVenta = Convert.ToDecimal(dataRow.Field<double>("PrecioDeVenta").ToString("0.00"))
                     }).ToList();
 
                 return piezasList;

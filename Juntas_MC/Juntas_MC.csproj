@@ -536,6 +536,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Settings_105244.ico" />
+    <None Include="Resources\mc_logo.png" />
+    <None Include="Resources\mc_logo.jpg" />
+    <None Include="Resources\iconfinder_Cog_58513.png" />
     <None Include="Resources\57504529_565561130632513_6052637543256555520_n.jpg" />
     <None Include="Resources\iconfinder_Settings_105244.ico" />
     <None Include="Resources\iconfinder_small_car_64675.png" />

@@ -55,14 +55,19 @@ namespace Juntas_MC.PL
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "") | (txtPrecioHasta.Text != "") | (Convert.ToInt32(cmbMaterial.SelectedValue) != 0) | 
+            realizarBusqueda();
+        }
+
+        public void realizarBusqueda()
+        {
+            if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "") | (txtPrecioHasta.Text != "") | (Convert.ToInt32(cmbMaterial.SelectedValue) != 0) |
                 (cmbModComp.SelectedValue != null) | (cmbTdP.SelectedValue != null) | (lbEstado.SelectedIndex != -1))
             {
                 string codigo = txtCodigo.Text;
                 if (txtPrecioDesde.Text != "" | txtPrecioHasta.Text != "")
                 {
-                    txtPrecioDesde.Text = (txtPrecioDesde.Text).Replace(",", "."); 
-                    txtPrecioHasta.Text = (txtPrecioHasta.Text).Replace(",", "."); 
+                    txtPrecioDesde.Text = (txtPrecioDesde.Text).Replace(",", ".");
+                    txtPrecioHasta.Text = (txtPrecioHasta.Text).Replace(",", ".");
                 }
                 string precioDesde = txtPrecioDesde.Text;
                 string precioHasta = txtPrecioHasta.Text;
@@ -71,7 +76,7 @@ namespace Juntas_MC.PL
                 int tipoDePieza = Convert.ToInt32(cmbTdP.SelectedValue);
                 int estado = lbEstado.SelectedIndex;
                 frmPiezas.llenarGridPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado);
-                
+
             }
             else
             {
@@ -93,6 +98,14 @@ namespace Juntas_MC.PL
         {
             if (txtPrecioHasta.Text != "") { }
             else { txtPrecioHasta.Text = txtPrecioDesde.Text; }
+        }
+
+        private void txtCodigo_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                realizarBusqueda();
+            }
         }
     }
 }

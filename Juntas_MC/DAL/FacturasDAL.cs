@@ -87,8 +87,8 @@ namespace Juntas_MC.DAL
             {
                 strSQL.Append("WHERE ");
                 string whereClause = "";
-                if (FechaDesde != null) whereClause += "F.FechaEmision >= '" + FechaDesde + "'";
-                if (FechaHasta != null) whereClause += (whereClause != "" ? " and " : "") + "F.FechaEmision <= '" + FechaHasta + "'";
+                if (FechaDesde != null & FechaHasta != null) whereClause += "F.FechaEmision BETWEEN #" + FechaDesde + "# AND #" + FechaHasta +"#";
+                //if (FechaHasta != null) whereClause += (whereClause != "" ? " and " : "") + "F.FechaEmision <= '" + FechaHasta + "'";
                 if (Cliente != 0) whereClause += (whereClause != "" ? " and " : "") + "F.Cliente = " + Cliente;
                 strSQL.Append(whereClause);
                 strSQL.Append(" Order by F.Id");
@@ -107,7 +107,7 @@ namespace Juntas_MC.DAL
 
         public string TotalVentas(string FechaDesde, string FechaHasta)
         {
-            OleDbCommand sentencia = new OleDbCommand("SELECT SUM (ImporteTotal) as Valor from Facturas where FechaEmision >= '" + FechaDesde + "' and FechaEmision <= '" + FechaHasta +"'");
+            OleDbCommand sentencia = new OleDbCommand("SELECT IIf(IsNull(SUM (ImporteTotal)),0, (SUM (ImporteTotal))) as Valor from Facturas where FechaEmision BETWEEN #" + FechaDesde + "# and #" + FechaHasta +"#");
             return conexion.MetodoString(sentencia);
         }
     }

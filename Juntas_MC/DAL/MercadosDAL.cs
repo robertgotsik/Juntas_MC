@@ -133,5 +133,11 @@ namespace Juntas_MC.DAL
                 return false;
             }
         }
+
+        public string NombreCliente(int FacturaId)
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select ME.Nombre as Valor from Mercados ME INNER JOIN Facturas F on F.Cliente = ME.Id where F.Id = " + FacturaId );
+            return conexion.MetodoString(sentencia);
+        }
     }
 }

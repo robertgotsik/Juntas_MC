@@ -1,4 +1,5 @@
-﻿using Juntas_MC.DAL;
+﻿using Juntas_MC.BLL;
+using Juntas_MC.DAL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,24 +40,36 @@ namespace Juntas_MC.PL
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string FechaDesde = dtpDesde.Text;
-            string FechaHasta = dtpHasta.Text;
+            DateTime FechaDesde = DateTime.Parse(dtpDesde.Text);
+            string FechaDesdeFormat = FechaDesde.ToString("M/d/yyy");
+            DateTime FechaHasta = DateTime.Parse(dtpHasta.Text);
+            string FechaHastaFormat = FechaHasta.ToString("M/d/yyy");
 
             //Calculo de total de ventas en $
-            lblVentas.Text = facturasDAL.TotalVentas(FechaDesde, FechaHasta);
+            lblVentas.Text = facturasDAL.TotalVentas(FechaDesdeFormat, FechaHastaFormat);
 
             //Calculo cantidad de piezas vendidas
-            lblCantPiezas.Text = facturasItemsDAL.CantPiezasVendidas(FechaDesde, FechaHasta);
+            lblCantPiezas.Text = facturasItemsDAL.CantPiezasVendidas(FechaDesdeFormat, FechaHastaFormat);
+
+            //Calculo clientes alcanzados
+            lblClientes.Text = facturasItemsDAL.ClientesAlcanzados(FechaDesdeFormat, FechaHastaFormat);
+
+            //Calculo Tipo Pieza mas vendido
+            lblPiezaTipo.Text = facturasItemsDAL.PiezaTipoMasVendido(FechaDesdeFormat, FechaHastaFormat);
 
             //Grafico de barras
-
+            chartCantPiezas.DataSource = facturasItemsDAL.CodigoPiezaTopVentas(FechaDesdeFormat, FechaHastaFormat);
+            chartCantPiezas.Series["Pieza"].XValueMember = "PiezaCodigo";
+            chartCantPiezas.Series["Pieza"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            chartCantPiezas.Series["Pieza"].YValueMembers = "Cantidad";
+            chartCantPiezas.Series["Pieza"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
 
             //Grafico de torta
-        }
-
-        private void CantPiezasVendidas()
-        {
-
+            chartGananciaPorPieza.DataSource = facturasItemsDAL.GananciasPorPieza(FechaDesdeFormat, FechaHastaFormat);
+            chartGananciaPorPieza.Series["Ganancia"].XValueMember = "PiezaCodigo";
+            chartGananciaPorPieza.Series["Ganancia"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.String;
+            chartGananciaPorPieza.Series["Ganancia"].YValueMembers = "ItemImporteTotal";
+            chartGananciaPorPieza.Series["Ganancia"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
         }
     }
 }

@@ -48,10 +48,12 @@ namespace Juntas_MC.PL
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string FechaDesde = dtpDesde.Text;
-            string FechaHasta = dtpHasta.Text;
+            DateTime FechaDesde = DateTime.Parse(dtpDesde.Text);
+            string FechaDesdeFormat = FechaDesde.ToString("M/d/yyy");
+            DateTime FechaHasta = DateTime.Parse(dtpHasta.Text);
+            string FechaHastaFormat = FechaHasta.ToString("M/d/yyy");
             int Cliente = Convert.ToInt32(cmbCliente.SelectedValue);
-            dgvFacturas.DataSource = facturasDAL.buscarTodasFacturas(FechaDesde, FechaHasta, Cliente).Tables[0];
+            dgvFacturas.DataSource = facturasDAL.buscarTodasFacturas(FechaDesdeFormat, FechaHastaFormat, Cliente).Tables[0];
             this.dgvFacturas.Columns["Id"].Visible = false;
             this.dgvFacturas.Columns["ClienteId"].Visible = false;
 
@@ -121,7 +123,7 @@ namespace Juntas_MC.PL
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
             Estadisticas estadisticas = new Estadisticas();
-            estadisticas.ShowDialog();
+            estadisticas.Show();
         }
     }
 }

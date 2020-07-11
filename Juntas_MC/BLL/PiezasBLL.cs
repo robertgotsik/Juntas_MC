@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Juntas_MC.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Drawing;
@@ -30,17 +31,19 @@ namespace Juntas_MC.BLL
                     if (File.Exists(Imagen))
                     {
                         Image im = Image.FromFile(Imagen);
-                        Image newImage = ScaleImage(im, 100, 100);
+                        Image newImage = ScaleImage(im, 50, 50);
                         
                             return newImage;
                         
                         //return Image.FromFile(Imagen);
                     }
                 }
-                return null; 
+                Image im2 = Resources.image2;
+                Image standartImage = ScaleImage(im2, 50, 50);
+                return standartImage; 
             }
         }
-        public double PrecioDeVenta { get; set; }
+        public decimal PrecioDeVenta { get; set; }
 
         private static Image ScaleImage(Image image, int maxWidth, int maxHeight)
         {

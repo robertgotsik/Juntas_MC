@@ -44,7 +44,7 @@ namespace Juntas_MC.PL
             {
                 imprimirFacturaCrystalReports();
             }
-            //imprimirFacturaCrystalReports();
+            this.Close();
 
         }
 

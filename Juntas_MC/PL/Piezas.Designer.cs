@@ -171,6 +171,7 @@
             // txtDetalles
             // 
             this.txtDetalles.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDetalles.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtDetalles.Location = new System.Drawing.Point(200, 157);
             this.txtDetalles.Multiline = true;
             this.txtDetalles.Name = "txtDetalles";
@@ -205,7 +206,6 @@
             // 
             this.dgvPiezas.AllowUserToAddRows = false;
             this.dgvPiezas.AllowUserToOrderColumns = true;
-            this.dgvPiezas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPiezas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgvPiezas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiezas.Location = new System.Drawing.Point(6, 6);

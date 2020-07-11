@@ -45,6 +45,7 @@ namespace Juntas_MC.PL
             cmbCP4.Enabled = false;
             btnQuitarModelo.Enabled = false;
             btnLimpiar.Hide();
+            txtDetalles.MaxLength = 105;
         }
 
         public void llenarGridMercados(int Pieza, int Mercado1, int Mercado2, int Mercado3, int Mercado4)
@@ -113,8 +114,7 @@ namespace Juntas_MC.PL
             cmbCP4.SelectedItem = null;
         }
 
-        //Cuando se selecciona otra pieza > limpiar la grilla de PreciosMercados
-        //El seleccionado de Clientes/Proovedores debe ser secuencial
+        
         private void Seleccionado1(object sender, EventArgs e)
         {
             cmbCP2.Enabled = true;
@@ -166,7 +166,8 @@ namespace Juntas_MC.PL
             {
                 lblIdPieza.Text = dgvPiezas.Rows[indice].Cells[0].Value.ToString();
                 txtCodigo.Text = dgvPiezas.Rows[indice].Cells[1].Value.ToString();
-                txtPrecio.Text = dgvPiezas.Rows[indice].Cells[2].Value.ToString();
+                decimal precio = Convert.ToDecimal(dgvPiezas.Rows[indice].Cells[2].Value.ToString()); //Se aloja en una variable para redondear los decimales.
+                txtPrecio.Text = precio.ToString("0.00");
                 txtDetalles.Text = dgvPiezas.Rows[indice].Cells[5].Value.ToString();
                 cmbPiezaTipo.SelectedValue = dgvPiezas.Rows[indice].Cells[3].Value.ToString();
                 cmbMaterial.SelectedValue = dgvPiezas.Rows[indice].Cells[4].Value.ToString();
@@ -307,7 +308,8 @@ namespace Juntas_MC.PL
             oPieza.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
             oPieza.Detalles = txtDetalles.Text;
             oPieza.Imagen = txtRutaImagen.Text;
-            oPieza.Estado = Convert.ToInt32(lbEstado.SelectedIndex);
+            if (lbEstado.SelectedIndex == -1) { oPieza.Estado = 1; } else { oPieza.Estado = Convert.ToInt32(lbEstado.SelectedIndex); }
+            
 
             return oPieza;
         }
@@ -426,5 +428,6 @@ namespace Juntas_MC.PL
                 errorZoomImgPiezas.ShowDialog();
             }
         }
+
     }
 }

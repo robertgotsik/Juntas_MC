@@ -24,6 +24,17 @@ namespace Juntas_MC.DAL
             return conexion.ejecutarSentencia(sentencia);
         }
 
+        public string NombreEmpresa()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select top 1 Nombre as Valor from Empresas ORDER BY Id");
+            return conexion.MetodoString(sentencia);
+        }
+        public string TelefonoEmpresa()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select top 1 Telefono as Valor from Empresas ORDER BY Id");
+            return conexion.MetodoString(sentencia);
+        }
+
         public bool modificar(EmpresasBLL oEmpresasBLL)
         {
             if (oEmpresasBLL.Nombre != "")

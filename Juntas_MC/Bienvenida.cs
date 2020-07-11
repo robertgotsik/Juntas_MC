@@ -124,5 +124,11 @@ namespace Juntas_MC
             Listados listados = new Listados();
             listados.Show();
         }
+
+        private void emitirRemitoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Facturador facturador = new Facturador();
+            facturador.Show();
+        }
     }
 }

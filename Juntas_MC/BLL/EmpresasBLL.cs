@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Juntas_MC.BLL
 {
-    class EmpresasBLL
+    public class EmpresasBLL
     {
         public int Id { get; set; }
         public string Nombre { get; set; }

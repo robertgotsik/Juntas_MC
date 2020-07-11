@@ -32,14 +32,6 @@ namespace Juntas_MC.DAL
                     PrecioUnitario + "', '" +
                     Bonificacion +"', '" +
                     ItemImporteTotal +"')");
-                //oleDbComando.Parameters.AddWithValue("@FacturaId", SqlDbType.Int).Value = FacturaId;
-                //oleDbComando.Parameters.AddWithValue("@PiezaId", SqlDbType.Int).Value = PiezaId;
-                //oleDbComando.Parameters.AddWithValue("@PiezaCodigo", SqlDbType.VarChar).Value = PiezaCodigo;
-                //oleDbComando.Parameters.AddWithValue("@Cantidad", SqlDbType.Int).Value = Cantidad;
-                //oleDbComando.Parameters.AddWithValue("@Descripcion", SqlDbType.VarChar).Value = Descripcion;
-                //oleDbComando.Parameters.AddWithValue("@PrecioUnitario", SqlDbType.Decimal).Value = PrecioUnitario;
-                //oleDbComando.Parameters.AddWithValue("@Bonificacion", SqlDbType.Decimal).Value = Bonificacion;
-                //oleDbComando.Parameters.AddWithValue("@ItemImporteTotal", SqlDbType.Decimal).Value = ItemImporteTotal;
 
                 return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
             }
@@ -60,14 +52,47 @@ namespace Juntas_MC.DAL
 
         public string CantPiezasVendidas(string FechaDesde, string FechaHasta)
         {
-            OleDbCommand sentencia = new OleDbCommand("SELECT SUM (Cantidad) as Valor FROM FacturasItems FI INNER JOIN Facturas F ON F.Id = FI.FacturaId where FechaEmision >= '" + FechaDesde + "' and FechaEmision <= '" + FechaHasta + "'");
+            OleDbCommand sentencia = new OleDbCommand("SELECT IIf(IsNull(SUM (Cantidad)),0, (SUM (Cantidad))) as Valor FROM FacturasItems FI INNER JOIN Facturas F ON F.Id = FI.FacturaId where FechaEmision BETWEEN #" + FechaDesde + "# and #" + FechaHasta +"#");
             return conexion.MetodoString(sentencia);
         }
 
 
-        public string CodigoPiezaTopVentas(string FechaDesde, string FechaHasta)
+        public List<FacturasItemsBLL> CodigoPiezaTopVentas(string FechaDesde, string FechaHasta)
         {
-            OleDbCommand sentencia = new OleDbCommand("SELECT P.Codigo, COUNT (PiezaId) as Cant  FROM (FacturasItems FI INNER JOIN Piezas P ON P.Id = FI.PiezaId) inner join Facturas F on F.Id = FI.FacturaId where FechaEmision >= '" + FechaDesde + "' and FechaEmision <= '" + FechaHasta + "' GROUP BY P.Codigo, PiezaId");
+            OleDbCommand sentencia = new OleDbCommand("SELECT TOP 5 FI.PiezaCodigo, SUM (Cantidad) as Cant FROM Facturas F INNER JOIN FacturasItems FI ON FI.FacturaId = F.Id WHERE F.FechaEmision BETWEEN #" + FechaDesde + "# AND #" + FechaHasta + "# GROUP BY PiezaCodigo ORDER BY SUM (Cantidad) DESC");
+
+            List<FacturasItemsBLL> factItemsList = conexion.ejecutarSentencia(sentencia).Tables[0].AsEnumerable()
+                        .Select(dataRow => new FacturasItemsBLL
+                        {
+                            PiezaCodigo = dataRow.Field<string>("PiezaCodigo"),
+                            Cantidad = Convert.ToInt32(dataRow.Field<double>("Cant")),
+                        }).ToList();
+
+            return factItemsList;
+        }
+        public List<FacturasItemsBLL> GananciasPorPieza(string FechaDesde, string FechaHasta)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT TOP 5 FI.PiezaCodigo, SUM (ItemImporteTotal) as Importe FROM Facturas F INNER JOIN FacturasItems FI ON FI.FacturaId = F.Id WHERE F.FechaEmision BETWEEN #" + FechaDesde + "# AND #" + FechaHasta + "# GROUP BY PiezaCodigo");
+
+            List<FacturasItemsBLL> factItemsList = conexion.ejecutarSentencia(sentencia).Tables[0].AsEnumerable()
+                        .Select(dataRow => new FacturasItemsBLL
+                        {
+                            PiezaCodigo = dataRow.Field<string>("PiezaCodigo"),
+                            ItemImporteTotal = dataRow.Field<decimal>("Importe")
+                        }).ToList();
+
+            return factItemsList;
+        }
+
+        public string ClientesAlcanzados(string FechaDesde, string FechaHasta)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT COUNT (*) AS Valor FROM (SELECT DISTINCT Cliente FROM Facturas where FechaEmision BETWEEN #" + FechaDesde + "# and #" + FechaHasta + "# )");
+            return conexion.MetodoString(sentencia);
+        }
+
+        public string PiezaTipoMasVendido(string FechaDesde, string FechaHasta)
+        {
+            OleDbCommand sentencia = new OleDbCommand("SELECT TOP 1 PT.Nombre as Valor FROM ( SELECT PT.Nombre, SUM (Cantidad) as Cant FROM ((Facturas F INNER JOIN FacturasItems FI on FI.FacturaId = F.Id) INNER JOIN Piezas P ON P.Id = FI.PiezaId) INNER JOIN PiezasTipos PT ON PT.Id = P.PiezaTipo WHERE FechaEmision BETWEEN #" + FechaDesde + "# and #" + FechaHasta + "# GROUP BY PT.Nombre ORDER BY SUM (Cantidad) DESC)");
             return conexion.MetodoString(sentencia);
         }
     }

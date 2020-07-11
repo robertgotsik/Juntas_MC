@@ -353,8 +353,8 @@ namespace Juntas_MC.DAL
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo establecer conexion con la base de datos" + ex);
-                value = "Hubo una falla";
+                
+                value = "-";
                 return value;
             }
         }

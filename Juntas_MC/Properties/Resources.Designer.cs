@@ -303,6 +303,16 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Cog_58513 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Cog_58513", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_floppy_285657 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_floppy_285657", resourceCulture);
@@ -396,6 +406,26 @@ namespace Juntas_MC.Properties {
         internal static System.Drawing.Bitmap imgZoom {
             get {
                 object obj = ResourceManager.GetObject("imgZoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mc_logo {
+            get {
+                object obj = ResourceManager.GetObject("mc_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mc_logo1 {
+            get {
+                object obj = ResourceManager.GetObject("mc_logo1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
