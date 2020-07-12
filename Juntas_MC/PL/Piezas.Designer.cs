@@ -206,6 +206,7 @@
             // 
             this.dgvPiezas.AllowUserToAddRows = false;
             this.dgvPiezas.AllowUserToOrderColumns = true;
+            this.dgvPiezas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPiezas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgvPiezas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiezas.Location = new System.Drawing.Point(6, 6);

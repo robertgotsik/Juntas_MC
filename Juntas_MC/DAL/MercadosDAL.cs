@@ -120,7 +120,7 @@ namespace Juntas_MC.DAL
 
         public bool modificar(MercadosBLL oMercadosBLL)
         {
-            if ((oMercadosBLL.Nombre != "") & Convert.ToBoolean(Convert.ToString(oMercadosBLL.Porcentaje != 0)))
+            if (oMercadosBLL.Nombre != "")
             {
                 ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
                 oModificacionDialog.ShowDialog();
@@ -138,6 +138,13 @@ namespace Juntas_MC.DAL
         {
             OleDbCommand sentencia = new OleDbCommand("Select ME.Nombre as Valor from Mercados ME INNER JOIN Facturas F on F.Cliente = ME.Id where F.Id = " + FacturaId );
             return conexion.MetodoString(sentencia);
+        }
+
+        public int eliminar(MercadosBLL oMercadosBLL)
+        {
+            conexion.ejecutarMetodoSinRetornoDatos("DELETE FROM Mercados where Id = " + oMercadosBLL.Id);
+
+            return 1;
         }
     }
 }

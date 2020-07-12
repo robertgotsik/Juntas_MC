@@ -70,10 +70,11 @@ namespace Juntas_MC.DAL
 
         public bool agregar(PreciosMercadosBLL oPreciosMercadosBLL)
         {
-            OleDbCommand oleDbComando = new OleDbCommand("Insert into PreciosMercados (PiezaId, Mercado, Precio, Estado) values (@Pieza, @Mercado, @Precio, 1)");
-            oleDbComando.Parameters.AddWithValue("@Pieza", SqlDbType.Int).Value = oPreciosMercadosBLL.PiezaId;
-            oleDbComando.Parameters.AddWithValue("@Mercado", SqlDbType.Int).Value = oPreciosMercadosBLL.Mercado;
-            oleDbComando.Parameters.AddWithValue("@Precio", SqlDbType.Decimal).Value = oPreciosMercadosBLL.Precio;
+            //if(oPreciosMercadosBLL.Precio != )
+            OleDbCommand oleDbComando = new OleDbCommand("Insert into PreciosMercados (PiezaId, Mercado, Precio, Estado) values (" +oPreciosMercadosBLL.PiezaId +", "+ oPreciosMercadosBLL.Mercado +", '" + oPreciosMercadosBLL.Precio +"', 1)");
+            //oleDbComando.Parameters.AddWithValue("@Pieza", SqlDbType.Int).Value = oPreciosMercadosBLL.PiezaId;
+            //oleDbComando.Parameters.AddWithValue("@Mercado", SqlDbType.Int).Value = oPreciosMercadosBLL.Mercado;
+            //oleDbComando.Parameters.AddWithValue("@Precio", SqlDbType.Decimal).Value = oPreciosMercadosBLL.Precio;
             //oleDbComando.Parameters.AddWithValue("@Estado", SqlDbType.Int).Value = oPreciosMercadosBLL.Estado;
             return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
         }
@@ -89,6 +90,22 @@ namespace Juntas_MC.DAL
         {
             OleDbCommand sentencia = new OleDbCommand("Select ME.Nombre as Mercado, Round (PM.Precio, 2) as Precio from PreciosMercados PM inner join Mercados ME on ME.ID = PM.Mercado where Mercado = "+ MercadoId + " and PiezaId=" + PiezaId);
             return conexion.ejecutarSentencia4(sentencia);
+        }
+
+        public bool actualizarPreciosMercados(int mercadoId, string operando, string operador)
+        {
+            if (mercadoId != 0 & operando != "" & operador != "")
+            {
+                ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
+                oModificacionDialog.ShowDialog();
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE PreciosMercados SET Precio = Precio " + operador + " " + operando + " where Mercado = " +mercadoId +" and Estado = 1");
+            }
+            else
+            {
+                ModificacionDialogFalse oModificacionDialog = new ModificacionDialogFalse();
+                oModificacionDialog.ShowDialog();
+                return false;
+            }
         }
     }
 }

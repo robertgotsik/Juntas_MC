@@ -31,7 +31,7 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public DataSet mostrarPiezas()
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, Round (PI.Precio, 2) AS Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
+            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, Round (PI.Precio, 2) AS Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
             return conexion.ejecutarSentencia(sentencia);
         }
         public DataSet mostrarPiezas2()
@@ -103,7 +103,7 @@ namespace Juntas_MC.DAL
             System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
             OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
-            strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estado from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
+            strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
             if (codigo != "" | material != 0 | tipoDePieza != 0 )
             {
                 strSQL.Append("WHERE ");

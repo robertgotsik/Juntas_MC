@@ -72,7 +72,7 @@
             // rdPrecioDeLista
             // 
             this.rdPrecioDeLista.AutoSize = true;
-            this.rdPrecioDeLista.Location = new System.Drawing.Point(129, 62);
+            this.rdPrecioDeLista.Location = new System.Drawing.Point(25, 62);
             this.rdPrecioDeLista.Name = "rdPrecioDeLista";
             this.rdPrecioDeLista.Size = new System.Drawing.Size(118, 21);
             this.rdPrecioDeLista.TabIndex = 1;
@@ -83,14 +83,12 @@
             // rdMercado
             // 
             this.rdMercado.AutoSize = true;
-            this.rdMercado.Enabled = false;
             this.rdMercado.Location = new System.Drawing.Point(237, 62);
             this.rdMercado.Name = "rdMercado";
             this.rdMercado.Size = new System.Drawing.Size(84, 21);
             this.rdMercado.TabIndex = 2;
             this.rdMercado.Text = "Mercado";
             this.rdMercado.UseVisualStyleBackColor = true;
-            this.rdMercado.Visible = false;
             this.rdMercado.CheckedChanged += new System.EventHandler(this.rdMercado_CheckedChanged);
             // 
             // groupBox1
@@ -114,7 +112,6 @@
             this.cmbMercado.Name = "cmbMercado";
             this.cmbMercado.Size = new System.Drawing.Size(180, 24);
             this.cmbMercado.TabIndex = 3;
-            this.cmbMercado.Visible = false;
             this.cmbMercado.SelectionChangeCommitted += new System.EventHandler(this.seleccionMercado);
             // 
             // groupBox2
@@ -301,6 +298,10 @@
             // 
             // dgvPiezas
             // 
+            this.dgvPiezas.AllowUserToAddRows = false;
+            this.dgvPiezas.AllowUserToDeleteRows = false;
+            this.dgvPiezas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPiezas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dgvPiezas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPiezas.Location = new System.Drawing.Point(415, 12);
             this.dgvPiezas.Name = "dgvPiezas";

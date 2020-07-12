@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace Juntas_MC.PL
     {
         PiezasDAL oPiezasDAL;
         PreciosMercadosDAL oPreciosMercadosDAL;
+        CultureInfo oCultureInfo;
 
         Mercados obj = (Mercados)Application.OpenForms["Mercados"];
         public MercadosPiezas()
@@ -23,6 +25,7 @@ namespace Juntas_MC.PL
             InitializeComponent();
             oPiezasDAL = new PiezasDAL();
             oPreciosMercadosDAL = new PreciosMercadosDAL();
+            oCultureInfo = new CultureInfo("en-US");
             iniciarLlenadoDropDown();
         }
 
@@ -47,18 +50,25 @@ namespace Juntas_MC.PL
             PreciosMercadosBLL oPreciosMercadosBLL = new PreciosMercadosBLL();
             oPreciosMercadosBLL.PiezaId = Convert.ToInt32(cmbPiezas.SelectedValue);
             oPreciosMercadosBLL.Mercado = Convert.ToInt32(lblMercadoId.Text);
-            oPreciosMercadosBLL.Precio = Convert.ToDecimal(txtPrecio.Text);
+            if (txtPrecio.Text != "") { txtPrecio.Text = (txtPrecio.Text).Replace(",", "."); oPreciosMercadosBLL.Precio = Convert.ToDecimal(txtPrecio.Text, oCultureInfo); }
 
             return oPreciosMercadosBLL;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if(lblMercadoId.Text != "0")
+            if(lblMercadoId.Text != "0" & txtPrecio.Text !="")
             {
                 oPreciosMercadosDAL.agregar(recuperarInformacionMercadoPieza());
                 int mercadoId = Convert.ToInt32(lblMercadoId.Text);
                 obj.llenarGridMercadosPrecios(mercadoId);
+            }
+            else
+            {
+                string error = "El campo Precio esta vacío.";
+                string imagen = "attention";
+                ErrorDialogGenerico errorDialogGenerico = new ErrorDialogGenerico(error, imagen);
+                errorDialogGenerico.ShowDialog();
             }
         }
     }

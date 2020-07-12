@@ -53,37 +53,77 @@ namespace Juntas_MC.PL
             this.dgvPiezas.Columns["PT.Id"].Visible = false;
             this.dgvPiezas.Columns["MA.Id"].Visible = false;
             this.dgvPiezas.Columns["Imagen"].Visible = false;
-            this.dgvPiezas.Columns["Estado"].Visible = false;
+            this.dgvPiezas.Columns["Estad"].Visible = false;
         }
 
         //Paso 1
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            cbTodasPiezas.Enabled = true;
-            txtCodigo.Enabled = false;
-            cbCodigo.Enabled = true;
-            cmbPiezaTipo.Enabled = false;
-            cbTipoPieza.Enabled = true;
-            cmbMaterial.Enabled = false;
-            cbMaterial.Enabled = true;
+            if (rdPrecioDeLista.Checked == true)
+            {
+                cbTodasPiezas.Enabled = true;
+                txtCodigo.Enabled = false;
+                cbCodigo.Enabled = true;
+                cmbPiezaTipo.Enabled = false;
+                cbTipoPieza.Enabled = true;
+                cmbMaterial.Enabled = false;
+                cbMaterial.Enabled = true;
+            }
+            else
+            {
+                cmbOperando.SelectedItem = null;
+                txtValorOperando.Text = null;
+                cmbOperando.Enabled = false;
+                txtValorOperando.Enabled = false;
+            }
         }
         private void rdMercado_CheckedChanged(object sender, EventArgs e)
         {
-            cmbMercado.Enabled = true;
+            if(rdMercado.Checked == true) 
+            { 
+                cmbMercado.Enabled = true;
+
+                cbTodasPiezas.Enabled = false;
+                cbTodasPiezas.Checked = true;
+                cbMaterial.Checked = false;
+                cbTipoPieza.Checked = false;
+                cbCodigo.Checked = false;
+                txtCodigo.Enabled = false;
+                cbCodigo.Enabled = false;
+                cmbPiezaTipo.Enabled = false;
+                cbTipoPieza.Enabled = false;
+                cmbMaterial.Enabled = false;
+                cbMaterial.Enabled = false;
+            }
+            else 
+            { 
+                cmbMercado.Enabled = false; 
+                cmbMercado.SelectedItem = null; 
+                dgvPiezas.DataSource = null;
+
+                cmbOperando.Enabled = false;
+                txtValorOperando.Enabled = false;
+                cmbOperando.SelectedItem = null;
+                txtValorOperando.Text = null;
+                cbTodasPiezas.Checked = false;
+            }
         }
+
         private void seleccionMercado(object sender, EventArgs e)
         {
             int mercado = Convert.ToInt32(cmbMercado.SelectedValue);
             dgvPiezas.DataSource = oPreciosMercadosDAL.mostrarPreciosMercadosFull(mercado).Tables[0];
-            cbTodasPiezas.Enabled = true;
+            cbTodasPiezas.Checked = true;
+            cbTodasPiezas.Enabled = false;
             txtCodigo.Enabled = false;
-            cbCodigo.Enabled = true;
+            cbCodigo.Enabled = false;
             cmbPiezaTipo.Enabled = false;
-            cbTipoPieza.Enabled = true;
+            cbTipoPieza.Enabled = false;
             cmbMaterial.Enabled = false;
-            cbMaterial.Enabled = true;
+            cbMaterial.Enabled = false;
+            cmbOperando.Enabled = true;
+            txtValorOperando.Enabled = true;
         }
-
 
 
         //Paso 2
@@ -301,6 +341,7 @@ namespace Juntas_MC.PL
             string codigo = txtCodigo.Text;
             int material = Convert.ToInt32(cmbMaterial.SelectedValue);
             int piezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
+            int mercado = Convert.ToInt32(cmbMercado.SelectedValue);
 
 
             if (cmbOperando.SelectedIndex == 0){ operador = "+"; }
@@ -348,6 +389,14 @@ namespace Juntas_MC.PL
                     oPiezasDAL.modificarPreciosConFiltros(operando, operador, codigo, material, piezaTipo);
                     dgvPiezas.DataSource = oPiezasDAL.actualizadorPreciosConFiltros(codigo, material, piezaTipo).Tables[0];
                     quitarColumnasSobrantes();
+                }
+            }
+            else if (rdMercado.Checked == true & cmbMercado.SelectedIndex != -1)
+            {
+                if(cmbOperando.SelectedIndex != -1 & txtValorOperando.Text != "")
+                {
+                    oPreciosMercadosDAL.actualizarPreciosMercados(mercado, operando, operador);
+                    dgvPiezas.DataSource = oPreciosMercadosDAL.mostrarPreciosMercadosFull(mercado).Tables[0];
                 }
             }
             else

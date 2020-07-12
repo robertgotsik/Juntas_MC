@@ -69,7 +69,7 @@ namespace Juntas_MC.PL
         private MercadosBLL recuperarInformacionMercados()
         {
             MercadosBLL oMercados = new MercadosBLL();
-            //oMercados.Id = Convert.ToInt32(lblIdMercado.Text);
+            oMercados.Id = Convert.ToInt32(lblIdMercado.Text);
             oMercados.Nombre = txtNombre.Text;
             oMercados.Tipo = Convert.ToInt32(lbTipo.SelectedIndex);
             oMercados.Telefono1 = txtTelefono1.Text;
@@ -78,8 +78,9 @@ namespace Juntas_MC.PL
             oMercados.Web = txtWeb.Text;
             oMercados.Direccion = txtDireccion.Text;
             oMercados.Localidad = txtLocalidad.Text;
-            oMercados.Provincia = Convert.ToInt32(cmbProv.SelectedValue);
-
+            if (cmbProv.SelectedIndex == -1) { oMercados.Provincia = 1; }
+            else { oMercados.Provincia = Convert.ToInt32(cmbProv.SelectedValue); }
+            
             return oMercados;
         }
 
@@ -147,7 +148,6 @@ namespace Juntas_MC.PL
             oPreciosMercadosDAL.eliminar(recuperarInformacionPreciosMercados());
             int IdMercado = Convert.ToInt32(lblIdMercado.Text);
             llenarGridMercadosPrecios(IdMercado);
-            lblIdMercado.Text = "0";
             btnQuitarPieza.Enabled = false;
         }
 
@@ -175,8 +175,8 @@ namespace Juntas_MC.PL
         private void btnModificar_Click(object sender, EventArgs e)
         {
             oMercadosDAL.modificar(recuperarInformacionMercados());
-            //llenarGridPiezas();
-            //limpiarEntradas();
+            llenarGridMercados();
+            limpiarEntradas();
             btnLimpiar.Hide();
         }
 
@@ -198,18 +198,23 @@ namespace Juntas_MC.PL
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((lblIdMercado.Text != Convert.ToString(0)) && (tabControl1.SelectedTab == tabPage2))
+            if ((lblIdMercado.Text != Convert.ToString(0)) && (tabControl1.SelectedTab == tabPage2) && (lbTipo.SelectedIndex == 1))
             {
                 tabControl1.SelectedTab = tabPage2;
             }
-            else if ((lblIdMercado.Text == Convert.ToString(0)) && (tabControl1.SelectedTab == tabPage2))
+            else if ((tabControl1.SelectedTab == tabPage2) && (lblIdMercado.Text == Convert.ToString(0)) | ((lbTipo.SelectedIndex == 0) | (lbTipo.SelectedIndex == -1)))
             {
                 tabControl1.SelectedTab = tabPage1;
+                string error = "No se ha selecionado Proveedor.";
+                string img = "attention";
+                ErrorDialogGenerico errorDialogGenerico = new ErrorDialogGenerico(error, img);
+                errorDialogGenerico.ShowDialog();
             }
         }
 
         private void limpiarEntradas()
         {
+            lblIdMercado.Text = Convert.ToString("0");
             txtNombre.Clear();
             txtEmail.Clear();
             txtDireccion.Clear();
@@ -228,6 +233,14 @@ namespace Juntas_MC.PL
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             limpiarEntradas();
+        }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            oMercadosDAL.eliminar(recuperarInformacionMercados());
+            limpiarEntradas();
+            btnLimpiar.Hide();
+            llenarGridMercados();
         }
     }
 }

@@ -75,7 +75,7 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(741, 133);
+            this.textBox2.Size = new System.Drawing.Size(741, 169);
             this.textBox2.TabIndex = 4;
             this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
@@ -92,7 +92,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Image = global::Juntas_MC.Properties.Resources.check2;
-            this.btnBuscar.Location = new System.Drawing.Point(323, 317);
+            this.btnBuscar.Location = new System.Drawing.Point(323, 353);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(123, 58);
             this.btnBuscar.TabIndex = 28;
@@ -105,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 387);
+            this.ClientSize = new System.Drawing.Size(765, 423);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnBuscar);

@@ -55,9 +55,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblPiezaId = new System.Windows.Forms.Label();
+            this.dvgMercadosPrecios = new System.Windows.Forms.DataGridView();
             this.btnQuitarPieza = new System.Windows.Forms.Button();
             this.btnAgregarModelo = new System.Windows.Forms.Button();
-            this.dvgMercadosPrecios = new System.Windows.Forms.DataGridView();
             this.lblIdMercado = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
@@ -251,7 +251,7 @@
             this.lblPorcentaje.Name = "lblPorcentaje";
             this.lblPorcentaje.Size = new System.Drawing.Size(76, 17);
             this.lblPorcentaje.TabIndex = 33;
-            this.lblPorcentaje.Text = "Porcentaje";
+            this.lblPorcentaje.Text = "Descuento";
             // 
             // txtWeb
             // 
@@ -319,9 +319,9 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.lblPiezaId);
+            this.tabPage2.Controls.Add(this.dvgMercadosPrecios);
             this.tabPage2.Controls.Add(this.btnQuitarPieza);
             this.tabPage2.Controls.Add(this.btnAgregarModelo);
-            this.tabPage2.Controls.Add(this.dvgMercadosPrecios);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -339,6 +339,18 @@
             this.lblPiezaId.TabIndex = 38;
             this.lblPiezaId.Text = "lblPiezaId";
             this.lblPiezaId.Visible = false;
+            // 
+            // dvgMercadosPrecios
+            // 
+            this.dvgMercadosPrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dvgMercadosPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvgMercadosPrecios.Location = new System.Drawing.Point(131, 6);
+            this.dvgMercadosPrecios.Name = "dvgMercadosPrecios";
+            this.dvgMercadosPrecios.RowHeadersWidth = 51;
+            this.dvgMercadosPrecios.RowTemplate.Height = 24;
+            this.dvgMercadosPrecios.Size = new System.Drawing.Size(368, 341);
+            this.dvgMercadosPrecios.TabIndex = 0;
+            this.dvgMercadosPrecios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SeleccionarPrecioMercado);
             // 
             // btnQuitarPieza
             // 
@@ -359,18 +371,6 @@
             this.btnAgregarModelo.TabIndex = 36;
             this.btnAgregarModelo.UseVisualStyleBackColor = true;
             this.btnAgregarModelo.Click += new System.EventHandler(this.btnAgregarPieza_Click);
-            // 
-            // dvgMercadosPrecios
-            // 
-            this.dvgMercadosPrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dvgMercadosPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgMercadosPrecios.Location = new System.Drawing.Point(131, 6);
-            this.dvgMercadosPrecios.Name = "dvgMercadosPrecios";
-            this.dvgMercadosPrecios.RowHeadersWidth = 51;
-            this.dvgMercadosPrecios.RowTemplate.Height = 24;
-            this.dvgMercadosPrecios.Size = new System.Drawing.Size(368, 341);
-            this.dvgMercadosPrecios.TabIndex = 0;
-            this.dvgMercadosPrecios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SeleccionarPrecioMercado);
             // 
             // lblIdMercado
             // 
@@ -416,6 +416,7 @@
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBorrar.UseVisualStyleBackColor = true;
+            this.btnBorrar.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // btnModificar
             // 
