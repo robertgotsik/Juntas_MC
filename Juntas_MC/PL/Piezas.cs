@@ -46,6 +46,8 @@ namespace Juntas_MC.PL
             btnQuitarModelo.Enabled = false;
             btnLimpiar.Hide();
             txtDetalles.MaxLength = 105;
+            txtCodigo.MaxLength = 12;
+            txtCodigoProveedor.MaxLength = 12;
         }
 
         public void llenarGridMercados(int Pieza, int Mercado1, int Mercado2, int Mercado3, int Mercado4)
@@ -56,20 +58,19 @@ namespace Juntas_MC.PL
         public void llenarGridPiezas()
         {
             dgvPiezas.DataSource = oPiezasDAL.mostrarPiezas().Tables[0];
-            this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            this.dgvPiezas.Columns["Imagen"].Visible = false;
+            ocultasColumnasSobrantes();
             limpiarEntradas();
         }
 
-        public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado)
+        public void llenarGridPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado, string codigoProveedor)
         {
-            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado).Tables[0];
+            dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado, codigoProveedor).Tables[0];
+            ocultasColumnasSobrantes();
+            limpiarEntradas();
+        }
+
+        public void ocultasColumnasSobrantes()
+        {
             this.dgvPiezas.Columns["PI.Id"].Visible = false;
             this.dgvPiezas.Columns["Detalles"].Visible = false;
             this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
@@ -78,7 +79,8 @@ namespace Juntas_MC.PL
             this.dgvPiezas.Columns["PT.Id"].Visible = false;
             this.dgvPiezas.Columns["MA.Id"].Visible = false;
             this.dgvPiezas.Columns["Imagen"].Visible = false;
-            limpiarEntradas();
+            this.dgvPiezas.Columns["CodProveedor"].Visible = false;
+            this.dgvPiezas.Columns["Observaciones"].Visible = false;
         }
 
         private void iniciarLlenadoDropDown1()
@@ -173,6 +175,8 @@ namespace Juntas_MC.PL
                 cmbMaterial.SelectedValue = dgvPiezas.Rows[indice].Cells[4].Value.ToString();
                 txtRutaImagen.Text = dgvPiezas.Rows[indice].Cells[10].Value.ToString();
                 lbEstado.SelectedItem = dgvPiezas.Rows[indice].Cells[11].Value.ToString();
+                txtCodigoProveedor.Text = dgvPiezas.Rows[indice].Cells[12].Value.ToString();
+                txtObservaciones.Text = dgvPiezas.Rows[indice].Cells[13].Value.ToString();
                 obtenerImagen();
                 //llenadoComboBoxTdPiezas();
                 //llenadoComboBoxMateriales();
@@ -308,7 +312,9 @@ namespace Juntas_MC.PL
             oPieza.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
             oPieza.Detalles = txtDetalles.Text;
             oPieza.Imagen = txtRutaImagen.Text;
+            oPieza.CodigoProveedor = txtCodigoProveedor.Text;
             if (lbEstado.SelectedIndex == -1) { oPieza.Estado = 1; } else { oPieza.Estado = Convert.ToInt32(lbEstado.SelectedIndex); }
+            oPieza.Observaciones = txtObservaciones.Text;
             
 
             return oPieza;
@@ -333,6 +339,8 @@ namespace Juntas_MC.PL
             oPiezas.PiezaTipo = Convert.ToInt32(cmbPiezaTipo.SelectedValue);
             oPiezas.Material = Convert.ToInt32(cmbMaterial.SelectedValue);
             oPiezas.Estado = Convert.ToInt32(lbEstado.SelectedIndex);
+            oPiezas.CodigoProveedor = txtCodigoProveedor.Text;
+            oPiezas.Observaciones = txtObservaciones.Text;
 
             return oPiezas;
         }
@@ -373,6 +381,7 @@ namespace Juntas_MC.PL
             txtDetalles.Clear();
             txtCodigo.Clear();
             txtRutaImagen.Clear();
+            txtCodigoProveedor.Clear();
             btnAgregar.Enabled = true;
             btnModificar.Enabled = false;
             btnBorrar.Enabled = false;
@@ -389,6 +398,7 @@ namespace Juntas_MC.PL
             cmbMaterial.SelectedItem = null;
             btnLimpiar.Hide();
             lbEstado.SelectedIndex = -1;
+            txtObservaciones.Clear();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)

@@ -19,11 +19,11 @@ namespace Juntas_MC.DAL
             conexion = new ConexionDAL();
         }
 
-        public bool insertarFacturasItems(int FacturaId, int PiezaId, string PiezaCodigo, int Cantidad, string Descripcion, decimal PrecioUnitario, decimal Bonificacion, decimal ItemImporteTotal)
+        public bool insertarFacturasItems(int FacturaId, int PiezaId, string PiezaCodigo, int Cantidad, string Descripcion, decimal PrecioUnitario, decimal Bonificacion, decimal ItemImporteTotal, string porcBonif)
         {
             if (FacturaId != 0)
             {
-                OleDbCommand oleDbComando = new OleDbCommand("Insert into FacturasItems (FacturaId, PiezaId, PiezaCodigo, Cantidad, Descripcion, PrecioUnitario, Bonificacion, ItemImporteTotal) VALUES(" +
+                OleDbCommand oleDbComando = new OleDbCommand("Insert into FacturasItems (FacturaId, PiezaId, PiezaCodigo, Cantidad, Descripcion, PrecioUnitario, Bonificacion, ItemImporteTotal, PorcBonif) VALUES(" +
                     FacturaId +", " +
                     +PiezaId +", '" +
                     PiezaCodigo +"', " +
@@ -31,7 +31,8 @@ namespace Juntas_MC.DAL
                     Descripcion +"', '" +
                     PrecioUnitario + "', '" +
                     Bonificacion +"', '" +
-                    ItemImporteTotal +"')");
+                    ItemImporteTotal +"', '"+
+                    porcBonif +"')");
 
                 return conexion.ejecutarMetodoSinRetornoDatos(oleDbComando);
             }

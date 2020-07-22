@@ -38,6 +38,8 @@
             this.lblPrecio = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmbCodigoProveedor = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtMercado
@@ -70,6 +72,7 @@
             this.cmbPiezas.Name = "cmbPiezas";
             this.cmbPiezas.Size = new System.Drawing.Size(151, 26);
             this.cmbPiezas.TabIndex = 9;
+            this.cmbPiezas.SelectionChangeCommitted += new System.EventHandler(this.cmbPiezas_SelectionChangeCommitted);
             // 
             // lblPieza
             // 
@@ -84,7 +87,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(205, 154);
+            this.btnAgregar.Location = new System.Drawing.Point(205, 198);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(112, 43);
             this.btnAgregar.TabIndex = 10;
@@ -96,7 +99,7 @@
             // lblMercadoId
             // 
             this.lblMercadoId.AutoSize = true;
-            this.lblMercadoId.Location = new System.Drawing.Point(13, 180);
+            this.lblMercadoId.Location = new System.Drawing.Point(12, 224);
             this.lblMercadoId.Name = "lblMercadoId";
             this.lblMercadoId.Size = new System.Drawing.Size(16, 17);
             this.lblMercadoId.TabIndex = 13;
@@ -107,7 +110,7 @@
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecio.Location = new System.Drawing.Point(12, 111);
+            this.lblPrecio.Location = new System.Drawing.Point(12, 144);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(57, 20);
             this.lblPrecio.TabIndex = 14;
@@ -116,7 +119,7 @@
             // txtPrecio
             // 
             this.txtPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecio.Location = new System.Drawing.Point(103, 111);
+            this.txtPrecio.Location = new System.Drawing.Point(103, 144);
             this.txtPrecio.Name = "txtPrecio";
             this.txtPrecio.Size = new System.Drawing.Size(100, 26);
             this.txtPrecio.TabIndex = 15;
@@ -127,17 +130,42 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Window;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(105, 114);
+            this.label1.Location = new System.Drawing.Point(105, 147);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 20);
             this.label1.TabIndex = 16;
             this.label1.Text = "$";
             // 
+            // cmbCodigoProveedor
+            // 
+            this.cmbCodigoProveedor.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbCodigoProveedor.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cmbCodigoProveedor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCodigoProveedor.FormattingEnabled = true;
+            this.cmbCodigoProveedor.IntegralHeight = false;
+            this.cmbCodigoProveedor.Location = new System.Drawing.Point(103, 103);
+            this.cmbCodigoProveedor.Name = "cmbCodigoProveedor";
+            this.cmbCodigoProveedor.Size = new System.Drawing.Size(151, 26);
+            this.cmbCodigoProveedor.TabIndex = 18;
+            this.cmbCodigoProveedor.SelectionChangeCommitted += new System.EventHandler(this.cmbCodigoProveedor_SelectionChangeCommitted);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 105);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.TabIndex = 17;
+            this.label2.Text = "Cod. Prov";
+            // 
             // MercadosPiezas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(329, 209);
+            this.ClientSize = new System.Drawing.Size(329, 253);
+            this.Controls.Add(this.cmbCodigoProveedor);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblPrecio);
@@ -168,5 +196,7 @@
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbCodigoProveedor;
+        private System.Windows.Forms.Label label2;
     }
 }

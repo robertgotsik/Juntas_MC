@@ -15,6 +15,7 @@ namespace Juntas_MC.BLL
     {
         public int Id { get; set; }
         public string Codigo { get; set; }
+        public string CodigoProveedor { get; set; }
         public decimal Precio { get; set; }
         public int PiezaTipo { get; set; }
         public int Material { get; set; }
@@ -61,5 +62,6 @@ namespace Juntas_MC.BLL
 
             return newImage;
         }
+        public string Observaciones { get; set; }
     }
 }

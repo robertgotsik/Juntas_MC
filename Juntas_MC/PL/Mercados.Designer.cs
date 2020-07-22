@@ -342,13 +342,18 @@
             // 
             // dvgMercadosPrecios
             // 
+            this.dvgMercadosPrecios.AllowUserToAddRows = false;
+            this.dvgMercadosPrecios.AllowUserToDeleteRows = false;
             this.dvgMercadosPrecios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dvgMercadosPrecios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dvgMercadosPrecios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgMercadosPrecios.Location = new System.Drawing.Point(131, 6);
+            this.dvgMercadosPrecios.Location = new System.Drawing.Point(79, 6);
+            this.dvgMercadosPrecios.MultiSelect = false;
             this.dvgMercadosPrecios.Name = "dvgMercadosPrecios";
+            this.dvgMercadosPrecios.ReadOnly = true;
             this.dvgMercadosPrecios.RowHeadersWidth = 51;
             this.dvgMercadosPrecios.RowTemplate.Height = 24;
-            this.dvgMercadosPrecios.Size = new System.Drawing.Size(368, 341);
+            this.dvgMercadosPrecios.Size = new System.Drawing.Size(415, 341);
             this.dvgMercadosPrecios.TabIndex = 0;
             this.dvgMercadosPrecios.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SeleccionarPrecioMercado);
             // 

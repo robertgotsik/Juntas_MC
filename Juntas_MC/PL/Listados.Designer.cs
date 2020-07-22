@@ -29,10 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Listados));
             this.dgvListado = new System.Windows.Forms.DataGridView();
-            this.PrecioDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtAumento = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbMarca = new System.Windows.Forms.CheckBox();
@@ -59,14 +63,12 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.piezasBLLBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.codigoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detallesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.piezasBLLBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PrecioDeVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListado)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -96,14 +98,6 @@
             this.dgvListado.TabIndex = 0;
             this.dgvListado.TabStop = false;
             // 
-            // PrecioDeVenta
-            // 
-            this.PrecioDeVenta.DataPropertyName = "PrecioDeVenta";
-            this.PrecioDeVenta.HeaderText = "PrecioDeVenta";
-            this.PrecioDeVenta.MinimumWidth = 6;
-            this.PrecioDeVenta.Name = "PrecioDeVenta";
-            this.PrecioDeVenta.Width = 80;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label5);
@@ -123,6 +117,36 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.Window;
+            this.label5.Location = new System.Drawing.Point(964, 138);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 17);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "%";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.Window;
+            this.label4.Location = new System.Drawing.Point(964, 43);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 17);
+            this.label4.TabIndex = 38;
+            this.label4.Text = "%";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.Window;
+            this.label3.Location = new System.Drawing.Point(964, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 17);
+            this.label3.TabIndex = 37;
+            this.label3.Text = "%";
             // 
             // txtAumento
             // 
@@ -393,41 +417,15 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
-            // label3
+            // piezasBLLBindingSource
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.SystemColors.Window;
-            this.label3.Location = new System.Drawing.Point(964, 91);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 17);
-            this.label3.TabIndex = 37;
-            this.label3.Text = "%";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.Window;
-            this.label4.Location = new System.Drawing.Point(964, 43);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 17);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "%";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.Window;
-            this.label5.Location = new System.Drawing.Point(964, 138);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(20, 17);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "%";
+            this.piezasBLLBindingSource.DataSource = typeof(Juntas_MC.BLL.PiezasBLL);
             // 
             // codigoDataGridViewTextBoxColumn
             // 
             this.codigoDataGridViewTextBoxColumn.DataPropertyName = "Codigo";
             this.codigoDataGridViewTextBoxColumn.HeaderText = "Codigo";
-            this.codigoDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.codigoDataGridViewTextBoxColumn.MinimumWidth = 4;
             this.codigoDataGridViewTextBoxColumn.Name = "codigoDataGridViewTextBoxColumn";
             this.codigoDataGridViewTextBoxColumn.Width = 125;
             // 
@@ -437,11 +435,13 @@
             this.detallesDataGridViewTextBoxColumn.HeaderText = "Detalles";
             this.detallesDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.detallesDataGridViewTextBoxColumn.Name = "detallesDataGridViewTextBoxColumn";
-            this.detallesDataGridViewTextBoxColumn.Width = 200;
+            this.detallesDataGridViewTextBoxColumn.Width = 270;
             // 
             // precioDataGridViewTextBoxColumn
             // 
             this.precioDataGridViewTextBoxColumn.DataPropertyName = "Precio";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.precioDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.precioDataGridViewTextBoxColumn.HeaderText = "Precio";
             this.precioDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.precioDataGridViewTextBoxColumn.Name = "precioDataGridViewTextBoxColumn";
@@ -458,9 +458,15 @@
             this.pictureDataGridViewImageColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.pictureDataGridViewImageColumn.Width = 125;
             // 
-            // piezasBLLBindingSource
+            // PrecioDeVenta
             // 
-            this.piezasBLLBindingSource.DataSource = typeof(Juntas_MC.BLL.PiezasBLL);
+            this.PrecioDeVenta.DataPropertyName = "PrecioDeVenta";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.PrecioDeVenta.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PrecioDeVenta.HeaderText = "PrecioVenta";
+            this.PrecioDeVenta.MinimumWidth = 6;
+            this.PrecioDeVenta.Name = "PrecioDeVenta";
+            this.PrecioDeVenta.Width = 80;
             // 
             // Listados
             // 
@@ -519,13 +525,13 @@
         private System.Windows.Forms.CheckBox cbModelo;
         private System.Windows.Forms.ComboBox cmbMarca;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detallesDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewImageColumn pictureDataGridViewImageColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PrecioDeVenta;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
     }
 }

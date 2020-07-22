@@ -61,7 +61,7 @@ namespace Juntas_MC.PL
         public void realizarBusqueda()
         {
             if ((txtCodigo.Text != "") | (txtPrecioDesde.Text != "") | (txtPrecioHasta.Text != "") | (Convert.ToInt32(cmbMaterial.SelectedValue) != 0) |
-                (cmbModComp.SelectedValue != null) | (cmbTdP.SelectedValue != null) | (lbEstado.SelectedIndex != -1))
+                (cmbModComp.SelectedValue != null) | (cmbTdP.SelectedValue != null) | (lbEstado.SelectedIndex != -1) | (txtCodigoProveedor.Text != ""))
             {
                 string codigo = txtCodigo.Text;
                 if (txtPrecioDesde.Text != "" | txtPrecioHasta.Text != "")
@@ -75,7 +75,8 @@ namespace Juntas_MC.PL
                 int modComp = Convert.ToInt32(cmbModComp.SelectedValue);
                 int tipoDePieza = Convert.ToInt32(cmbTdP.SelectedValue);
                 int estado = lbEstado.SelectedIndex;
-                frmPiezas.llenarGridPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado);
+                string codigoProveedor = txtCodigoProveedor.Text;
+                frmPiezas.llenarGridPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado, codigoProveedor);
 
             }
             else
@@ -90,6 +91,7 @@ namespace Juntas_MC.PL
             lbEstado.SelectedIndex = -1;
             txtPrecioDesde.Text = null;
             txtPrecioHasta.Text = null;
+            txtCodigoProveedor.Text = null;
 
             this.Close();
         }

@@ -57,7 +57,7 @@ namespace Juntas_MC.PL
         {
             FacturasBLL oFacturasBLL = new FacturasBLL();
             oFacturasBLL.Id = Convert.ToInt32(dgvFacturasItems.Rows[0].Cells[0].Value);
-            oFacturasBLL.Numero = dgvFacturasItems.Rows[0].Cells[1].Value.ToString();
+            oFacturasBLL.Numero = Convert.ToInt32(dgvFacturasItems.Rows[0].Cells[1].Value);
             oFacturasBLL.Cliente = Convert.ToInt32(dgvFacturasItems.Rows[0].Cells[2].Value);
             oFacturasBLL.ImporteTotal = Convert.ToDecimal(dgvFacturasItems.Rows[0].Cells[3].Value);
             oFacturasBLL.FechaEmision = Convert.ToDateTime(dgvFacturasItems.Rows[0].Cells[4].Value.ToString()); //string.Format("Fecha: {0}", DateTime.Now.Date.ToString("dd/MM/yyy"));

@@ -33,9 +33,10 @@ namespace Juntas_MC.DAL
             return conexion.ejecutarSentencia(sentencia);
         }
 
+        //Utilizado en PiezasActualizarPrecios
         public DataSet mostrarPreciosMercadosFull(int IdMercado)
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PM.PiezaId, PI.Codigo as Pieza, Round (PM.Precio, 2) as Precio from PreciosMercados PM inner join Piezas PI on PI.ID = PM.PiezaId where Mercado = " + IdMercado);
+            OleDbCommand sentencia = new OleDbCommand("Select PM.PiezaId, PI.Codigo as Pieza, PI.CodigoProveedor as CodProveedor, Round (PM.Precio, 2) as Precio from PreciosMercados PM inner join Piezas PI on PI.ID = PM.PiezaId where Mercado = " + IdMercado);
             return conexion.ejecutarSentencia(sentencia);
         }
 

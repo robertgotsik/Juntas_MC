@@ -43,6 +43,8 @@
             this.txtGuion = new System.Windows.Forms.Label();
             this.lbEstado = new System.Windows.Forms.ListBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.txtCodigoProveedor = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblCodigo
@@ -57,7 +59,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(20, 63);
+            this.lblPrecio.Location = new System.Drawing.Point(20, 103);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(52, 17);
             this.lblPrecio.TabIndex = 1;
@@ -66,7 +68,7 @@
             // lblTdP
             // 
             this.lblTdP.AutoSize = true;
-            this.lblTdP.Location = new System.Drawing.Point(20, 113);
+            this.lblTdP.Location = new System.Drawing.Point(20, 153);
             this.lblTdP.Name = "lblTdP";
             this.lblTdP.Size = new System.Drawing.Size(99, 17);
             this.lblTdP.TabIndex = 2;
@@ -75,7 +77,7 @@
             // lblMaterial
             // 
             this.lblMaterial.AutoSize = true;
-            this.lblMaterial.Location = new System.Drawing.Point(20, 163);
+            this.lblMaterial.Location = new System.Drawing.Point(20, 203);
             this.lblMaterial.Name = "lblMaterial";
             this.lblMaterial.Size = new System.Drawing.Size(62, 17);
             this.lblMaterial.TabIndex = 3;
@@ -84,7 +86,7 @@
             // lblModComp
             // 
             this.lblModComp.AutoSize = true;
-            this.lblModComp.Location = new System.Drawing.Point(20, 213);
+            this.lblModComp.Location = new System.Drawing.Point(20, 253);
             this.lblModComp.Name = "lblModComp";
             this.lblModComp.Size = new System.Drawing.Size(130, 17);
             this.lblModComp.TabIndex = 4;
@@ -100,7 +102,7 @@
             // 
             // txtPrecioDesde
             // 
-            this.txtPrecioDesde.Location = new System.Drawing.Point(20, 83);
+            this.txtPrecioDesde.Location = new System.Drawing.Point(20, 123);
             this.txtPrecioDesde.Name = "txtPrecioDesde";
             this.txtPrecioDesde.Size = new System.Drawing.Size(96, 22);
             this.txtPrecioDesde.TabIndex = 29;
@@ -108,7 +110,7 @@
             // 
             // txtPrecioHasta
             // 
-            this.txtPrecioHasta.Location = new System.Drawing.Point(141, 83);
+            this.txtPrecioHasta.Location = new System.Drawing.Point(144, 123);
             this.txtPrecioHasta.Name = "txtPrecioHasta";
             this.txtPrecioHasta.Size = new System.Drawing.Size(96, 22);
             this.txtPrecioHasta.TabIndex = 30;
@@ -118,7 +120,7 @@
             this.cmbTdP.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbTdP.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbTdP.FormattingEnabled = true;
-            this.cmbTdP.Location = new System.Drawing.Point(20, 133);
+            this.cmbTdP.Location = new System.Drawing.Point(20, 173);
             this.cmbTdP.Name = "cmbTdP";
             this.cmbTdP.Size = new System.Drawing.Size(233, 24);
             this.cmbTdP.TabIndex = 31;
@@ -128,7 +130,7 @@
             this.cmbMaterial.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbMaterial.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbMaterial.FormattingEnabled = true;
-            this.cmbMaterial.Location = new System.Drawing.Point(20, 183);
+            this.cmbMaterial.Location = new System.Drawing.Point(20, 223);
             this.cmbMaterial.Name = "cmbMaterial";
             this.cmbMaterial.Size = new System.Drawing.Size(233, 24);
             this.cmbMaterial.TabIndex = 32;
@@ -138,7 +140,7 @@
             this.cmbModComp.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cmbModComp.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbModComp.FormattingEnabled = true;
-            this.cmbModComp.Location = new System.Drawing.Point(20, 233);
+            this.cmbModComp.Location = new System.Drawing.Point(20, 273);
             this.cmbModComp.Name = "cmbModComp";
             this.cmbModComp.Size = new System.Drawing.Size(233, 24);
             this.cmbModComp.TabIndex = 33;
@@ -146,7 +148,7 @@
             // txtGuion
             // 
             this.txtGuion.AutoSize = true;
-            this.txtGuion.Location = new System.Drawing.Point(122, 86);
+            this.txtGuion.Location = new System.Drawing.Point(125, 126);
             this.txtGuion.Name = "txtGuion";
             this.txtGuion.Size = new System.Drawing.Size(13, 17);
             this.txtGuion.TabIndex = 34;
@@ -159,7 +161,7 @@
             this.lbEstado.Items.AddRange(new object[] {
             "Suspendido",
             "Activo"});
-            this.lbEstado.Location = new System.Drawing.Point(141, 19);
+            this.lbEstado.Location = new System.Drawing.Point(144, 19);
             this.lbEstado.Name = "lbEstado";
             this.lbEstado.Size = new System.Drawing.Size(120, 36);
             this.lbEstado.TabIndex = 35;
@@ -167,7 +169,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Image = global::Juntas_MC.Properties.Resources.iconfinder_Search_58605;
-            this.btnBuscar.Location = new System.Drawing.Point(78, 283);
+            this.btnBuscar.Location = new System.Drawing.Point(74, 348);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(123, 58);
             this.btnBuscar.TabIndex = 27;
@@ -176,11 +178,29 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // txtCodigoProveedor
+            // 
+            this.txtCodigoProveedor.Location = new System.Drawing.Point(20, 78);
+            this.txtCodigoProveedor.Name = "txtCodigoProveedor";
+            this.txtCodigoProveedor.Size = new System.Drawing.Size(100, 22);
+            this.txtCodigoProveedor.TabIndex = 37;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 17);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Cod. Prov:";
+            // 
             // BusquedaPieza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 367);
+            this.ClientSize = new System.Drawing.Size(276, 418);
+            this.Controls.Add(this.txtCodigoProveedor);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lbEstado);
             this.Controls.Add(this.txtGuion);
             this.Controls.Add(this.cmbModComp);
@@ -220,5 +240,7 @@
         private System.Windows.Forms.ComboBox cmbModComp;
         private System.Windows.Forms.Label txtGuion;
         private System.Windows.Forms.ListBox lbEstado;
+        private System.Windows.Forms.TextBox txtCodigoProveedor;
+        private System.Windows.Forms.Label label1;
     }
 }

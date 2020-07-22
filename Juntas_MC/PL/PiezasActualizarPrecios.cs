@@ -43,17 +43,20 @@ namespace Juntas_MC.PL
 
         public void quitarColumnasSobrantes()
         {
-            this.dgvPiezas.Columns["PI.Id"].Visible = false;
-            this.dgvPiezas.Columns["TipoDePieza"].Visible = false;
-            this.dgvPiezas.Columns["Material"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiezaTipo"].Visible = false;
-            this.dgvPiezas.Columns["Detalles"].Visible = false;
-            this.dgvPiezas.Columns["PiMaterial"].Visible = false;
-            this.dgvPiezas.Columns["PT.Id"].Visible = false;
-            this.dgvPiezas.Columns["MA.Id"].Visible = false;
-            this.dgvPiezas.Columns["Imagen"].Visible = false;
-            this.dgvPiezas.Columns["Estad"].Visible = false;
+            if (dgvPiezas.Columns.Contains("PI.Id")) { this.dgvPiezas.Columns["PI.Id"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("TipoDePieza")) { this.dgvPiezas.Columns["TipoDePieza"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("Material")) { this.dgvPiezas.Columns["Material"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("Detalles")) { this.dgvPiezas.Columns["Detalles"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("PiezaTipo")) { this.dgvPiezas.Columns["PiezaTipo"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("Detalles")) { this.dgvPiezas.Columns["Detalles"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("PiMaterial")) { this.dgvPiezas.Columns["PiMaterial"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("PT.Id")) { this.dgvPiezas.Columns["PT.Id"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("MA.Id")) { this.dgvPiezas.Columns["MA.Id"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("Imagen")) { this.dgvPiezas.Columns["Imagen"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("Estad")) { this.dgvPiezas.Columns["Estad"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("CodProveedor")){ this.dgvPiezas.Columns["CodProveedor"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("Observaciones")) { this.dgvPiezas.Columns["Observaciones"].Visible = false; }
+            if (dgvPiezas.Columns.Contains("PiezaId")) { this.dgvPiezas.Columns["PiezaId"].Visible = false; }
         }
 
         //Paso 1
@@ -113,6 +116,7 @@ namespace Juntas_MC.PL
         {
             int mercado = Convert.ToInt32(cmbMercado.SelectedValue);
             dgvPiezas.DataSource = oPreciosMercadosDAL.mostrarPreciosMercadosFull(mercado).Tables[0];
+            quitarColumnasSobrantes();
             cbTodasPiezas.Checked = true;
             cbTodasPiezas.Enabled = false;
             txtCodigo.Enabled = false;
@@ -418,7 +422,8 @@ namespace Juntas_MC.PL
                 int modComp = 0;
                 int tipoDePieza = 0;
                 int estado = 1;
-                dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado).Tables[0];
+                string codigoProveedor = null;
+                dgvPiezas.DataSource = oPiezasDAL.mostrarPiezasConFiltros(codigo, precioDesde, precioHasta, material, modComp, tipoDePieza, estado, codigoProveedor).Tables[0];
                 quitarColumnasSobrantes();
             }
         }

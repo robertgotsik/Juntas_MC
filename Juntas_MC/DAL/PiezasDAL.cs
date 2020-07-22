@@ -31,12 +31,17 @@ namespace Juntas_MC.DAL
         //Conexion mediante ACCES
         public DataSet mostrarPiezas()
         {
-            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, Round (PI.Precio, 2) AS Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
+            OleDbCommand sentencia = new OleDbCommand("Select PI.Id, PI.Codigo, Round (PI.Precio, 2) AS Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad, PI.CodigoProveedor as CodProveedor, PI.Observaciones from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) order by PI.Codigo");
             return conexion.ejecutarSentencia(sentencia);
         }
         public DataSet mostrarPiezas2()
         {
             OleDbCommand sentencia = new OleDbCommand("Select Id, Codigo from Piezas where Estado = 1 order by Codigo");
+            return conexion.ejecutarSentencia(sentencia);
+        }
+        public DataSet mostrarPiezas3()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select Id, CodigoProveedor from Piezas where Estado = 1 and CodigoProveedor <> '' order by Codigo");
             return conexion.ejecutarSentencia(sentencia);
         }
 
@@ -46,7 +51,7 @@ namespace Juntas_MC.DAL
             return conexion.ejecutarSentencia3(sentencia);
         }
 
-        public DataSet mostrarPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado)
+        public DataSet mostrarPiezasConFiltros(string codigo, string precioDesde, string precioHasta, int material, int modComp, int tipoDePieza, int estado, string codigoProveedor)
         {
             if (modComp != 0)
             {
@@ -54,7 +59,7 @@ namespace Juntas_MC.DAL
                 OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
 
-                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from (((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) inner join PiezasModelos PM on PM.Pieza = PI.ID) ");
+                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad, codigoProveedor as CodProveedor, PI.Observaciones from (((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) inner join PiezasModelos PM on PM.Pieza = PI.ID) ");
                 if (codigo != "" | precioDesde != "" | precioHasta != "" | material != 0 | modComp != 0 | tipoDePieza != 0 | estado != -1)
                 {
                     strSQL.Append("WHERE ");
@@ -66,6 +71,7 @@ namespace Juntas_MC.DAL
                     if (precioDesde != "") whereClause += (whereClause != "" ? " and " : "") + "PI.Precio >= " + precioDesde;
                     if (precioHasta != "") whereClause += (whereClause != "" ? " and " : "") + "PI.Precio <= " + precioHasta;
                     if (estado != -1) whereClause += (whereClause != "" ? " and " : "") + "PI.Estado = " + estado;
+                    if (codigoProveedor != "") whereClause += (whereClause != "" ? " and " : "") + "codigoProveedor like '%" + codigoProveedor + "%'";
                     strSQL.Append(whereClause);
                     strSQL.Append(" Order by  PI.Codigo");
                 }
@@ -78,8 +84,8 @@ namespace Juntas_MC.DAL
                 System.Text.StringBuilder strSQL = new System.Text.StringBuilder();
                 OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
-                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
-                if (codigo != "" | precioDesde != "" | precioHasta != "" | material != 0 | modComp != 0 | tipoDePieza != 0 | estado != -1)
+                strSQL.Append("Select PI.Id, PI.Codigo, PI.Precio, PI.PiezaTipo, PI.Material as PiMaterial, PI.Detalles, PT.Id, PT.Nombre as TipoDePieza, MA.Id, MA.Nombre as Material, PI.Imagen, Switch(Estado = 0, 'Suspendido', Estado = 1, 'Activo') as Estad, codigoProveedor as CodProveedor, PI.Observaciones from ((Piezas PI inner join PiezasTipos PT on PI.PiezaTipo = PT.Id) inner join Materiales MA on MA.Id = PI.Material) ");
+                if (codigo != "" | precioDesde != "" | precioHasta != "" | material != 0 | modComp != 0 | tipoDePieza != 0 | estado != -1 | codigoProveedor != "")
                 {
                     strSQL.Append("WHERE ");
                     string whereClause = "";
@@ -89,6 +95,7 @@ namespace Juntas_MC.DAL
                     if (precioDesde != "") whereClause += (whereClause != "" ? " and " : "") + "PI.Precio >= " + precioDesde;
                     if (precioHasta != "") whereClause += (whereClause != "" ? " and " : "") + "PI.Precio <= " + precioHasta;
                     if (estado != -1) whereClause += (whereClause != "" ? " and " : "") + "PI.Estado = " + estado;
+                    if (codigoProveedor != "") whereClause += (whereClause != "" ? " and " : "") + "codigoProveedor like '%" + codigoProveedor + "%'";
                     strSQL.Append(whereClause);
                     strSQL.Append(" Order by  PI.Codigo");
                 }
@@ -123,7 +130,7 @@ namespace Juntas_MC.DAL
         {
             if ((oPiezasBLL.Codigo != "") & Convert.ToBoolean(Convert.ToString(oPiezasBLL.Precio != 0)) & (oPiezasBLL.Estado != -1) & (oPiezasBLL.PiezaTipo != -1) & (oPiezasBLL.Material != 0))
             {
-                OleDbCommand oleDbComando = new OleDbCommand("Insert into Piezas (Codigo, Precio, PiezaTipo, Material, Detalles, Imagen, Estado) VALUES ('" + oPiezasBLL.Codigo + "', '" + oPiezasBLL.Precio + "', " + oPiezasBLL.PiezaTipo + ", " + oPiezasBLL.Material + ", '" + oPiezasBLL.Detalles + "', '" + oPiezasBLL.Imagen + "'," + oPiezasBLL.Estado + ")");
+                OleDbCommand oleDbComando = new OleDbCommand("Insert into Piezas (Codigo, Precio, PiezaTipo, Material, Detalles, Imagen, Estado, CodigoProveedor, Observaciones) VALUES ('" + oPiezasBLL.Codigo + "', '" + oPiezasBLL.Precio + "', " + oPiezasBLL.PiezaTipo + ", " + oPiezasBLL.Material + ", '" + oPiezasBLL.Detalles + "', '" + oPiezasBLL.Imagen + "'," + oPiezasBLL.Estado + ", '" +oPiezasBLL.CodigoProveedor +"', '" +oPiezasBLL.Observaciones +"')");
 
                 AgregadoDialogTrue oAgregadoDialog = new AgregadoDialogTrue();
                 oAgregadoDialog.ShowDialog();
@@ -151,7 +158,7 @@ namespace Juntas_MC.DAL
             {
                 ModificacionDialogTrue oModificacionDialog = new ModificacionDialogTrue();
                 oModificacionDialog.ShowDialog();
-                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Codigo = '" + oPiezasBLL.Codigo + "'" + ",Precio ='" + oPiezasBLL.Precio + "',PiezaTipo =" + oPiezasBLL.PiezaTipo + ",Material =" + oPiezasBLL.Material + ",Detalles = '" + oPiezasBLL.Detalles + "',Imagen = '" + oPiezasBLL.Imagen + "', Estado = " +oPiezasBLL.Estado +" where Id=" + oPiezasBLL.Id);
+                return conexion.ejecutarMetodoSinRetornoDatos("UPDATE Piezas SET Codigo = '" + oPiezasBLL.Codigo + "'" + ",Precio ='" + oPiezasBLL.Precio + "',PiezaTipo =" + oPiezasBLL.PiezaTipo + ",Material =" + oPiezasBLL.Material + ",Detalles = '" + oPiezasBLL.Detalles + "',Imagen = '" + oPiezasBLL.Imagen + "', Estado = " +oPiezasBLL.Estado +", CodigoProveedor = '" +oPiezasBLL.CodigoProveedor +"', Observaciones = '" +oPiezasBLL.Observaciones +"' where Id=" + oPiezasBLL.Id);
             }
             else
             {

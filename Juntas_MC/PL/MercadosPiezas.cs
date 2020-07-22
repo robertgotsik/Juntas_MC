@@ -27,6 +27,7 @@ namespace Juntas_MC.PL
             oPreciosMercadosDAL = new PreciosMercadosDAL();
             oCultureInfo = new CultureInfo("en-US");
             iniciarLlenadoDropDown();
+            llenadoDropDownCodProv();
         }
 
         
@@ -43,6 +44,13 @@ namespace Juntas_MC.PL
             cmbPiezas.DisplayMember = "Codigo";
             cmbPiezas.DataSource = oPiezasDAL.mostrarPiezas2().Tables[0];
             cmbPiezas.SelectedItem = null;
+        }
+        private void llenadoDropDownCodProv()
+        {
+            cmbCodigoProveedor.ValueMember = "Id";
+            cmbCodigoProveedor.DisplayMember = "CodigoProveedor";
+            cmbCodigoProveedor.DataSource = oPiezasDAL.mostrarPiezas3().Tables[0];
+            cmbCodigoProveedor.SelectedItem = null;
         }
 
         private PreciosMercadosBLL recuperarInformacionMercadoPieza()
@@ -70,6 +78,16 @@ namespace Juntas_MC.PL
                 ErrorDialogGenerico errorDialogGenerico = new ErrorDialogGenerico(error, imagen);
                 errorDialogGenerico.ShowDialog();
             }
+        }
+
+        private void cmbPiezas_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbCodigoProveedor.SelectedValue = cmbPiezas.SelectedValue;
+        }
+
+        private void cmbCodigoProveedor_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            cmbPiezas.SelectedValue = cmbCodigoProveedor.SelectedValue;
         }
     }
 }

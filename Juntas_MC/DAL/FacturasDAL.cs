@@ -45,7 +45,11 @@ namespace Juntas_MC.DAL
             return conexion.ejecutarSentencia6(sentencia);
         }
 
-        
+        public string UltimoCorrelativoInsertado()
+        {
+            OleDbCommand sentencia = new OleDbCommand("Select TOP 1 Numero as Valor FROM Facturas ORDER BY Id DESC");
+            return conexion.MetodoString(sentencia);
+        }
 
         public DataSet mostrarFactura(int FacturaId)
         {
@@ -70,6 +74,7 @@ namespace Juntas_MC.DAL
                             Descripcion = dataRow.Field<string>("Descripcion"),
                             Cantidad = dataRow.Field<int>("Cantidad"),
                             PrecioUnitario = dataRow.Field<decimal>("PrecioUnitario"),
+                            PorcBonif = dataRow.Field<string>("PorcBonif"),
                             Bonificacion = dataRow.Field<decimal>("Bonificacion"),
                             ItemImporteTotal = dataRow.Field<decimal>("ItemImporteTotal")
                         }).ToList();

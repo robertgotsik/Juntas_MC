@@ -354,7 +354,7 @@ namespace Juntas_MC.DAL
             catch (Exception ex)
             {
                 
-                value = "-";
+                value = "0";
                 return value;
             }
         }

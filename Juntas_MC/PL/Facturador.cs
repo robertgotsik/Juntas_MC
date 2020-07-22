@@ -44,7 +44,7 @@ namespace Juntas_MC.PL
             dt.Columns.Add("Descripcion");
             dt.Columns.Add("Cantidad");
             dt.Columns.Add("Precio unit");
-            //dt.Columns.Add("Precio x cant");
+            dt.Columns.Add("% Bonif.");
             dt.Columns.Add("Bonificacion");
             dt.Columns.Add("Importe total");
             dt.Columns.Add("PiezaId");
@@ -52,6 +52,8 @@ namespace Juntas_MC.PL
             dvgFactura.DataSource = dt;
 
             this.dvgFactura.Columns["PiezaId"].Visible = false;
+
+            formacionNumeroRemito();
         }
 
         private void llenadoDropDownClientes()
@@ -83,6 +85,11 @@ namespace Juntas_MC.PL
             cmbPieza.SelectedItem = null;
         }
 
+        private void formacionNumeroRemito()
+        {
+            txtFactura.Text = Convert.ToString(Convert.ToInt32(oFacturasDAL.UltimoCorrelativoInsertado()) + 1);
+        }
+
 
         private void btnAgregarPieza_Click(object sender, EventArgs e)
         {
@@ -112,7 +119,7 @@ namespace Juntas_MC.PL
             }
             else
             {
-                ganancia = 1;
+                ganancia = 0;
             }
             
 
@@ -139,7 +146,7 @@ namespace Juntas_MC.PL
                 row["Descripcion"] = descripcion;
                 row["Cantidad"] = nupCantidad.Value;
                 row["Precio unit"] = precio + (precio * ganancia / 100);
-                //row["Precio x cant"] = precioPorCantidad;
+                row["% Bonif."] = txtPorcentaje.Text + "%";
                 row["Bonificacion"] = precioDividido100;
                 row["Importe total"] = valorMenosPorcentaje;
                 row["PiezaId"] = cmbPieza.SelectedValue;
@@ -158,7 +165,7 @@ namespace Juntas_MC.PL
                 row["Descripcion"] = descripcion;
                 row["Cantidad"] = nupCantidad.Value;
                 row["Precio unit"] = precio + (precio * ganancia / 100);
-                //row["Precio x cant"] = precioPorCantidad;
+                row["% Bonif."] = txtPorcentaje.Text + "%";
                 row["Bonificacion"] = "";
                 row["Importe total"] = precioPorCantidad;
                 row["PiezaId"] = cmbPieza.SelectedValue;
@@ -189,7 +196,7 @@ namespace Juntas_MC.PL
         {
             FacturasBLL oFacturasBLL = new FacturasBLL();
             //oMercados.Id = Convert.ToInt32(lblIdMercado.Text);
-            oFacturasBLL.Numero = txtFactura.Text;
+            oFacturasBLL.Numero = Convert.ToInt32(txtFactura.Text);
             oFacturasBLL.Cliente = Convert.ToInt32(cmbCliente.SelectedValue);
             if (lblImporteTotal.Text != "")
             {
@@ -206,25 +213,42 @@ namespace Juntas_MC.PL
             oFacturasDAL.agregar(recuperarInformacionFactura());
 
             decimal Bonificacion;
-            for (int i = 0; i < dvgFactura.Rows.Count -1; i++)
+            for (int i = 0; i < dvgFactura.Rows.Count; i++)
             {
                 ultimaFacturaInsertada.Text = oFacturasDAL.buscarUltimoIdInsertado();
                 int FacturaId = Convert.ToInt32(ultimaFacturaInsertada.Text);
-                int PiezaId = Convert.ToInt32(dvgFactura.Rows[i].Cells[6].Value);
+                int PiezaId = Convert.ToInt32(dvgFactura.Rows[i].Cells[7].Value);
                 string PiezaCodigo = dvgFactura.Rows[i].Cells[0].Value.ToString();
                 string Descripcion = dvgFactura.Rows[i].Cells[1].Value.ToString();
                 int Cantidad = Convert.ToInt32(dvgFactura.Rows[i].Cells[2].Value);
                 decimal PrecioUnitario = Convert.ToDecimal(dvgFactura.Rows[i].Cells[3].Value);
+                string porcBonif = dvgFactura.Rows[i].Cells[4].Value.ToString();
                 if (dvgFactura.Rows[i].Cells[4].Value.ToString() == "")
                 { Bonificacion = 0; }
-                else { Bonificacion = Convert.ToDecimal(dvgFactura.Rows[i].Cells[4].Value); }
-                decimal ItemImporteTotal = Convert.ToDecimal(dvgFactura.Rows[i].Cells[5].Value);
-                
-                oFacturasItemsDAL.insertarFacturasItems(FacturaId, PiezaId, PiezaCodigo, Cantidad, Descripcion,PrecioUnitario, Bonificacion, ItemImporteTotal);
+                else { Bonificacion = Convert.ToDecimal(dvgFactura.Rows[i].Cells[5].Value); }
+                decimal ItemImporteTotal = Convert.ToDecimal(dvgFactura.Rows[i].Cells[6].Value);
+
+                oFacturasItemsDAL.insertarFacturasItems(FacturaId, PiezaId, PiezaCodigo, Cantidad, Descripcion,PrecioUnitario, Bonificacion, ItemImporteTotal, porcBonif);
             }
 
             
             frmImpresionDialog.ShowDialog();
+
+            limpiarEntradas();
+        }
+
+        public void limpiarEntradas()
+        {
+            formacionNumeroRemito();
+            dt.Rows.Clear();
+            dvgFactura.Refresh();
+            cmbCliente.SelectedItem = null;
+            cmbPieza.SelectedItem = null;
+            cmbProveedor.SelectedItem = null;
+            txtGanancia.Text = null;
+            txtPorcentaje.Text = null;
+            nupCantidad.Value = 1;
+            lblImporteTotal.Text = "0.00";
         }
 
         public void imprimirFacturaDGVPrinter()

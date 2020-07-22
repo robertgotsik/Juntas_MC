@@ -17,5 +17,6 @@ namespace Juntas_MC.BLL
         public decimal PrecioUnitario { get; set; }
         public decimal Bonificacion { get; set; }
         public decimal ItemImporteTotal { get; set; }
+        public string PorcBonif { get; set; }
     }
 }

@@ -50,9 +50,16 @@ namespace Juntas_MC.PL
             int material = Convert.ToInt32(cmbMaterial.SelectedValue);
             int marca = Convert.ToInt32(cmbMarca.SelectedValue);
             int modelo = Convert.ToInt32(cmbModelo.SelectedValue);
+
             piezasBLLBindingSource.DataSource = piezasDAL.mostrarPiezasListado(ganancia, operando, aumento, piezaTipo, material, marca, modelo);
+
             if (aumento == "0") { this.dgvListado.Columns["PrecioDeVenta"].Visible = false; }
-            else { this.dgvListado.Columns["PrecioDeVenta"].Visible = true; }
+            else 
+            { 
+                this.dgvListado.Columns["PrecioDeVenta"].Visible = true;
+                this.dgvListado.Columns["PrecioDeVenta"].DefaultCellStyle.BackColor = Color.Yellow; 
+            }
+
             btnImprimir.Enabled = true;
         }
 

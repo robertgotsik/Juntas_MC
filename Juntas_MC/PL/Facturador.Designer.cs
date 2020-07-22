@@ -44,6 +44,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.nupCantidad = new System.Windows.Forms.NumericUpDown();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtGanancia = new System.Windows.Forms.TextBox();
             this.lblGanancia = new System.Windows.Forms.Label();
             this.lblPiezaId = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.btnFacturar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dvgFactura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCantidad)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -203,6 +203,11 @@
             this.nupCantidad.Size = new System.Drawing.Size(74, 23);
             this.nupCantidad.TabIndex = 18;
             this.nupCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nupCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // groupBox2
             // 
@@ -224,6 +229,16 @@
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.Window;
+            this.label8.Location = new System.Drawing.Point(493, 64);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 17);
+            this.label8.TabIndex = 24;
+            this.label8.Text = "%";
             // 
             // txtGanancia
             // 
@@ -350,16 +365,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.SystemColors.Window;
-            this.label8.Location = new System.Drawing.Point(493, 64);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(20, 17);
-            this.label8.TabIndex = 24;
-            this.label8.Text = "%";
             // 
             // Facturador
             // 
