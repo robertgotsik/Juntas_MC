@@ -545,6 +545,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Settings_105244.ico" />
+    <None Include="Resources\iconfinder_image_cancel_103591.png" />
     <None Include="Resources\mc_logo.png" />
     <None Include="Resources\mc_logo.jpg" />
     <None Include="Resources\iconfinder_Cog_58513.png" />

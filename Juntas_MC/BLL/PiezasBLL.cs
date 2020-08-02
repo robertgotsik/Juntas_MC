@@ -32,16 +32,16 @@ namespace Juntas_MC.BLL
                     if (File.Exists(Imagen))
                     {
                         Image im = Image.FromFile(Imagen);
-                        Image newImage = ScaleImage(im, 50, 50);
-                        
-                            return newImage;
-                        
+                        Image newImage = ScaleImage(im, 100, 100);
+
+                        return newImage;
+
                         //return Image.FromFile(Imagen);
                     }
                 }
                 Image im2 = Resources.image2;
-                Image standartImage = ScaleImage(im2, 50, 50);
-                return standartImage; 
+                Image standartImage = ScaleImage(im2, 100, 100);
+                return standartImage;
             }
         }
         public decimal PrecioDeVenta { get; set; }

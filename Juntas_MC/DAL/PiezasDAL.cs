@@ -249,7 +249,7 @@ namespace Juntas_MC.DAL
                 OleDbCommand sentencia = new OleDbCommand(Convert.ToString(strSQL));
 
 
-                strSQL.Append("Select Codigo, Detalles, Round (Precio * " + ganancia + " - (Precio * " + ganancia + " * (" + operando + " / 100)), 2) as Importe, Imagen, Round ((Precio * " + ganancia + " - (Precio * " + ganancia + " * (" + operando + " / 100))) * " + aumento + " , 2) AS PrecioDeVenta from ((((Piezas P INNER JOIN PiezasTipos PT on PT.Id = P.PiezaTipo) INNER JOIN Materiales MA on MA.Id = P.Material) INNER JOIN PiezasModelos PM on PM.Pieza = P.Id) INNER JOIN Modelos MO on MO.Id = PM.Modelo) INNER JOIN Marcas MAR on MAR.Id = MO.Marca ");
+                strSQL.Append("Select Codigo, Detalles, Round (((Precio + (Precio * " + ganancia + " / 100)) - ((Precio + (Precio * " + ganancia + " / 100)) * (" + operando + " / 100))), 2) as Importe, Imagen, Round (Importe + (Importe * " + aumento + " / 100), 2) AS PrecioDeVenta from ((((Piezas P LEFT JOIN PiezasTipos PT on PT.Id = P.PiezaTipo) LEFT JOIN Materiales MA on MA.Id = P.Material) LEFT JOIN PiezasModelos PM on PM.Pieza = P.Id) LEFT JOIN Modelos MO on MO.Id = PM.Modelo) LEFT JOIN Marcas MAR on MAR.Id = MO.Marca ");
                 
                     strSQL.Append(" WHERE ");
                     string whereClause = "";
@@ -261,7 +261,7 @@ namespace Juntas_MC.DAL
                     strSQL.Append(" and Estado = 1 GROUP BY P.Codigo, Detalles, Precio, Imagen");
 
                 sentencia.CommandText = (Convert.ToString(strSQL));
-                conexion.ejecutarMetodoSinRetornoDatos(sentencia);
+                //conexion.ejecutarMetodoSinRetornoDatos(sentencia);
 
                 List<PiezasBLL> piezasList = conexion.ejecutarSentencia(sentencia).Tables[0].AsEnumerable()
                     .Select(dataRow => new PiezasBLL

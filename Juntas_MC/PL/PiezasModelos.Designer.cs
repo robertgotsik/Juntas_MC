@@ -41,9 +41,10 @@
             // 
             this.lblModelo.AutoSize = true;
             this.lblModelo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblModelo.Location = new System.Drawing.Point(132, 9);
+            this.lblModelo.Location = new System.Drawing.Point(99, 7);
+            this.lblModelo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModelo.Name = "lblModelo";
-            this.lblModelo.Size = new System.Drawing.Size(63, 20);
+            this.lblModelo.Size = new System.Drawing.Size(54, 17);
             this.lblModelo.TabIndex = 0;
             this.lblModelo.Text = "Modelo";
             // 
@@ -54,17 +55,19 @@
             this.cmbPiezasModelos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPiezasModelos.FormattingEnabled = true;
             this.cmbPiezasModelos.IntegralHeight = false;
-            this.cmbPiezasModelos.Location = new System.Drawing.Point(136, 30);
+            this.cmbPiezasModelos.Location = new System.Drawing.Point(102, 24);
+            this.cmbPiezasModelos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbPiezasModelos.Name = "cmbPiezasModelos";
-            this.cmbPiezasModelos.Size = new System.Drawing.Size(274, 26);
+            this.cmbPiezasModelos.Size = new System.Drawing.Size(313, 23);
             this.cmbPiezasModelos.TabIndex = 1;
             // 
             // btnAgregar
             // 
             this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
-            this.btnAgregar.Location = new System.Drawing.Point(298, 62);
+            this.btnAgregar.Location = new System.Drawing.Point(331, 50);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(112, 43);
+            this.btnAgregar.Size = new System.Drawing.Size(84, 35);
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -75,9 +78,10 @@
             // 
             this.lblPiezaCodigo.AutoSize = true;
             this.lblPiezaCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPiezaCodigo.Location = new System.Drawing.Point(12, 9);
+            this.lblPiezaCodigo.Location = new System.Drawing.Point(9, 7);
+            this.lblPiezaCodigo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPiezaCodigo.Name = "lblPiezaCodigo";
-            this.lblPiezaCodigo.Size = new System.Drawing.Size(90, 20);
+            this.lblPiezaCodigo.Size = new System.Drawing.Size(76, 17);
             this.lblPiezaCodigo.TabIndex = 6;
             this.lblPiezaCodigo.Text = "Pieza Cod.";
             // 
@@ -85,32 +89,36 @@
             // 
             this.txtPiezaCodigo.Enabled = false;
             this.txtPiezaCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPiezaCodigo.Location = new System.Drawing.Point(16, 29);
+            this.txtPiezaCodigo.Location = new System.Drawing.Point(12, 24);
+            this.txtPiezaCodigo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPiezaCodigo.Name = "txtPiezaCodigo";
-            this.txtPiezaCodigo.Size = new System.Drawing.Size(100, 26);
+            this.txtPiezaCodigo.Size = new System.Drawing.Size(76, 23);
             this.txtPiezaCodigo.TabIndex = 7;
             // 
             // lblPiezaId
             // 
             this.lblPiezaId.AutoSize = true;
-            this.lblPiezaId.Location = new System.Drawing.Point(13, 88);
+            this.lblPiezaId.Location = new System.Drawing.Point(10, 72);
+            this.lblPiezaId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPiezaId.Name = "lblPiezaId";
-            this.lblPiezaId.Size = new System.Drawing.Size(54, 17);
+            this.lblPiezaId.Size = new System.Drawing.Size(42, 13);
             this.lblPiezaId.TabIndex = 8;
             this.lblPiezaId.Text = "IdPieza";
             this.lblPiezaId.Visible = false;
             // 
             // PiezasModelos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 113);
+            this.ClientSize = new System.Drawing.Size(426, 92);
             this.Controls.Add(this.lblPiezaId);
             this.Controls.Add(this.txtPiezaCodigo);
             this.Controls.Add(this.lblPiezaCodigo);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.cmbPiezasModelos);
             this.Controls.Add(this.lblModelo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PiezasModelos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PiezasModelos";

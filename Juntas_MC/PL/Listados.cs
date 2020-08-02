@@ -59,13 +59,16 @@ namespace Juntas_MC.PL
                 this.dgvListado.Columns["PrecioDeVenta"].Visible = true;
                 this.dgvListado.Columns["PrecioDeVenta"].DefaultCellStyle.BackColor = Color.Yellow; 
             }
+            dgvListado.Columns["Codigo"].Width = 85;
 
             btnImprimir.Enabled = true;
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            imprimirListadoDGVPrinter();
+            string porcentajeDto;
+            if (txtPorcentaje.Text == "0" | txtPorcentaje.Text == "" ) { porcentajeDto = ""; } else { porcentajeDto = txtPorcentaje.Text +"%"; }
+            imprimirListadoDGVPrinter(porcentajeDto);
         }
 
         private void cbTodasPiezas_CheckedChanged(object sender, EventArgs e)
@@ -183,14 +186,16 @@ namespace Juntas_MC.PL
         private void SeleccionCliente(object sender, EventArgs e)
         {
             int mercado = Convert.ToInt32(cmbCliente.SelectedValue);
-            txtDto.Text = mercadosDAL.averiguarporcentaje(mercado);
+            //txtDto.Text = mercadosDAL.averiguarporcentaje(mercado);
+            txtPorcentaje.Text = mercadosDAL.averiguarporcentaje(mercado);
         }
 
-        public void imprimirListadoDGVPrinter()
+        public void imprimirListadoDGVPrinter( string porcentajeDto)
         {
             DGVPrinter printer = new DGVPrinter();
-            printer.Title = empresasDAL.NombreEmpresa().ToString();
-            printer.SubTitle = string.Format("Fecha: {0}", DateTime.Now.Date.ToString("dd/MM/yyy"));
+            printer.Title = empresasDAL.NombreEmpresa().ToString() ;
+            printer.SubTitle = string.Format("Fecha: {0}", DateTime.Now.Date.ToString("dd/MM/yyy") +"                          " 
+                 + cmbCliente.Text.ToString() +"   " + porcentajeDto);
             printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
             printer.PageNumbers = false;
             printer.PageNumberInHeader = false;

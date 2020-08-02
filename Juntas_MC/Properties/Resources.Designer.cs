@@ -323,6 +323,16 @@ namespace Juntas_MC.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_image_cancel_103591 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_image_cancel_103591", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap iconfinder_Modify_132500 {
             get {
                 object obj = ResourceManager.GetObject("iconfinder_Modify_132500", resourceCulture);

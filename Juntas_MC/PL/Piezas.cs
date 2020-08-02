@@ -81,6 +81,10 @@ namespace Juntas_MC.PL
             this.dgvPiezas.Columns["Imagen"].Visible = false;
             this.dgvPiezas.Columns["CodProveedor"].Visible = false;
             this.dgvPiezas.Columns["Observaciones"].Visible = false;
+
+            dgvPiezas.Columns["Codigo"].Width = 85;
+            dgvPiezas.Columns["Precio"].Width = 75;
+            dgvPiezas.Columns["Estad"].Width = 85;
         }
 
         private void iniciarLlenadoDropDown1()

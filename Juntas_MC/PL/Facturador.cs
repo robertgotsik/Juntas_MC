@@ -293,5 +293,14 @@ namespace Juntas_MC.PL
             }
             lblImporteTotal.Text = Convert.ToString(total);
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dvgFactura.CurrentRow.Index != -1)
+            {
+                dvgFactura.Rows.RemoveAt(dvgFactura.CurrentRow.Index);
+                calcularTotal();
+            }
+        }
     }
 }
